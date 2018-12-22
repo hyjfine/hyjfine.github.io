@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Dev,Flutter,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="目的 认识Flutter Redux局限性 引入Middleware必要性 全方位集成UT  Flutter Redux初代实现局限性UT不好覆盖 页面  初代实现一个页面的结构是这样的： 1234567891011121314class XXXScreen extends StatefulWidget &amp;#123;  @override  _XXXScreenState createState(">
+<meta name="keywords" content="Dev,Flutter">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flutter Redux 进阶">
+<meta property="og:url" content="http://heyongjian.com/2018/12/09/2018/Flutter redux 进阶/index.html">
+<meta property="og:site_name" content="何永剑的博客">
+<meta property="og:description" content="目的 认识Flutter Redux局限性 引入Middleware必要性 全方位集成UT  Flutter Redux初代实现局限性UT不好覆盖 页面  初代实现一个页面的结构是这样的： 1234567891011121314class XXXScreen extends StatefulWidget &amp;#123;  @override  _XXXScreenState createState(">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://me.wozaihui.com/hyj-huiz-live-temple.gif">
+<meta property="og:updated_time" content="2018-12-22T13:34:39.663Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Flutter Redux 进阶">
+<meta name="twitter:description" content="目的 认识Flutter Redux局限性 引入Middleware必要性 全方位集成UT  Flutter Redux初代实现局限性UT不好覆盖 页面  初代实现一个页面的结构是这样的： 1234567891011121314class XXXScreen extends StatefulWidget &amp;#123;  @override  _XXXScreenState createState(">
+<meta name="twitter:image" content="http://me.wozaihui.com/hyj-huiz-live-temple.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://heyongjian.com/2018/12/09/2018/Flutter redux 进阶/">
+
+
+
+
+
+  <title>Flutter Redux 进阶 | 何永剑的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">何永剑的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">love and peace</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://heyongjian.com/2018/12/09/2018/Flutter redux 进阶/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="何永剑">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="何永剑的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Flutter Redux 进阶</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-09T23:08:00+08:00">
+                2018-12-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><ol>
+<li>认识Flutter Redux局限性</li>
+<li>引入Middleware必要性</li>
+<li>全方位集成UT</li>
+</ol>
+<h2 id="Flutter-Redux初代实现局限性"><a href="#Flutter-Redux初代实现局限性" class="headerlink" title="Flutter Redux初代实现局限性"></a>Flutter Redux初代实现局限性</h2><h3 id="UT不好覆盖"><a href="#UT不好覆盖" class="headerlink" title="UT不好覆盖"></a>UT不好覆盖</h3><ol>
+<li>页面</li>
+</ol>
+<p>初代实现一个页面的结构是这样的：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">XXXScreen</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  _XXXScreenState createState() =&gt; _XXXScreenState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_XXXScreenState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">XXXScreen</span>&gt; </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> StoreConnector&lt;AppState, _XXXViewModel&gt;(</span><br><span class="line">        converter: (store) =&gt; _XXXViewModel.fromStore(store),</span><br><span class="line">        builder: (BuildContext context, _XXXViewModel vm) =&gt;</span><br><span class="line">            Container());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>会有两个问题：UI视图和Redux数据通用逻辑耦和在一起，无发通过mock数据来对UI进行UT；大家习惯套路代码，上来就是一个stful，不会想是不是stless更科学点（事实上初代实现80%的Screen是Statefull的，重构后90%都能写成Stateless，提升了页面刷新效率）。</p>
+<ol start="2">
+<li>API call</li>
+</ol>
+<p>我们的API就是一个静态方法：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> fetchxxx() &#123;</span><br><span class="line">   <span class="keyword">final</span> access = StoreContainer.access;</span><br><span class="line">   <span class="keyword">final</span> apiFuture = Services.rest.<span class="keyword">get</span>(</span><br><span class="line"><span class="string">'/zpartner_api/<span class="subst">$&#123;access.path&#125;</span>/<span class="subst">$&#123;access.businessGroupUid&#125;</span>/xxxx/'</span>);</span><br><span class="line">   Services.asyncRequest(</span><br><span class="line">       apiFuture,</span><br><span class="line">       xxxRequestAction(),</span><br><span class="line">       (json) =&gt; xxxSuccessAction(payload: xxxInfo.fromJson(json)),</span><br><span class="line">       (errorInfo) =&gt; xxxFailureAction(errorInfo: errorInfo));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>优点是简单，有java味，缺点是：静态方法无法使用<a href="https://github.com/dart-lang/mockito" target="_blank" rel="noopener">mockIto</a>；一个Api call触发，那就发出去了，无法撤销无法重试；自然也无法进行UT覆盖。</p>
+<h3 id="不够Functional"><a href="#不够Functional" class="headerlink" title="不够Functional"></a>不够Functional</h3><p>上面提到的页面和API call都体现了不Functional，还有我们初代Reducer的写法也是大家很熟悉的OO写法<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">xxxReducer</span> </span>&#123;</span><br><span class="line">  xxxState reducer(xxxState state, ActionType action) &#123;</span><br><span class="line">    <span class="keyword">switch</span> (action.runtimeType) &#123;</span><br><span class="line">      <span class="keyword">case</span> xxxRequestAction:</span><br><span class="line">        <span class="keyword">return</span> state.copyWith(isLoading: );</span><br><span class="line">      <span class="keyword">case</span> xxxSuccessAction:</span><br><span class="line">        <span class="keyword">return</span> state.copyWith(isLoading: );</span><br><span class="line">      <span class="keyword">case</span> xxxFailureAction:</span><br><span class="line">        <span class="keyword">return</span> state.copyWith(isLoading: );</span><br><span class="line">        </span><br><span class="line">      <span class="keyword">default</span>: </span><br><span class="line">        <span class="keyword">return</span> state;  </span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>从上到下流水写法，static，switch case这都是我们OO的老朋友。但既然Dart是偏前端特性，Functional才是科学的方向啊。</p>
+<h2 id="引入Middleware必要性"><a href="#引入Middleware必要性" class="headerlink" title="引入Middleware必要性"></a>引入Middleware必要性</h2><blockquote>
+<p>业务已经写完，小伙伴边自测边写UT，为了达到50%的coverage可以说是非常蛋疼了。某大佬眉头一皱发现问题并不简单，UT不好写，是不是结构搓？于是召集大家讨论一波，得出这些局限性。改还是不改是个问题，不改开发算是提前完成，反正Rn也没有写UT；改的话，改动量是巨大的。大家都停下手中的工作，思考并深刻讨论这个问题，于是我们从三个方向衡量这个问题：</p>
+</blockquote>
+<h3 id="业务影响"><a href="#业务影响" class="headerlink" title="业务影响"></a>业务影响</h3><p>离排期提测时间只有1个星期，加入Middleware会有80%的代码需要挪动，改完还要补UT，重新自测。emmm，工作量超大。和产品沟通了下，其实这个业务就是技术重构性质，线上Rn多跑一个礼拜也无碍，测试组也恰好特别忙，delay一周他们觉得ok。倾向改。</p>
+<h3 id="技术栈影响"><a href="#技术栈影响" class="headerlink" title="技术栈影响"></a>技术栈影响</h3><p>从长远看，改动是进步的。对UT友好，更严谨的结构，也更Functional。小伙伴们觉得自己也能驾驭，不过是多写点套路代码～，技术栈倾向改。</p>
+<h3 id="伙伴支持度"><a href="#伙伴支持度" class="headerlink" title="伙伴支持度"></a>伙伴支持度</h3><p>引入Middleware带来的好处能否让小伙伴愿意加班把自己的模块都改写了，还补上UT？实践出真知，所以大家讨论决定，用半天时间理解并改写一个小模块，再投票决定是否改。讨论很激烈，话题一度跑偏。。。</p>
+<p>讨论下来，最终决定是改，一星期后大家都说，真香！</p>
+<h2 id="改动点"><a href="#改动点" class="headerlink" title="改动点"></a>改动点</h2><h3 id="增删"><a href="#增删" class="headerlink" title="增删"></a>增删</h3><blockquote>
+<p>删掉原来Service的static API定义，加入Middleware和Repository。Middleware负责网络请求，数据处理，并根据数据状态进行Action的分发。Repository功能是定义了一个数据来源（可能来源于网络，也可能是数据库），因为引入Dio，所以会很精简，形式上可以看成是一个Endpoint定义。</p>
+</blockquote>
+<ul>
+<li>Middleware</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">XXXMiddlewareFactory</span> <span class="keyword">extends</span> <span class="title">MiddlewareFactory</span> </span>&#123;</span><br><span class="line">  XXXMiddlewareFactory(AppRepository repository) : <span class="keyword">super</span>(repository);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="built_in">List</span>&lt;Middleware&lt;AppState&gt;&gt; generate() &#123;</span><br><span class="line">    <span class="keyword">return</span> [</span><br><span class="line">      TypedMiddleware&lt;AppState, FetchAction&gt;(_fetchXXX),</span><br><span class="line">    ];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">void</span> _fetchXXX(Store&lt;AppState&gt; store, FetchAction action,</span><br><span class="line">      NextDispatcher next) &#123;</span><br><span class="line">    Services.asyncRequest(</span><br><span class="line">            () =&gt; repository.fetch(),</span><br><span class="line">        FetchRequestAction(),</span><br><span class="line">            (json) =&gt; FetchSuccessAction(), (errorInfo) =&gt;</span><br><span class="line">        FetchFailureAction(errorInfo: errorInfo));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Repository</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Future&lt;Response&gt; fetchXXX(<span class="built_in">String</span> uid) &#123;</span><br><span class="line">  <span class="keyword">return</span> Services.rest.<span class="keyword">get</span>(</span><br><span class="line">      <span class="string">'/xxx_api/<span class="subst">$&#123;path&#125;</span>/<span class="subst">$&#123;groupUid&#125;</span>/manual_activities/<span class="subst">$uid</span>/'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><blockquote>
+<p>Screen把UI都抽到Presentation里，它依赖一个vm。数据填充并驱动UI变化，这样UI也可以写很全面的UT。Reducer则是利用Flutter_redux库提供的combineReducers方法，将原来一个大的Reducer粒度切到最小。方便写UT和业务增量迭代。</p>
+</blockquote>
+<ul>
+<li>Screen</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">XXXPresentation</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> XXXViewModel vm;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> XXXPresentation(&#123;Key key, <span class="keyword">this</span>.vm&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Container();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">XXXScreen</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">const</span> <span class="built_in">String</span> routeName = <span class="string">'xxx_screen'</span>;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> StoreConnector&lt;AppState, XXXViewModel&gt;(</span><br><span class="line">      distinct: <span class="keyword">true</span>,</span><br><span class="line">      onInit: (store) &#123;</span><br><span class="line">        store.dispatch(FetchXXXAction(isRefresh: <span class="keyword">true</span>));</span><br><span class="line">      &#125;,</span><br><span class="line">      onDispose: (store) =&gt; store.dispatch(XXXResetAction()),</span><br><span class="line">      converter: XXXViewModel.fromStore,</span><br><span class="line">      builder: (context, vm) &#123;</span><br><span class="line">        <span class="keyword">return</span> XXXPresentation(vm: vm);</span><br><span class="line">      &#125;,</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">XXXViewModel</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> XXXViewModel fromStore(Store&lt;AppState&gt; store) &#123;</span><br><span class="line">    <span class="keyword">return</span> XXXViewModel();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Reducer</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@immutable</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">XXXState</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">bool</span> isLoading;</span><br><span class="line"></span><br><span class="line">  XXXState(&#123;<span class="keyword">this</span>.isLoading,</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  XXXState copyWith(&#123;<span class="built_in">bool</span> isLoading,</span><br><span class="line">  &#125;) &#123;</span><br><span class="line">    <span class="keyword">return</span> XXXState(</span><br><span class="line">      isLoading: isLoading ?? <span class="keyword">this</span>.isLoading,</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  XXXState.initialState()</span><br><span class="line">      : isLoading = <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">final</span> xXXReducer = combineReducers&lt;XXXState&gt;([</span><br><span class="line">  TypedReducer&lt;XXXState, Action&gt;(_onRequest),</span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line">XXXState _onRequest(XXXState state, Action action) =&gt;</span><br><span class="line">    state.copyWith(isLoading: <span class="keyword">false</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="UT集成"><a href="#UT集成" class="headerlink" title="UT集成"></a>UT集成</h2><blockquote>
+<p>现在的coverage是48%，核心模块有80%+，有必要的话达到95%以上时完全ok的。原因是解耦以后方方面面都可以UT了</p>
+</blockquote>
+<ul>
+<li>widget(纯)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 官方文档写的清楚明白</span><br><span class="line">https://flutter.io/docs/testing</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Utils</li>
+</ul>
+<p>被多次使用的才会抽成工具类，纯逻辑也很容易写测试，UT应该先满上。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">group(<span class="string">'test string util'</span>, () &#123;</span><br><span class="line">   test(<span class="string">'isValidPhone'</span>, () &#123;</span><br><span class="line">     <span class="keyword">var</span> boolNull = StringUtil.isValidPhone(<span class="keyword">null</span>);</span><br><span class="line">     <span class="keyword">var</span> boolStarts1 = StringUtil.isValidPhone(<span class="string">'17012341234'</span>);</span><br><span class="line">     <span class="keyword">var</span> boolStarts2 = StringUtil.isValidPhone(<span class="string">'27012341234'</span>);</span><br><span class="line">     <span class="keyword">var</span> boolLength10 = StringUtil.isValidPhone(<span class="string">'1701234123'</span>);</span><br><span class="line">     <span class="keyword">var</span> boolLength11 = StringUtil.isValidPhone(<span class="string">'17012341234'</span>);</span><br><span class="line"></span><br><span class="line">     expect(boolNull, <span class="keyword">false</span>);</span><br><span class="line">     expect(boolStarts1, <span class="keyword">true</span>);</span><br><span class="line">     expect(boolStarts2, <span class="keyword">false</span>);</span><br><span class="line">     expect(boolLength10, <span class="keyword">false</span>);</span><br><span class="line">     expect(boolLength11, <span class="keyword">true</span>);</span><br><span class="line">   &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Presentation</li>
+</ul>
+<p>业务的载体。对于比较核心的业务，无论是流程规范定义还是数据边界条件都可以用UT来自动化保障。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">group(<span class="string">'test login presentation'</span>, () &#123;</span><br><span class="line">  Store&lt;AppState&gt; store;</span><br><span class="line">  setUp(() &#123;</span><br><span class="line">    store = Store&lt;AppState&gt;(reduxReducer,</span><br><span class="line">        initialState: initialReduxState(), distinct: <span class="keyword">true</span>);</span><br><span class="line">    StoreContainer.setStoreForTest(store);</span><br><span class="line">  &#125;);</span><br><span class="line">  testWidgets(<span class="string">'test loading'</span>, (WidgetTester tester) <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="keyword">final</span> vm = LoginViewModel(isLoading: <span class="keyword">true</span>, isSendPinSuccess: <span class="keyword">false</span>);</span><br><span class="line">    <span class="keyword">await</span> TestHelper.pumpWidget(tester, store, LoginPresentation(vm: vm));</span><br><span class="line">    expect(find.byType(CupertinoActivityIndicator), findsOneWidget);</span><br><span class="line">    ...  </span><br><span class="line">  &#125;);</span><br><span class="line">    testWidgets(<span class="string">'test has data'</span>,(WidgetTester tester) <span class="keyword">async</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;);</span><br><span class="line">    testWidgets(<span class="string">'test has no data'</span>,(WidgetTester tester) <span class="keyword">async</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Reducer</li>
+</ul>
+<p>存放数据，可以用UT来验证特定Action是否改变了特定的数据。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">group(<span class="string">'notificationReducer'</span>, () &#123;</span><br><span class="line">  test(<span class="string">'FetchMessageUnreadRequestAction'</span>, () &#123;</span><br><span class="line">    store.dispatch(FetchMessageUnreadRequestAction());</span><br><span class="line">    expect(store.state.notification.isLoading, <span class="keyword">true</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  test(<span class="string">'FetchMessageUnreadSuccessAction'</span>, () &#123;</span><br><span class="line">    <span class="keyword">final</span> payload = MessageUnreadInfo.initialState();</span><br><span class="line">    store.dispatch(FetchMessageUnreadSuccessAction(payload: payload));</span><br><span class="line">    expect(store.state.notification.messageUnreadInfo, payload);</span><br><span class="line">    expect(store.state.notification.isLoading, <span class="keyword">false</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Middleware</li>
+</ul>
+<p>叫中间件代表它不是必须，是可以被插拔，可以叠加多个的。每个中间件会有一个明确的任务，我们引入的中间件在这里是处理网络数据，根据情况发对应Action。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">group(<span class="string">'Middleware'</span>, () &#123;</span><br><span class="line">  <span class="keyword">final</span> repo = MockAppRepository();</span><br><span class="line">  Store&lt;AppState&gt; store;</span><br><span class="line">  setUpAll(() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> mockApiSuc(repo);</span><br><span class="line">  &#125;);</span><br><span class="line">  setUp(() &#123;</span><br><span class="line">    store = Store&lt;AppState&gt;(reduxReducer,</span><br><span class="line">        initialState: initialReduxState(),</span><br><span class="line">        middleware: initialMiddleware(repo),</span><br><span class="line">        distinct: <span class="keyword">true</span>);</span><br><span class="line">    StoreContainer.setStoreForTest(store);</span><br><span class="line">  &#125;);</span><br><span class="line">  group(<span class="string">'NotificationMiddlewareFactory'</span>, () &#123;</span><br><span class="line">    test(<span class="string">'FetchMessageUnreadAction'</span>, () &#123;</span><br><span class="line">      store.dispatch(FetchMessageUnreadAction());</span><br><span class="line">      verify(repo.fetchMessagesUnread());</span><br><span class="line">    &#125;);</span><br><span class="line">    test(<span class="string">'FetchMessageForHomeAction'</span>, () &#123;</span><br><span class="line">      store.dispatch(FetchMessageForHomeAction());</span><br><span class="line">      verify(repo.fetchMessagesForHome());</span><br><span class="line">    &#125;);</span><br><span class="line">      ...</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://github.com/hyjfine/flutter_redux_sample" target="_blank" rel="noopener">flutter_redux_sample</a></p>
+<p><a href="https://github.com/brianegan/flutter_architecture_samples" target="_blank" rel="noopener">flutter_architecture_samples</a></p>
+<h2 id="One-More-Thing"><a href="#One-More-Thing" class="headerlink" title="One More Thing"></a>One More Thing</h2><blockquote>
+<p>TNT，让你的工作效率提高几百倍，老罗认真严肃的说。开个玩笑，这个有待验证。但Live Templates，提升你的编程效率和体验，肯定是真的</p>
+</blockquote>
+<p><img src="http://me.wozaihui.com/hyj-huiz-live-temple.gif"></p>
+<p>使用地址：<a href="https://github.com/hui-z/live-templates" target="_blank" rel="noopener">https://github.com/hui-z/live-templates</a></p>
+<p>（完）</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Dev/" rel="tag"># Dev</a>
+          
+            <a href="/tags/Flutter/" rel="tag"># Flutter</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/24/2018/Flutter redux/" rel="next" title="Flutter Redux">
+                <i class="fa fa-chevron-left"></i> Flutter Redux
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="何永剑">
+            
+              <p class="site-author-name" itemprop="name">何永剑</p>
+              <p class="site-description motion-element" itemprop="description">伪二次元，非专业视觉体验师。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hyjfine" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/zi-lu-yu/activities" target="_blank" title="zhihu">
+                      
+                        <i class="fa fa-fw fa-globe"></i>zhihu</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">何永剑</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

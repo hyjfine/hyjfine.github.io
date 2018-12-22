@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Dev,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="开发流程约定 我司的开发流程，配合gitlab食用，蛮科学的  基本流程主要分支有两个，master 和 dev，master 一般只能由 dev 往里面合并。dev 接收各种BUG修复和新功能。 所有人 fork 一份 upstream（zaixxx/server），然后在自己的 fork（yourname/server）上开发，开发完毕后通过 Pull Request 向 upstream 的">
+<meta name="keywords" content="Dev">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开发流程约定">
+<meta property="og:url" content="http://heyongjian.com/2017/12/19/2017/git开发流程/index.html">
+<meta property="og:site_name" content="何永剑的博客">
+<meta property="og:description" content="开发流程约定 我司的开发流程，配合gitlab食用，蛮科学的  基本流程主要分支有两个，master 和 dev，master 一般只能由 dev 往里面合并。dev 接收各种BUG修复和新功能。 所有人 fork 一份 upstream（zaixxx/server），然后在自己的 fork（yourname/server）上开发，开发完毕后通过 Pull Request 向 upstream 的">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-22T14:58:45.400Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="开发流程约定">
+<meta name="twitter:description" content="开发流程约定 我司的开发流程，配合gitlab食用，蛮科学的  基本流程主要分支有两个，master 和 dev，master 一般只能由 dev 往里面合并。dev 接收各种BUG修复和新功能。 所有人 fork 一份 upstream（zaixxx/server），然后在自己的 fork（yourname/server）上开发，开发完毕后通过 Pull Request 向 upstream 的">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://heyongjian.com/2017/12/19/2017/git开发流程/">
+
+
+
+
+
+  <title>开发流程约定 | 何永剑的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">何永剑的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">love and peace</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://heyongjian.com/2017/12/19/2017/git开发流程/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="何永剑">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="何永剑的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">开发流程约定</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-19T21:46:00+08:00">
+                2017-12-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="开发流程约定"><a href="#开发流程约定" class="headerlink" title="开发流程约定"></a>开发流程约定</h1><blockquote>
+<p>我司的开发流程，配合gitlab食用，蛮科学的</p>
+</blockquote>
+<h2 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h2><p>主要分支有两个，master 和 dev，master 一般只能由 dev 往里面合并。dev 接收各种BUG修复和新功能。</p>
+<p>所有人 fork 一份 upstream（<code>zaixxx/server</code>），然后在自己的 fork（<code>yourname/server</code>）上开发，开发完毕后通过 Pull Request 向 upstream 的 <code>**dev**</code> 分支提交代码。</p>
+<p>禁止直接 clone upstream 作为工作环境。<br>如果需要合作的话，直接把某人的 fork 加为 remote 就可以了，然后在他的分支上 pull 和 push。</p>
+<h3 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h3><ul>
+<li>在自己的分支上可以随便 push -f ，branch 名字即使简单也不会和别人冲突。</li>
+<li>主代码仓库可以实现更好的权限控制。</li>
+<li>通过设置，可以强制其他人输入 LGTM 才允许合并，强制 Code Review。</li>
+</ul>
+<h3 id="坏处"><a href="#坏处" class="headerlink" title="坏处"></a>坏处</h3><ul>
+<li>略显麻烦？</li>
+</ul>
+<h2 id="好习惯"><a href="#好习惯" class="headerlink" title="好习惯"></a>好习惯</h2><p>所有冲突在自己的 repo 和分支上解决，通过 Pull Request 提交回 upstream 应该是一件轻松愉快的事。</p>
+<p>尽可能把改动切成小块，零散地提交回 upstream，可以大大减少冲突和合并所带来的成本。</p>
+<h2 id="关于代码合并"><a href="#关于代码合并" class="headerlink" title="关于代码合并"></a>关于代码合并</h2><p>代码存储冲突时，如不是100%确信的情况下，一定要找另一个代码修改人一起来解冲突或者解完后找那个人来Review（解冲突是很容易导致出问题的点）</p>
+<h1 id="默认工作流程"><a href="#默认工作流程" class="headerlink" title="默认工作流程"></a>默认工作流程</h1><p>(1) 把 zaixxx/<project> 的页面上，点击 fork （star 旁边的那个按钮，可以一起点一下 star) ，你就有了一份自己的仓库 yourname/<project></project></project></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 克隆到本地 </span><br><span class="line">git clone git@aria2.kezaixxx.com:yourname/&lt;project&gt;.git</span><br><span class="line"></span><br><span class="line">// 添加远端的 zaixxx 源，</span><br><span class="line">git remote add zaixxx git@aria2.kezaixxx.com:zaixxx/&lt;project&gt;.git</span><br><span class="line"></span><br><span class="line">// 如果本地已经有代码仓库，只需要变更远端源地址即可，将 origin 设置为你自己的源。</span><br><span class="line">git remote set-url origin git@aria2.kezaixxx.com:&lt;yourname&gt;/server.git </span><br><span class="line"></span><br><span class="line">//将 zaixxx 设置为再h源头；</span><br><span class="line">git remote add zaixxx git@aria2.kezaixxx.com:zaixxx/server.git</span><br><span class="line"></span><br><span class="line">// 每次开发前，需要执行 git pull zaixxx dev 将最新的代码同步到本地的 dev 分支。</span><br></pre></td></tr></table></figure>
+<p>上面两个网址可以方便的在 Gitlab 网页上复制。这里有不熟悉 git 操作的，遇到了什么问题的，以后加到这个文档里面，方便后人。</p>
+<p>(2) 添加功能/修复BUG</p>
+<p>首先拉取最新的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout dev</span><br><span class="line">git pull zaixxx dev</span><br></pre></td></tr></table></figure></p>
+<p>切换到你想修复问题或者添加功能的分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b fix_issue</span><br></pre></td></tr></table></figure></p>
+<p>修改东西到本地<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">echo print(&quot;Dolores&quot;) &gt; new_world.py  </span><br><span class="line">git add new_world.py  </span><br><span class="line">git diff  </span><br><span class="line">git commit -m &apos;fixes issue, add a new sample file&apos;</span><br></pre></td></tr></table></figure></p>
+<p>推到你自己的远端<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin fix_issue</span><br></pre></td></tr></table></figure></p>
+<p>(3) 解决可能有的冲突：<br>务必在这个阶段解决各种可能的冲突，减少pull request merge 到 dev 分支时的成本  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git checkout dev  </span><br><span class="line">git pull zaixxx dev</span><br><span class="line">git checkout fix_issue  </span><br><span class="line">git merge dev  </span><br><span class="line">** XXXX 解决可能出现的冲突 并 git commit  **</span><br><span class="line">git push origin fix_issue</span><br></pre></td></tr></table></figure>
+<p>(4) 提交 Pull Request<br>最后你需要做的，就是打开 <a href="https://aria2.kezaixxx.com/yourname/" target="_blank" rel="noopener">https://aria2.kezaixxx.com/yourname/</a><project> ，提交一个 Pull Request，指向 zaixxx 的 dev（这个已经被设置成默认分支了，应该不需要多余的设置），并assign给某人帮你review。<br>在创建 PR 前，记得自己 Review 一下所有的改动！</project></p>
+<p>(5) Code review完毕以后，点击Merge Request完成代码提交。提交完毕以后即可随时删掉旧的分支。</p>
+<h1 id="Pull-Request-指南"><a href="#Pull-Request-指南" class="headerlink" title="Pull Request 指南"></a>Pull Request 指南</h1><h2 id="Git推荐设置"><a href="#Git推荐设置" class="headerlink" title="Git推荐设置"></a>Git推荐设置</h2><ul>
+<li><strong>大小写敏感</strong>：为了避免类似 SVN 中文件名改了大小写之后版本控制不认的问题，推荐大家设置为大小写敏感：   </li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config core.ignorecase <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<h2 id="撰写-Pull-Request"><a href="#撰写-Pull-Request" class="headerlink" title="撰写 Pull Request"></a>撰写 Pull Request</h2><ol>
+<li><p><strong>一个 PR 只围绕一件事情</strong></p>
+<ul>
+<li>如果确有必要将几件事情（例如修改特别小、相互之间有依赖等）一起提交 PR，则需要列明具体每一件事情，确保 <strong>PR 说明涵盖了所有修改内容</strong>。</li>
+<li><strong>大片的代码格式整理</strong>要作独立提交，不要和<strong>代码修改</strong>混在一起，以便 Reviewer 能轻松查看干净的代码修改 diff。</li>
+</ul>
+</li>
+<li><p><strong>避免超大的 PR</strong>  </p>
+<ul>
+<li>超过 1000 行修改行数的 PR 需要考虑是否能拆分为多个子任务分别提 PR（合理的程序结构设计也应该是解耦的）。</li>
+<li>如果 PR 包含的提交数量过多，通常是开发过程掺杂了“尝试—修问题—换个方法再来”这样的重构反复。此种情况最好抛弃这些过程提交，新开分支逐个应用有意义的修改，然后提 PR。</li>
+</ul>
+</li>
+<li><p><strong>PR 标题——概述此次 Pull Request 的目标</strong></p>
+<ul>
+<li>例如：<code>尝试用 XXX 方法实现……</code>、<code>优化……</code>、<code>修复在 XX 状态下对 XX 的异常处理</code>。</li>
+</ul>
+</li>
+<li><p><strong>PR 说明——面向未来的 Reviewer</strong></p>
+<ul>
+<li>记住公司里任何人，任何时候都有可能来阅读这个 Pull Request，所以内容和语气都需要面向未来可能的 Reviewer，不要假定对方已经熟悉这些事情的前因后果。</li>
+<li>酌情提供关于这些工作起因的说明，记得包含相关链接。例如跟业务息息相关的尽量提供 Trello、来源链接；处理奇异 Bug 最好能有相关线索、资料的链接。</li>
+</ul>
+</li>
+<li><p><strong>如果有的话，详述反馈需求</strong></p>
+<ul>
+<li>如：@某人过目一下代码/讨论某项技术实现/对设计的意见等等。</li>
+<li>明确你<em>何时</em>需要反馈。如果这个 PR 还没有完成（仍有一些代码修改待推送）则需醒目注明，给标题加上<code>[WIP]</code>（施工中）的前缀是个简便快捷的方法。</li>
+</ul>
+</li>
+</ol>
+<h2 id="提供反馈"><a href="#提供反馈" class="headerlink" title="提供反馈"></a>提供反馈</h2><ul>
+<li>首先要了解下此 PR 的前情提要。</li>
+<li>如果你有强烈的反对意见，多花几分钟审视下自己的意见再做反馈。Think Twice。</li>
+</ul>
+<h2 id="对反馈的回复"><a href="#对反馈的回复" class="headerlink" title="对反馈的回复"></a>对反馈的回复</h2><ul>
+<li>尽量回复所有评论。尊重评论者对 PR 的关心。</li>
+<li>提供澄清。解释对方有疑问的实现方案是如何决策的。</li>
+<li>链接到相关的后续提交。（“好建议！a1da2324ca 已搞定 :D”）</li>
+<li>如果疑惑和争论持续扩大，尝试面对面做充分沟通，之后把线下沟通的内容汇总回复（便于其他人跟踪进展或未来了解详情）。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Dev/" rel="tag"># Dev</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/09/2017/Hot Fix/" rel="next" title="Android Hotfix">
+                <i class="fa fa-chevron-left"></i> Android Hotfix
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/25/2018/2017/" rel="prev" title="2017">
+                2017 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="何永剑">
+            
+              <p class="site-author-name" itemprop="name">何永剑</p>
+              <p class="site-description motion-element" itemprop="description">伪二次元，非专业视觉体验师。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hyjfine" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/zi-lu-yu/activities" target="_blank" title="zhihu">
+                      
+                        <i class="fa fa-fw fa-globe"></i>zhihu</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">何永剑</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
