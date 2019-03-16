@@ -98,25 +98,25 @@
 
 
 
-  <meta name="description" content="随着时间的过去，我们写码会积累一些习惯，思想，工具和套路代码，让我们下次在做类似工作时可以事半功倍。lodash就是一个js的工具库，它内部封装了常见的数据处理，如字符，数组，对象，日期。传承于underscore，但性能上却更优异。  模块组成 Array，适用于数组类型，比如填充数据、查找元素、数组分片等操作 Collection，适用于数组和对象类型，部分适用于字符串，比如分组、查找、过滤">
-<meta name="keywords" content="FE">
+  <meta name="description" content="为啥要使用Fish redux1，年前就被咸鱼大佬安利，种草已久2，想要对比Flutter Redux，学习体会它带来的优越性3，参与并支持一下国产，现在Flutter生态还在早期 准备工作1，Redux.js 文档 2，Fish Redux 文档 3，Pub使用文档 萌新（没接触过Redux）：建议按顺序看一遍，磨刀不费砍柴功，扎实的理论基础是很有用处的 熟练玩家（Demo用过Redux）：建议">
+<meta name="keywords" content="Dev,Flutter">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Lodash">
-<meta property="og:url" content="http://heyongjian.com/2017/04/09/2017/lodash/index.html">
+<meta property="og:title" content="Fish Redux 使用指南">
+<meta property="og:url" content="http://heyongjian.com/2019/03/16/2019/Fish redux/index.html">
 <meta property="og:site_name" content="何永剑的博客">
-<meta property="og:description" content="随着时间的过去，我们写码会积累一些习惯，思想，工具和套路代码，让我们下次在做类似工作时可以事半功倍。lodash就是一个js的工具库，它内部封装了常见的数据处理，如字符，数组，对象，日期。传承于underscore，但性能上却更优异。  模块组成 Array，适用于数组类型，比如填充数据、查找元素、数组分片等操作 Collection，适用于数组和对象类型，部分适用于字符串，比如分组、查找、过滤">
+<meta property="og:description" content="为啥要使用Fish redux1，年前就被咸鱼大佬安利，种草已久2，想要对比Flutter Redux，学习体会它带来的优越性3，参与并支持一下国产，现在Flutter生态还在早期 准备工作1，Redux.js 文档 2，Fish Redux 文档 3，Pub使用文档 萌新（没接触过Redux）：建议按顺序看一遍，磨刀不费砍柴功，扎实的理论基础是很有用处的 熟练玩家（Demo用过Redux）：建议">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-22T12:42:48.234Z">
+<meta property="og:updated_time" content="2019-03-16T12:46:11.857Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lodash">
-<meta name="twitter:description" content="随着时间的过去，我们写码会积累一些习惯，思想，工具和套路代码，让我们下次在做类似工作时可以事半功倍。lodash就是一个js的工具库，它内部封装了常见的数据处理，如字符，数组，对象，日期。传承于underscore，但性能上却更优异。  模块组成 Array，适用于数组类型，比如填充数据、查找元素、数组分片等操作 Collection，适用于数组和对象类型，部分适用于字符串，比如分组、查找、过滤">
+<meta name="twitter:title" content="Fish Redux 使用指南">
+<meta name="twitter:description" content="为啥要使用Fish redux1，年前就被咸鱼大佬安利，种草已久2，想要对比Flutter Redux，学习体会它带来的优越性3，参与并支持一下国产，现在Flutter生态还在早期 准备工作1，Redux.js 文档 2，Fish Redux 文档 3，Pub使用文档 萌新（没接触过Redux）：建议按顺序看一遍，磨刀不费砍柴功，扎实的理论基础是很有用处的 熟练玩家（Demo用过Redux）：建议">
 
 
 
 
 
 
-  <link rel="canonical" href="http://heyongjian.com/2017/04/09/2017/lodash/">
+  <link rel="canonical" href="http://heyongjian.com/2019/03/16/2019/Fish redux/">
 
 
 
@@ -126,7 +126,7 @@
   };
 </script>
 
-  <title>Lodash | 何永剑的博客</title>
+  <title>Fish Redux 使用指南 | 何永剑的博客</title>
   
 
 
@@ -299,7 +299,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://heyongjian.com/2017/04/09/2017/lodash/">
+    <link itemprop="mainEntityOfPage" href="http://heyongjian.com/2019/03/16/2019/Fish redux/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="何永剑">
@@ -316,7 +316,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Lodash
+          <h1 class="post-title" itemprop="name headline">Fish Redux 使用指南
 
               
             
@@ -342,24 +342,12 @@
                 
               
 
-              <time title="Created: 2017-04-09 15:06:00" itemprop="dateCreated datePublished" datetime="2017-04-09T15:06:00+08:00">2017-04-09</time>
+              <time title="Created: 2019-03-16 20:41:00 / Modified: 20:46:11" itemprop="dateCreated datePublished" datetime="2019-03-16T20:41:00+08:00">2019-03-16</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-12-22 20:42:48" itemprop="dateModified" datetime="2018-12-22T20:42:48+08:00">2018-12-22</time>
               
             
           </span>
@@ -393,28 +381,38 @@
       
 
       
-        <blockquote>
-<p>随着时间的过去，我们写码会积累一些习惯，思想，工具和套路代码，让我们下次在做类似工作时可以事半功倍。lodash就是一个js的工具库，它内部封装了常见的数据处理，如字符，数组，对象，日期。传承于underscore，但性能上却更优异。</p>
-</blockquote>
-<h2 id="模块组成"><a href="#模块组成" class="headerlink" title="模块组成"></a>模块组成</h2><ul>
-<li>Array，适用于数组类型，比如填充数据、查找元素、数组分片等操作</li>
-<li>Collection，适用于数组和对象类型，部分适用于字符串，比如分组、查找、过滤等操作</li>
-<li>Date，当前时间戳</li>
-<li>Function，适用于函数类型，比如字节流，延迟，缓存，设置钩子等操作</li>
-<li>Lang，类型转化和数值比较</li>
-<li>Math，数学运算</li>
-<li>Number，随机数和数值区间</li>
-<li>Object，对象的创建、扩展、类型转换、检索、集合等操作</li>
-<li>Seq，创建链式调用，提高执行性能（惰性计算）</li>
-<li>String，适用于字符串类型</li>
+        <h2 id="为啥要使用Fish-redux"><a href="#为啥要使用Fish-redux" class="headerlink" title="为啥要使用Fish redux"></a>为啥要使用Fish redux</h2><p>1，年前就被咸鱼大佬安利，种草已久<br>2，想要对比Flutter Redux，学习体会它带来的优越性<br>3，参与并支持一下国产，现在Flutter生态还在早期</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>1，Redux.js 文档</p>
+<p>2，Fish Redux 文档</p>
+<p>3，Pub使用文档</p>
+<p>萌新（没接触过Redux）：建议按顺序看一遍，磨刀不费砍柴功，扎实的理论基础是很有用处的</p>
+<p>熟练玩家（Demo用过Redux）：建议把Fish Redux文档的简介和Component看下，尤其是Component，这是它独特的地方</p>
+<p>老司机（项目中用过Redux.js或Flutter Redux）：可以重点看下Component中的Effect，Dependencies，Page，还有Adapter</p>
+<p>在看文档时，可以把Fish Redux项目Clone下来，先把Example改下跑跑看，再对着源码理解下文档中的概念。</p>
+<h2 id="重要概念"><a href="#重要概念" class="headerlink" title="重要概念"></a>重要概念</h2><p>当然以下概念还是需要理解的：</p>
+<h3 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h3><p>Action定义一种行为，可以携带信息，发往Store。换言之Store发生改变须由Action触发，Fish redux 有以下约定：Action 包含两个字段type和payload；推荐写法是在action.dart里定义一个type枚举类和一个ActionCreator类，这样有利于约束payload的类型。</p>
+<h3 id="Reducer-Effect"><a href="#Reducer-Effect" class="headerlink" title="Reducer/Effect"></a>Reducer/Effect</h3><p>这两个函数都是用来处理数据的函数，Reducer是纯函数响应Action对Store数据进行改变。Effect用来处理来自视图的意图，如点击事件，发起异步请求，这些有副作用的操作。</p>
+<h3 id="Page"><a href="#Page" class="headerlink" title="Page"></a>Page</h3><p>可以看成是一个容器，它用来配置聚合State，Effect，Reduce，View，Dependencies等</p>
+<ul>
+<li>一个页面内都有且仅有一个 Store（意思是会有好多个Store，这是区别于Flutter Redux的）</li>
+<li>Page 继承于 Component，所以它能配置所有 Component 的要素（意思是比Component多了Middleware和initState）</li>
+<li>Page 能配置 Middleware，用于对 Redux 做 AOP 管理（意思是可以无侵入的实现一些如log打印，性能分析这样的通用功能。中间件定义是可插拔，可叠加，但不会改变事件流程）</li>
+<li>Page 必须配置一个初始化页面数据的初始化函数initState（页面有初始数据是必须的吧）</li>
 </ul>
-<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>1.N次循环</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. Basic for loop. </span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123; </span><br><span class="line"><span class="comment">// ... </span></span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// 2. Using Array's join and split methods </span></span><br><span class="line"><span class="built_in">Array</span>.apply(<span class="literal">null</span>, <span class="built_in">Array</span>(<span class="number">5</span>)).forEach(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">  <span class="comment">// ... </span></span><br><span class="line">&#125;); </span><br><span class="line"><span class="comment">// Lodash _.times(5, function()&#123; </span></span><br><span class="line"><span class="comment">// ... </span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p><code>for</code> 语句是执行循环的不二选择，<code>Array.apply</code> 也可以模拟循环，但在上面代码的使用场景下，<code>_.times()</code> 的解决方式更加简洁和易于理解。</p>
-<p>2.深层查找属性值</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Fetch the name of the first pet from each owner </span></span><br><span class="line"><span class="keyword">var</span> ownerArr = [&#123; </span><br><span class="line">  <span class="string">"owner"</span>: <span class="string">"Colin"</span>, </span><br><span class="line">  <span class="string">"pets"</span>: [&#123;<span class="string">"name"</span>:<span class="string">"dog1"</span>&#125;, &#123;<span class="string">"name"</span>: <span class="string">"dog2"</span>&#125;]</span><br><span class="line">&#125;, &#123; </span><br><span class="line">  <span class="string">"owner"</span>: <span class="string">"John"</span>, </span><br><span class="line">  <span class="string">"pets"</span>: [&#123;<span class="string">"name"</span>:<span class="string">"dog3"</span>&#125;, &#123;<span class="string">"name"</span>: <span class="string">"dog4"</span>&#125;] &#125;]; </span><br><span class="line"><span class="comment">// Array's map method. </span></span><br><span class="line">ownerArr.map(<span class="function"><span class="keyword">function</span>(<span class="params">owner</span>)</span>&#123; </span><br><span class="line">   <span class="keyword">return</span> owner.pets[<span class="number">0</span>].name; </span><br><span class="line">&#125;); </span><br><span class="line"><span class="comment">// Lodash </span></span><br><span class="line">_.map(ownerArr, <span class="string">'pets[0].name'</span>);</span><br></pre></td></tr></table></figure>
-<p><code>_.map</code> 方法是对原生 <code>map</code> 方法的改进，其中使用 <code>pets[0].name</code> 字符串对嵌套数据取值的方式简化了很多冗余的代码，非常类似使用 jQuery 选择 DOM 节点 <code>ul &gt; li &gt; a</code>，对于前端开发者来说有种久违的亲切感。</p>
-
+<h3 id="Adapter（可选）"><a href="#Adapter（可选）" class="headerlink" title="Adapter（可选）"></a>Adapter（可选）</h3><p>这个不是必须，但确实很屌，很好用，使用和Android的老配方差不多，妙在效果拔群。有追求的可以看下<a href="https://github.com/alibaba/fish-redux/blob/master/doc/concept/what&#39;s-adapter.md" target="_blank" rel="noopener">历史</a>和<a href="https://github.com/alibaba/fish-redux/blob/master/doc/concept/adapter-cn.md" target="_blank" rel="noopener">原理</a>，当然还有源码。</p>
+<p>有这些储备，那么可以开始写代码了</p>
+<h2 id="接入"><a href="#接入" class="headerlink" title="接入"></a>接入</h2><p>1，创建一个flutter project，按照<a href="https://pub.flutter-io.cn/packages/fish_redux#-installing-tab-" target="_blank" rel="noopener">文档</a>加入依赖</p>
+<p>2，按照定义（当然也可以对着Example）分别创建Action，State，Effect，Reducer，View，Page这几个文件，并写套路代码。</p>
+<p>3，运行代码观察效果</p>
+<h2 id="个人体验"><a href="#个人体验" class="headerlink" title="个人体验"></a>个人体验</h2><p>1，集中，分治</p>
+<p>Fish Redux完整复刻了Redux.js的核心概念，状态是一颗State树，完整体现[Predictable],[Centralized],[Debuggable],[Flexible]，数据状态是由Redux集中管理的。分治是分而治之，把一个大的问题拆解成若干独立的小问题去解决，比如Effect的实现和Component的封装，一个页面可以由多个Component和Effect共同组成，分治带来的一个额外好处是提高了内聚性和可复用性。</p>
+<p>2，Adapter</p>
+<p>个人人为这是咸鱼团队基于现实业务的一个很重要创造，Listview可以占到一个应用的50%以上界面，它的体验至关重要。事实证明Adapter封装的很友好，性能也很突出，在Demo上就可以明显对比出来，很妙。</p>
+<p>3，文档</p>
+<p>这点是可以理解一下的，毕竟刚开源。现状是注释少，好多模块还没有。文档有，但不太具体生动，友好，读者没带入容易字都认识，但看几遍还不解其意。</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>1，Fish Redux 一个页面一个Store的资源开销？</p>
+<p>2，Store的生命周期，应用的一些长期共用数据怎么维护？</p>
+<h2 id="DEMO"><a href="#DEMO" class="headerlink" title="DEMO"></a><a href="https://github.com/hyjfine/flutter_redux_sample/tree/fish-redux-adapter" target="_blank" rel="noopener">DEMO</a></h2>
       
     </div>
 
@@ -437,7 +435,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/FE/" rel="tag"># FE</a>
+            <a href="/tags/Dev/" rel="tag"># Dev</a>
+          
+            <a href="/tags/Flutter/" rel="tag"># Flutter</a>
           
         </div>
       
@@ -450,8 +450,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/02/2017/2016/" rel="next" title="我的2016">
-                <i class="fa fa-chevron-left"></i> 我的2016
+              <a href="/2018/12/09/2018/Flutter redux 进阶/" rel="next" title="Flutter Redux 进阶">
+                <i class="fa fa-chevron-left"></i> Flutter Redux 进阶
               </a>
             
           </div>
@@ -459,10 +459,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/31/2017/三星S8体验/" rel="prev" title="三星S8">
-                三星S8 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -628,7 +624,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#模块组成"><span class="nav-number">1.</span> <span class="nav-text">模块组成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例"><span class="nav-number">2.</span> <span class="nav-text">实例</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为啥要使用Fish-redux"><span class="nav-number">1.</span> <span class="nav-text">为啥要使用Fish redux</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">2.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重要概念"><span class="nav-number">3.</span> <span class="nav-text">重要概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Action"><span class="nav-number">3.1.</span> <span class="nav-text">Action</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reducer-Effect"><span class="nav-number">3.2.</span> <span class="nav-text">Reducer/Effect</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Page"><span class="nav-number">3.3.</span> <span class="nav-text">Page</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adapter（可选）"><span class="nav-number">3.4.</span> <span class="nav-text">Adapter（可选）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接入"><span class="nav-number">4.</span> <span class="nav-text">接入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#个人体验"><span class="nav-number">5.</span> <span class="nav-text">个人体验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">6.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DEMO"><span class="nav-number">7.</span> <span class="nav-text">DEMO</span></a></li></ol></div>
             
 
           </div>
