@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="对于大部分android应用开发者来说，NDK开发是陌生的，很多时候只是会引用到一些so库需要写个aidl来JNI调用。最近做的一个app有媒体播放和音效处理，所以就需要上手一下NDK开发。  NDK的作用NDK是一套开发工具，通过它，就可以在android应用里调用并调试C和C++代码，特定场景下就可以做的更多更好：  需要密集计算的，如游戏或物理仿真模拟，如android早期实现实时blur">
+<meta name="keywords" content="Dev,android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android NDK 上手指南">
+<meta property="og:url" content="http://heyongjian.com/2019/07/12/2019/Android NDK 上手指南/index.html">
+<meta property="og:site_name" content="何永剑的博客">
+<meta property="og:description" content="对于大部分android应用开发者来说，NDK开发是陌生的，很多时候只是会引用到一些so库需要写个aidl来JNI调用。最近做的一个app有媒体播放和音效处理，所以就需要上手一下NDK开发。  NDK的作用NDK是一套开发工具，通过它，就可以在android应用里调用并调试C和C++代码，特定场景下就可以做的更多更好：  需要密集计算的，如游戏或物理仿真模拟，如android早期实现实时blur">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-21T11:06:00.307Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android NDK 上手指南">
+<meta name="twitter:description" content="对于大部分android应用开发者来说，NDK开发是陌生的，很多时候只是会引用到一些so库需要写个aidl来JNI调用。最近做的一个app有媒体播放和音效处理，所以就需要上手一下NDK开发。  NDK的作用NDK是一套开发工具，通过它，就可以在android应用里调用并调试C和C++代码，特定场景下就可以做的更多更好：  需要密集计算的，如游戏或物理仿真模拟，如android早期实现实时blur">
+
+
+
+
+
+
+  <link rel="canonical" href="http://heyongjian.com/2019/07/12/2019/Android NDK 上手指南/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Android NDK 上手指南 | 何永剑的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">何永剑的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">love and peace</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">17</span></a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://heyongjian.com/2019/07/12/2019/Android NDK 上手指南/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="何永剑">
+      <meta itemprop="description" content="伪二次元，非专业视觉体验师。">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="何永剑的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android NDK 上手指南
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-07-12 23:16:00" itemprop="dateCreated datePublished" datetime="2019-07-12T23:16:00+08:00">2019-07-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-07-21 19:06:00" itemprop="dateModified" datetime="2019-07-21T19:06:00+08:00">2019-07-21</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>对于大部分android应用开发者来说，NDK开发是陌生的，很多时候只是会引用到一些so库需要写个aidl来JNI调用。最近做的一个app有媒体播放和音效处理，所以就需要上手一下NDK开发。</p>
+</blockquote>
+<h3 id="NDK的作用"><a href="#NDK的作用" class="headerlink" title="NDK的作用"></a>NDK的作用</h3><p>NDK是一套开发工具，通过它，就可以在android应用里调用并调试C和C++代码，特定场景下就可以做的更多更好：</p>
+<ul>
+<li>需要密集计算的，如游戏或物理仿真模拟，如android早期实现实时blur效果</li>
+<li>复用我们已经封装好的C和C++库，如io调度，引擎渲染库</li>
+</ul>
+<h3 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h3><p>为了能调试Native代码，以下组件是必须的：</p>
+<ul>
+<li>AndroidStudio（3.4.1）和SDK</li>
+<li>Android NDK：native开发全家桶</li>
+<li>CMake：外部编译工具，可以搭配Gradle来编译原生库。ndk-build的备胎，已转正</li>
+<li>LLDB：用调试原生代码的工具</li>
+</ul>
+<h3 id="认识小伙伴"><a href="#认识小伙伴" class="headerlink" title="认识小伙伴"></a>认识小伙伴</h3><h4 id="ndk-build"><a href="#ndk-build" class="headerlink" title="ndk-build"></a>ndk-build</h4><p>看过android源码编译的会有印象，编译模块都是通过make命令来执行android.mk和Application.mk文件来构建的。</p>
+<h4 id="CMake"><a href="#CMake" class="headerlink" title="CMake"></a>CMake</h4><p>在Android Studio2.2以上官方引入CMake构建系统，好处是它跨平台，而且能和Gradle无缝对接。这也是现在Android Studio默认的NDK编译工具</p>
+<h4 id="CMakeLists"><a href="#CMakeLists" class="headerlink" title="CMakeLists"></a>CMakeLists</h4><p>描述CMake如何将原生文件编译入库。如果导入和关联预编译库或平台库，则也需要这个编译脚本</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.4</span>.<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">// 添加依赖库，可以是SHARED动态链接库so或STATIC静态链接库.a</span><br><span class="line"><span class="keyword">add_library</span>( <span class="comment"># Sets the name of the library.</span></span><br><span class="line">             native-lib</span><br><span class="line"></span><br><span class="line">             <span class="comment"># Sets the library as a shared library.</span></span><br><span class="line">             SHARED</span><br><span class="line"></span><br><span class="line">             <span class="comment"># Provides a relative path to your source file(s).</span></span><br><span class="line">             native-lib.cpp )</span><br><span class="line">// 依赖一些系统库</span><br><span class="line"><span class="keyword">find_library</span>( <span class="comment"># Sets the name of the path variable.</span></span><br><span class="line">              log-lib</span><br><span class="line"></span><br><span class="line">              <span class="comment"># Specifies the name of the NDK library that</span></span><br><span class="line">              <span class="comment"># you want CMake to locate.</span></span><br><span class="line">              log )</span><br><span class="line">// 链接库</span><br><span class="line"><span class="keyword">target_link_libraries</span>( <span class="comment"># Specifies the target library.</span></span><br><span class="line">                       native-lib</span><br><span class="line"></span><br><span class="line">                       <span class="comment"># Links the target library to the log library</span></span><br><span class="line">                       <span class="comment"># included in the NDK.</span></span><br><span class="line">                       <span class="variable">$&#123;log-lib&#125;</span> )</span><br></pre></td></tr></table></figure>
+<h3 id="写个Demo"><a href="#写个Demo" class="headerlink" title="写个Demo"></a>写个Demo</h3><p>在不那么老的Android studio版本里选择创建New project，选Native C++一路next就能创建一个native-lib项目，so easy，感叹一下NDK的脚手架是好。</p>
+<p>运行一下app，看到Hello from C++，来分析一下它是怎么工作的</p>
+<p>1，app build.gradle添加cmake描述</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">externalNativeBuild &#123;</span><br><span class="line">     cmake &#123;</span><br><span class="line">         path <span class="string">"src/main/cpp/CMakeLists.txt"</span></span><br><span class="line">         version <span class="string">"3.10.2"</span></span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>2，自动生成了一个native-lib.cpp</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 既然是cpp，那自然是c++了，好处有两个：是c++语法更现代</span></span><br><span class="line"><span class="comment">// - c++语法更简洁现代，比如</span></span><br><span class="line"><span class="comment">// c++ env-&gt;NewStringUTF(hello.c_str())</span></span><br><span class="line"><span class="comment">// c   (*env)-&gt;NewStringUTF(env, hello.c_str())</span></span><br><span class="line"><span class="comment">// - 不用命令生成头文件了，如果是c的话调用javah生成头文件然后在c文件里调用</span></span><br><span class="line"><span class="comment">// javah com.he.test.MainActivity</span></span><br></pre></td></tr></table></figure>
+<p>3，so引入</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// demo 工程是在MainActivity里引入的</span></span><br><span class="line"> <span class="keyword">static</span> &#123;</span><br><span class="line">        System.loadLibrary(<span class="string">"native-lib"</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>4，那试着添加一个native方法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 直接在MainActivity的stringFromJNI里加一个helloFromJNI</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> native String <span class="title">helloFromJNI</span><span class="params">()</span></span>;</span><br><span class="line"><span class="comment">// 这时候helloFromJNI报红，用alt+enter或者左边的智能小灯泡选择</span></span><br><span class="line"><span class="comment">// create funtion Java_com_wuuklab_android_testjniproject_MainActivity_helloFromJNI</span></span><br><span class="line"><span class="comment">// 这样native-lib.cpp里就自动多了一个方法可以被java调用了</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span></span><br><span class="line">JNIEXPORT jstring JNICALL</span><br><span class="line">Java_com_wuuklab_android_testjniproject_MainActivity_helloFromJNI(JNIEnv *env, jobject instance) &#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> hello = <span class="string">"this hello from c++"</span>;</span><br><span class="line">    <span class="keyword">return</span> env-&gt;NewStringUTF(hello.c_str());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>5，单CmakeLists，多cpp</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 在CmakeLists里把cpp名称加上就可以，native-test.cpp是新加的</span><br><span class="line">add_library( # Sets the name of the library.</span><br><span class="line">             native-lib</span><br><span class="line">             # Sets the library as a shared library.</span><br><span class="line">             SHARED</span><br><span class="line">             # Provides a relative path to your source file(s).</span><br><span class="line">             native-lib.cpp native-test.cpp)</span><br></pre></td></tr></table></figure>
+<p>6，多CmakeLists，也就是带子模块</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 目录结构为</span><br><span class="line">|- CMakeLists.txt</span><br><span class="line">|- sub1</span><br><span class="line">    |- CMakeLists.txt</span><br><span class="line">    |- f1.c</span><br><span class="line">    |- f1.h</span><br><span class="line">|- sub2</span><br><span class="line">    |- CMakeLists.txt</span><br><span class="line">    |- main.c</span><br><span class="line">    </span><br><span class="line"><span class="meta">#</span> CMakeLists.txt</span><br><span class="line">cmake_minimum_required(VERSION 3.13)</span><br><span class="line">add_subdirectory(sub1)</span><br><span class="line">add_subdirectory(sub2)</span><br><span class="line"><span class="meta">#</span> sub1/CMakeLists.txt</span><br><span class="line">project(sub1 C)</span><br><span class="line"> </span><br><span class="line">add_library(shared_1</span><br><span class="line">        SHARED</span><br><span class="line">        f1.c</span><br><span class="line">        f1.h</span><br><span class="line">)</span><br><span class="line">target_include_directories(shared_1 PUBLIC $&#123;PROJECT_SOURCE_DIR&#125;)</span><br><span class="line"><span class="meta">#</span> sub2/CMakeLists.txt</span><br><span class="line"> </span><br><span class="line">project(sub2)</span><br><span class="line">add_executable(exec_2 main.c)</span><br><span class="line">target_link_libraries(exec_2 shared_1)</span><br></pre></td></tr></table></figure>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://developer.android.google.cn/ndk/guides/cmake" target="_blank" rel="noopener">https://developer.android.google.cn/ndk/guides/cmake</a></p>
+<p><a href="http://www.leadroyal.cn/?p=781" target="_blank" rel="noopener">http://www.leadroyal.cn/?p=781</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Dev/" rel="tag"># Dev</a>
+          
+            <a href="/tags/android/" rel="tag"># android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/28/2019/String to JsonObject/" rel="next" title="String to JsonObject">
+                <i class="fa fa-chevron-left"></i> String to JsonObject
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/20/2019/Android cool animation  /" rel="prev" title="Android cool animation">
+                Android cool animation <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="何永剑">
+            
+              <p class="site-author-name" itemprop="name">何永剑</p>
+              <div class="site-description motion-element" itemprop="description">伪二次元，非专业视觉体验师。</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/hyjfine" title="GitHub &rarr; https://github.com/hyjfine" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:hyjfine@gmail.com" title="E-Mail &rarr; mailto:hyjfine@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#NDK的作用"><span class="nav-number">1.</span> <span class="nav-text">NDK的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境配置"><span class="nav-number">2.</span> <span class="nav-text">环境配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#认识小伙伴"><span class="nav-number">3.</span> <span class="nav-text">认识小伙伴</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ndk-build"><span class="nav-number">3.1.</span> <span class="nav-text">ndk-build</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CMake"><span class="nav-number">3.2.</span> <span class="nav-text">CMake</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CMakeLists"><span class="nav-number">3.3.</span> <span class="nav-text">CMakeLists</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写个Demo"><span class="nav-number">4.</span> <span class="nav-text">写个Demo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hyjfine</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a></div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
