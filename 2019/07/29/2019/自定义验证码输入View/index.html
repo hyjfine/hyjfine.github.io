@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="我们现在要实现一个自定义输入框，显示用户接受到的验证码，大概是长这样   思路分析Q：需要有哪些功能？ A：框代表的是验证码长度，这个需要可配置；只接收数字并可以编辑删除；输入和未输入有状态区别 Q：可以怎么实现？ A：直觉上是直接继承EditView，重写onDraw方法 Q：为什么要继承EditView而不是TextView甚至是View？ A：如果继承View，那控件的逻辑能力也需要自己实">
+<meta name="keywords" content="Dev,android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自定义验证码输入View">
+<meta property="og:url" content="http://heyongjian.com/2019/07/29/2019/自定义验证码输入View/index.html">
+<meta property="og:site_name" content="何永剑的博客">
+<meta property="og:description" content="我们现在要实现一个自定义输入框，显示用户接受到的验证码，大概是长这样   思路分析Q：需要有哪些功能？ A：框代表的是验证码长度，这个需要可配置；只接收数字并可以编辑删除；输入和未输入有状态区别 Q：可以怎么实现？ A：直觉上是直接继承EditView，重写onDraw方法 Q：为什么要继承EditView而不是TextView甚至是View？ A：如果继承View，那控件的逻辑能力也需要自己实">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://doc.heyongjian.cn/hyj-doc-android-customInputView.jpg">
+<meta property="og:updated_time" content="2019-07-30T11:56:33.722Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自定义验证码输入View">
+<meta name="twitter:description" content="我们现在要实现一个自定义输入框，显示用户接受到的验证码，大概是长这样   思路分析Q：需要有哪些功能？ A：框代表的是验证码长度，这个需要可配置；只接收数字并可以编辑删除；输入和未输入有状态区别 Q：可以怎么实现？ A：直觉上是直接继承EditView，重写onDraw方法 Q：为什么要继承EditView而不是TextView甚至是View？ A：如果继承View，那控件的逻辑能力也需要自己实">
+<meta name="twitter:image" content="http://doc.heyongjian.cn/hyj-doc-android-customInputView.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://heyongjian.com/2019/07/29/2019/自定义验证码输入View/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>自定义验证码输入View | 何永剑的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">何永剑的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">love and peace</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">18</span></a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://heyongjian.com/2019/07/29/2019/自定义验证码输入View/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="何永剑">
+      <meta itemprop="description" content="伪二次元，非专业视觉体验师。">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="何永剑的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">自定义验证码输入View
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-07-29 20:28:00" itemprop="dateCreated datePublished" datetime="2019-07-29T20:28:00+08:00">2019-07-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-07-30 19:56:33" itemprop="dateModified" datetime="2019-07-30T19:56:33+08:00">2019-07-30</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>我们现在要实现一个自定义输入框，显示用户接受到的验证码，大概是长这样</p>
+</blockquote>
+<p><img align="left" with="270" height="555" src="http://doc.heyongjian.cn/hyj-doc-android-customInputView.jpg"></p>
+<h3 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h3><p>Q：需要有哪些功能？</p>
+<p>A：框代表的是验证码长度，这个需要可配置；只接收数字并可以编辑删除；输入和未输入有状态区别</p>
+<p>Q：可以怎么实现？</p>
+<p>A：直觉上是直接继承EditView，重写onDraw方法</p>
+<p>Q：为什么要继承EditView而不是TextView甚至是View？</p>
+<p>A：如果继承View，那控件的逻辑能力也需要自己实现，比如输入法的弹出和隐藏，输入法内容的接收需要重写onCreateInputConnection等方法。EditView比TextView多的能力是设置Selection光标位置，文字默认可编辑可定义输入法类型。</p>
+<p>综上：该自定义需求，系统控件的EditView功能上可以满足，只是需要自定义魔改下UI。</p>
+<h3 id="码上"><a href="#码上" class="headerlink" title="码上"></a>码上</h3><p>1，新建一个自定义View继承于EditView，并复写onDraw和onMeasure</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomInputView2</span> : <span class="type">EditText &#123;</span></span></span><br><span class="line">    <span class="keyword">constructor</span>(context: Context?) : <span class="keyword">super</span>(context)</span><br><span class="line">    <span class="keyword">constructor</span>(context: Context?, attrs: AttributeSet?) : <span class="keyword">super</span>(context, attrs)</span><br><span class="line">    <span class="keyword">constructor</span>(context: Context?, attrs: AttributeSet?, defStyleAttr: <span class="built_in">Int</span>) : <span class="keyword">super</span>(context, attrs, defStyleAttr)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 控件需要知道自己的大小和边距padding，才能符合预期的绘制</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onMeasure</span><span class="params">(widthMeasureSpec: <span class="type">Int</span>, heightMeasureSpec: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onMeasure(widthMeasureSpec, heightMeasureSpec)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 绘制框框和数字</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDraw</span><span class="params">(canvas: <span class="type">Canvas</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onDraw(canvas)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2，仔细看一下onMeasure</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onMeasure</span><span class="params">(widthMeasureSpec: <span class="type">Int</span>, heightMeasureSpec: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onMeasure(widthMeasureSpec, heightMeasureSpec)</span><br><span class="line">        <span class="keyword">val</span> widthMode = MeasureSpec.getMode(widthMeasureSpec)</span><br><span class="line">        <span class="keyword">var</span> widthSize = MeasureSpec.getSize(widthMeasureSpec)</span><br><span class="line">        <span class="keyword">val</span> heightMode = MeasureSpec.getMode(heightMeasureSpec)</span><br><span class="line">        <span class="keyword">var</span> heightSize = MeasureSpec.getSize(heightMeasureSpec)</span><br><span class="line">        <span class="keyword">val</span> realWidth = itemWith.toInt() * itemNum</span><br><span class="line">        <span class="keyword">val</span> realHeight = itemWith.toInt()</span><br><span class="line">        <span class="comment">// 当控件类型指定为wrap_content时，它的mode是MeasureSpec.AT_MOST，</span></span><br><span class="line">        <span class="comment">// 具体大小需要自己计算出来，算的时候要加上对应padding</span></span><br><span class="line">        <span class="keyword">when</span> &#123;</span><br><span class="line">            widthMode == MeasureSpec.AT_MOST &amp;&amp; heightMode == MeasureSpec.AT_MOST -&gt; &#123;</span><br><span class="line">                widthSize = realWidth + paddingLeft + paddingRight</span><br><span class="line">                heightSize = realHeight + paddingTop + paddingBottom</span><br><span class="line">            &#125;</span><br><span class="line">            widthMode == MeasureSpec.AT_MOST -&gt; &#123;</span><br><span class="line">                widthSize = realWidth + paddingLeft + paddingRight</span><br><span class="line">            &#125;</span><br><span class="line">            heightMode == MeasureSpec.AT_MOST -&gt; &#123;</span><br><span class="line">                heightSize = realHeight + paddingTop + paddingBottom</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//calculate itemGap with padding, 本控件设计占一行，那每个框之间的间隔是需要算出来并赋值的</span></span><br><span class="line">        itemGap = (widthSize - (paddingStart + paddingEnd) - realWidth) / (itemNum - <span class="number">1</span>)</span><br><span class="line">        setMeasuredDimension(widthSize, heightSize)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>3，把元素绘制上去，onDraw</p>
+<p>画图三要素：画布（canvas），画笔（paint），画哪里（LRTB）。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1，绘制框，调用canvas API drawRoundRect(rectF, itemRadius, itemRadius, paint)</span></span><br><span class="line"><span class="comment">// 2，需要rectF来确定画在哪里，比如第一个框：</span></span><br><span class="line"><span class="comment">// val top = paddingTop.toFloat()</span></span><br><span class="line"><span class="comment">// val bottom = height - paddingBottom.toFloat()</span></span><br><span class="line"><span class="comment">// val left = paddingStart</span></span><br><span class="line"><span class="comment">// val reght = itemWith + paddingStart</span></span><br><span class="line"><span class="comment">// rectF.set(left, top, right, bottom)</span></span><br><span class="line"><span class="comment">// 3，绘制剩下的框只需要left和right加对应的itemWith和itemGap</span></span><br><span class="line"><span class="comment">// 4，绘制文字调用canvas API drawText(String text, float x, float y, Paint paint)</span></span><br><span class="line"><span class="comment">// 5，文字居中：paint需要设置textAlign = Paint.Align.CENTER，这样可以保证x处于文字的中点，Y轴的中</span></span><br><span class="line"><span class="comment">// 点由于文字渲染的原因，需要计算一个偏移量</span></span><br><span class="line"><span class="comment">// val fontBottom = paintText.fontMetrics?.ascent ?: 0F</span></span><br><span class="line"><span class="comment">// val fontTop = paintText.fontMetrics?.descent ?: 0F</span></span><br><span class="line"><span class="comment">// val baseLineY = Math.abs(fontBottom + fontTop) / 2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDraw</span><span class="params">(canvas: <span class="type">Canvas</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onDraw(canvas)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">val</span> textLength = currentText?.length ?: <span class="number">0</span></span><br><span class="line">        <span class="comment">// font baseline</span></span><br><span class="line">        <span class="keyword">val</span> fontBottom = paintText.fontMetrics?.ascent ?: <span class="number">0F</span></span><br><span class="line">        <span class="keyword">val</span> fontTop = paintText.fontMetrics?.descent ?: <span class="number">0F</span></span><br><span class="line">        <span class="keyword">val</span> baseLineY = Math.abs(fontBottom + fontTop) / <span class="number">2</span></span><br><span class="line">        <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">0</span> until itemNum) &#123;</span><br><span class="line">            <span class="keyword">val</span> left = i * (itemWith + itemGap) + paddingStart</span><br><span class="line">            <span class="keyword">val</span> right = i * (itemWith + itemGap) + itemWith + paddingStart</span><br><span class="line">            <span class="keyword">val</span> top = paddingTop.toFloat()</span><br><span class="line">            <span class="keyword">val</span> bottom = height - paddingBottom.toFloat()</span><br><span class="line">            rectF.<span class="keyword">set</span>(left, top, right, bottom)</span><br><span class="line">            <span class="keyword">if</span> (i &lt; textLength) &#123;</span><br><span class="line">                <span class="comment">// draw input string and set color for select paint</span></span><br><span class="line">                paint.color = paintSelectColor</span><br><span class="line">                <span class="keyword">val</span> textToDraw = <span class="keyword">if</span> (itemText.isNullOrEmpty()) currentText!![i].toString() <span class="keyword">else</span> itemText ?: <span class="string">""</span></span><br><span class="line">                canvas?.drawText(</span><br><span class="line">                    textToDraw,</span><br><span class="line">                    left + (right - left) / <span class="number">2</span>,</span><br><span class="line">                    (top + bottom) / <span class="number">2F</span> + baseLineY,</span><br><span class="line">                    paintText</span><br><span class="line">                )</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// set color for normal paint</span></span><br><span class="line">                paint.color = paintNormalColor</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// draw bg as the type</span></span><br><span class="line">            <span class="keyword">when</span> (type) &#123;</span><br><span class="line">                Type.Line -&gt; canvas?.drawLine(left, bottom, right, bottom, paint)</span><br><span class="line">                Type.Square -&gt; canvas?.drawRoundRect(rectF, itemRadius, itemRadius, paint)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>4，控件可以自定义字段</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">declare-styleable</span> <span class="attr">name</span>=<span class="string">"CustomInputView"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"item_with"</span> <span class="attr">format</span>=<span class="string">"dimension"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"item_gap"</span> <span class="attr">format</span>=<span class="string">"dimension"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"item_radius"</span> <span class="attr">format</span>=<span class="string">"dimension"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"item_num"</span> <span class="attr">format</span>=<span class="string">"integer"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"item_text"</span> <span class="attr">format</span>=<span class="string">"string"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"normal_color"</span> <span class="attr">format</span>=<span class="string">"color"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"select_color"</span> <span class="attr">format</span>=<span class="string">"color"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"text_color"</span> <span class="attr">format</span>=<span class="string">"color"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"type"</span> <span class="attr">format</span>=<span class="string">"enum"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">enum</span> <span class="attr">name</span>=<span class="string">"line"</span> <span class="attr">value</span>=<span class="string">"0"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">enum</span> <span class="attr">name</span>=<span class="string">"square"</span> <span class="attr">value</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">attr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">declare-styleable</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>5，继承于EditView，需要初始化一些字段</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 输入类型指定为数字键盘</span></span><br><span class="line">inputType = InputType.TYPE_CLASS_NUMBER</span><br><span class="line">isCursorVisible = <span class="literal">false</span>  <span class="comment">// 光标不可见</span></span><br><span class="line">isLongClickable = <span class="literal">false</span>  <span class="comment">// 不能长按</span></span><br><span class="line">setTextIsSelectable(<span class="literal">false</span>)  <span class="comment">// 文字不能被选择复制</span></span><br><span class="line">setOnClickListener &#123; setSelection(text.length) &#125;  <span class="comment">// 点击重置光标位置，虽然不可见</span></span><br><span class="line">setBackgroundColor(UtilResource.getColor(R.color.transparent))  <span class="comment">// 隐藏默认那根线</span></span><br><span class="line">setTextColor(UtilResource.getColor(R.color.transparent))        <span class="comment">// 隐藏默认的文字</span></span><br><span class="line">filters = arrayOf(PinPwdFormatterFilter(itemNum)) <span class="comment">// 设置filter，只要数字</span></span><br><span class="line">addTextChangedListener(<span class="keyword">object</span> : DefaultTextWatcher() &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">afterTextChanged</span><span class="params">(s: <span class="type">Editable</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.afterTextChanged(s)</span><br><span class="line">        <span class="keyword">if</span> (s.toString().length == itemNum) onInputComplete(s.toString())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><p><a href="https://www.jianshu.com/p/8b97627b21c4" target="_blank" rel="noopener">https://www.jianshu.com/p/8b97627b21c4</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Dev/" rel="tag"># Dev</a>
+          
+            <a href="/tags/android/" rel="tag"># android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/20/2019/Android cool animation  /" rel="next" title="Android cool animation">
+                <i class="fa fa-chevron-left"></i> Android cool animation
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="何永剑">
+            
+              <p class="site-author-name" itemprop="name">何永剑</p>
+              <div class="site-description motion-element" itemprop="description">伪二次元，非专业视觉体验师。</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/hyjfine" title="GitHub &rarr; https://github.com/hyjfine" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:hyjfine@gmail.com" title="E-Mail &rarr; mailto:hyjfine@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路分析"><span class="nav-number">1.</span> <span class="nav-text">思路分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#码上"><span class="nav-number">2.</span> <span class="nav-text">码上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文章"><span class="nav-number">3.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hyjfine</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a></div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
