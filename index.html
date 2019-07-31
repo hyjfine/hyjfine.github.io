@@ -4,68 +4,22 @@
 
 
 
-
-
-
-
-
-
-
-  
-
-
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hexo 3.8.0">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
-
-<link rel="stylesheet" href="/css/main.css?v=7.0.1">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
-
-
-
-
-
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
 <script id="hexo.configurations">
@@ -73,30 +27,35 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '7.0.1',
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
-    back2top: true,
-    back2top_sidebar: false,
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
     fancybox: false,
-    fastclick: false,
+    mediumzoom: false,
     lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    pangu: false,
     algolia: {
       applicationID: '',
       apiKey: '',
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    search: {
+      root: '/',
+      path: ''
+    },
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
     }
   };
 </script>
-
-
-  
-
-
-
 
   <meta name="description" content="伪二次元，非专业视觉体验师。">
 <meta name="keywords" content="移动端,android,react,react netive,js,javascript,开发者,用户体验,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek">
@@ -109,14 +68,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="何永剑的博客">
 <meta name="twitter:description" content="伪二次元，非专业视觉体验师。">
-
-
-
-
-
-
   <link rel="canonical" href="http://heyongjian.com/">
-
 
 
 <script id="page.configurations">
@@ -127,10 +79,6 @@
 
   <title>何永剑的博客</title>
   
-
-
-
-
 
 
 
@@ -166,21 +114,14 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-home">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
-    
 
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
@@ -189,12 +130,8 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-    
-      
         <p class="site-subtitle">love and peace</p>
       
-    
-    
   </div>
 
   <div class="site-nav-toggle">
@@ -209,26 +146,18 @@
 
 
 <nav class="site-nav">
-  
     <ul id="menu" class="menu">
-      
         
         
         
           
           <li class="menu-item menu-item-home menu-item-active">
-
-    
-    
+      
     
       
     
 
-    
-      
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
 
   </li>
         
@@ -236,36 +165,16 @@
         
           
           <li class="menu-item menu-item-archives">
-
-    
-    
+      
     
       
     
 
-    
-      
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives<span class="badge">18</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives<span class="badge">18</span></a>
 
   </li>
-
-      
-      
     </ul>
-  
-
-  
-
-  
 </nav>
-
-
-
-  
-
-
 
 </div>
     </header>
@@ -276,23 +185,12 @@
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          
             
 
-          
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
-    
       
-
-  
-
-  
-  
-  
-
-  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
@@ -310,11 +208,8 @@
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="何永剑的博客">
     </span>
-
-    
       <header class="post-header">
 
-        
         
           <h1 class="post-title" itemprop="name headline">
                 
@@ -326,13 +221,7 @@
         
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -345,16 +234,12 @@
               
 
               <time title="Created: 2019-07-29 20:28:00" itemprop="dateCreated datePublished" datetime="2019-07-29T20:28:00+08:00">2019-07-29</time>
+            </span>
+          
             
 
             
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
@@ -362,29 +247,42 @@
                   <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="Modified: 2019-07-30 19:56:33" itemprop="dateModified" datetime="2019-07-30T19:56:33+08:00">2019-07-30</time>
+              </span>
+            
+          
+
+          
+            <span id="/2019/07/29/2019/自定义验证码输入View/" class="post-meta-item leancloud_visitors" data-flag-title="自定义验证码输入View">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
               
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
             
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Comments: </span>
+    
+  
+    <a href="/2019/07/29/2019/自定义验证码输入View/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/07/29/2019/自定义验证码输入View/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
 
         </div>
       </header>
-    
 
     
     
@@ -392,10 +290,6 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
           
             <p>
               
@@ -425,31 +319,11 @@ A：如果继承View，那控件的逻辑能力也需要自己实现，比如输
     </div>
 
     
-
     
-    
-    
-
-    
-
-    
-      
-    
-    
-
     
 
     <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
         <div class="post-eof"></div>
-      
     </footer>
   </div>
   
@@ -457,17 +331,8 @@ A：如果继承View，那控件的逻辑能力也需要自己实现，比如输
   
   </article>
 
-
     
       
-
-  
-
-  
-  
-  
-
-  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
@@ -485,11 +350,8 @@ A：如果继承View，那控件的逻辑能力也需要自己实现，比如输
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="何永剑的博客">
     </span>
-
-    
       <header class="post-header">
 
-        
         
           <h1 class="post-title" itemprop="name headline">
                 
@@ -501,13 +363,7 @@ A：如果继承View，那控件的逻辑能力也需要自己实现，比如输
         
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -520,16 +376,12 @@ A：如果继承View，那控件的逻辑能力也需要自己实现，比如输
               
 
               <time title="Created: 2019-07-20 22:37:00" itemprop="dateCreated datePublished" datetime="2019-07-20T22:37:00+08:00">2019-07-20</time>
+            </span>
+          
             
 
             
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
@@ -537,29 +389,42 @@ A：如果继承View，那控件的逻辑能力也需要自己实现，比如输
                   <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="Modified: 2019-07-21 19:06:00" itemprop="dateModified" datetime="2019-07-21T19:06:00+08:00">2019-07-21</time>
+              </span>
+            
+          
+
+          
+            <span id="/2019/07/20/2019/Android cool animation  /" class="post-meta-item leancloud_visitors" data-flag-title="Android cool animation">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
               
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
             
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Comments: </span>
+    
+  
+    <a href="/2019/07/20/2019/Android cool animation  /#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/07/20/2019/Android cool animation  /" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
 
         </div>
       </header>
-    
 
     
     
@@ -567,10 +432,6 @@ A：如果继承View，那控件的逻辑能力也需要自己实现，比如输
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
           
             <p>
               
@@ -626,31 +487,11 @@ SVGA
     </div>
 
     
-
     
-    
-    
-
-    
-
-    
-      
-    
-    
-
     
 
     <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
         <div class="post-eof"></div>
-      
     </footer>
   </div>
   
@@ -658,17 +499,8 @@ SVGA
   
   </article>
 
-
     
       
-
-  
-
-  
-  
-  
-
-  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
@@ -686,11 +518,8 @@ SVGA
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="何永剑的博客">
     </span>
-
-    
       <header class="post-header">
 
-        
         
           <h1 class="post-title" itemprop="name headline">
                 
@@ -702,13 +531,7 @@ SVGA
         
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -721,16 +544,12 @@ SVGA
               
 
               <time title="Created: 2019-07-12 23:16:00" itemprop="dateCreated datePublished" datetime="2019-07-12T23:16:00+08:00">2019-07-12</time>
+            </span>
+          
             
 
             
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
@@ -738,29 +557,42 @@ SVGA
                   <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="Modified: 2019-07-21 19:06:00" itemprop="dateModified" datetime="2019-07-21T19:06:00+08:00">2019-07-21</time>
+              </span>
+            
+          
+
+          
+            <span id="/2019/07/12/2019/Android NDK 上手指南/" class="post-meta-item leancloud_visitors" data-flag-title="Android NDK 上手指南">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
               
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
             
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Comments: </span>
+    
+  
+    <a href="/2019/07/12/2019/Android NDK 上手指南/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/07/12/2019/Android NDK 上手指南/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
 
         </div>
       </header>
-    
 
     
     
@@ -768,10 +600,6 @@ SVGA
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
           
             <p>
               
@@ -803,31 +631,11 @@ CMake：外部编译工具，可以搭配Gradle来编译原生库。ndk-build
     </div>
 
     
-
     
-    
-    
-
-    
-
-    
-      
-    
-    
-
     
 
     <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
         <div class="post-eof"></div>
-      
     </footer>
   </div>
   
@@ -835,17 +643,8 @@ CMake：外部编译工具，可以搭配Gradle来编译原生库。ndk-build
   
   </article>
 
-
     
       
-
-  
-
-  
-  
-  
-
-  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
@@ -863,11 +662,8 @@ CMake：外部编译工具，可以搭配Gradle来编译原生库。ndk-build
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="何永剑的博客">
     </span>
-
-    
       <header class="post-header">
 
-        
         
           <h1 class="post-title" itemprop="name headline">
                 
@@ -879,13 +675,7 @@ CMake：外部编译工具，可以搭配Gradle来编译原生库。ndk-build
         
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -898,16 +688,12 @@ CMake：外部编译工具，可以搭配Gradle来编译原生库。ndk-build
               
 
               <time title="Created: 2019-06-28 11:28:00" itemprop="dateCreated datePublished" datetime="2019-06-28T11:28:00+08:00">2019-06-28</time>
+            </span>
+          
             
 
             
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
@@ -915,29 +701,42 @@ CMake：外部编译工具，可以搭配Gradle来编译原生库。ndk-build
                   <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="Modified: 2019-07-07 17:34:18" itemprop="dateModified" datetime="2019-07-07T17:34:18+08:00">2019-07-07</time>
+              </span>
+            
+          
+
+          
+            <span id="/2019/06/28/2019/String to JsonObject/" class="post-meta-item leancloud_visitors" data-flag-title="String to JsonObject">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
               
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
             
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Comments: </span>
+    
+  
+    <a href="/2019/06/28/2019/String to JsonObject/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/06/28/2019/String to JsonObject/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
 
         </div>
       </header>
-    
 
     
     
@@ -945,10 +744,6 @@ CMake：外部编译工具，可以搭配Gradle来编译原生库。ndk-build
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
           
             <p>
               
@@ -971,31 +766,11 @@ String to JsonObject// JsonParserval json = "&#123;"name":"bob","age":"18","scor
     </div>
 
     
-
     
-    
-    
-
-    
-
-    
-      
-    
-    
-
     
 
     <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
         <div class="post-eof"></div>
-      
     </footer>
   </div>
   
@@ -1003,17 +778,8 @@ String to JsonObject// JsonParserval json = "&#123;"name":"bob","age":"18","scor
   
   </article>
 
-
     
       
-
-  
-
-  
-  
-  
-
-  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
@@ -1031,11 +797,8 @@ String to JsonObject// JsonParserval json = "&#123;"name":"bob","age":"18","scor
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="何永剑的博客">
     </span>
-
-    
       <header class="post-header">
 
-        
         
           <h1 class="post-title" itemprop="name headline">
                 
@@ -1047,13 +810,7 @@ String to JsonObject// JsonParserval json = "&#123;"name":"bob","age":"18","scor
         
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -1066,16 +823,12 @@ String to JsonObject// JsonParserval json = "&#123;"name":"bob","age":"18","scor
               
 
               <time title="Created: 2019-04-18 21:58:00" itemprop="dateCreated datePublished" datetime="2019-04-18T21:58:00+08:00">2019-04-18</time>
+            </span>
+          
             
 
             
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
@@ -1083,29 +836,42 @@ String to JsonObject// JsonParserval json = "&#123;"name":"bob","age":"18","scor
                   <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="Modified: 2019-07-07 17:25:01" itemprop="dateModified" datetime="2019-07-07T17:25:01+08:00">2019-07-07</time>
+              </span>
+            
+          
+
+          
+            <span id="/2019/04/18/2019/2018/" class="post-meta-item leancloud_visitors" data-flag-title="2018">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
               
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
             
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Comments: </span>
+    
+  
+    <a href="/2019/04/18/2019/2018/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/04/18/2019/2018/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
 
         </div>
       </header>
-    
 
     
     
@@ -1113,10 +879,6 @@ String to JsonObject// JsonParserval json = "&#123;"name":"bob","age":"18","scor
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
           
             <p>
               
@@ -1149,31 +911,11 @@ OKR从结果上来看并没啥用，是值得深思的事儿。敏捷小组流�
     </div>
 
     
-
     
-    
-    
-
-    
-
-    
-      
-    
-    
-
     
 
     <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
         <div class="post-eof"></div>
-      
     </footer>
   </div>
   
@@ -1181,17 +923,8 @@ OKR从结果上来看并没啥用，是值得深思的事儿。敏捷小组流�
   
   </article>
 
-
     
       
-
-  
-
-  
-  
-  
-
-  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
@@ -1209,11 +942,8 @@ OKR从结果上来看并没啥用，是值得深思的事儿。敏捷小组流�
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="何永剑的博客">
     </span>
-
-    
       <header class="post-header">
 
-        
         
           <h1 class="post-title" itemprop="name headline">
                 
@@ -1225,13 +955,7 @@ OKR从结果上来看并没啥用，是值得深思的事儿。敏捷小组流�
         
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -1244,34 +968,45 @@ OKR从结果上来看并没啥用，是值得深思的事儿。敏捷小组流�
               
 
               <time title="Created: 2019-03-16 20:41:00 / Modified: 20:46:11" itemprop="dateCreated datePublished" datetime="2019-03-16T20:41:00+08:00">2019-03-16</time>
+            </span>
+          
             
 
             
+          
+
+          
+            <span id="/2019/03/16/2019/Fish redux/" class="post-meta-item leancloud_visitors" data-flag-title="Fish Redux 使用指南">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
               
-
+                <span class="post-meta-item-text">Views: </span>
               
-            
-          </span>
-
-          
-
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
             
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Comments: </span>
+    
+  
+    <a href="/2019/03/16/2019/Fish redux/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/03/16/2019/Fish redux/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
 
         </div>
       </header>
-    
 
     
     
@@ -1279,10 +1014,6 @@ OKR从结果上来看并没啥用，是值得深思的事儿。敏捷小组流�
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
           
             <p>
               为啥要使用Fish redux1，年前就被咸鱼大佬安利，种草已久2，想要对比Flutter Redux，学习体会它带来的优越性3，参与并支持一下国产，现在Flutter生态还在早期
@@ -1309,31 +1040,11 @@ OKR从结果上来看并没啥用，是值得深思的事儿。敏捷小组流�
     </div>
 
     
-
     
-    
-    
-
-    
-
-    
-      
-    
-    
-
     
 
     <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
         <div class="post-eof"></div>
-      
     </footer>
   </div>
   
@@ -1341,17 +1052,8 @@ OKR从结果上来看并没啥用，是值得深思的事儿。敏捷小组流�
   
   </article>
 
-
     
       
-
-  
-
-  
-  
-  
-
-  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
@@ -1369,11 +1071,8 @@ OKR从结果上来看并没啥用，是值得深思的事儿。敏捷小组流�
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="何永剑的博客">
     </span>
-
-    
       <header class="post-header">
 
-        
         
           <h1 class="post-title" itemprop="name headline">
                 
@@ -1385,13 +1084,7 @@ OKR从结果上来看并没啥用，是值得深思的事儿。敏捷小组流�
         
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -1404,16 +1097,12 @@ OKR从结果上来看并没啥用，是值得深思的事儿。敏捷小组流�
               
 
               <time title="Created: 2018-12-09 23:08:00" itemprop="dateCreated datePublished" datetime="2018-12-09T23:08:00+08:00">2018-12-09</time>
+            </span>
+          
             
 
             
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
@@ -1421,29 +1110,42 @@ OKR从结果上来看并没啥用，是值得深思的事儿。敏捷小组流�
                   <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="Modified: 2018-12-22 21:34:39" itemprop="dateModified" datetime="2018-12-22T21:34:39+08:00">2018-12-22</time>
+              </span>
+            
+          
+
+          
+            <span id="/2018/12/09/2018/Flutter redux 进阶/" class="post-meta-item leancloud_visitors" data-flag-title="Flutter Redux 进阶">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
               
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
             
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Comments: </span>
+    
+  
+    <a href="/2018/12/09/2018/Flutter redux 进阶/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2018/12/09/2018/Flutter redux 进阶/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
 
         </div>
       </header>
-    
 
     
     
@@ -1451,10 +1153,6 @@ OKR从结果上来看并没啥用，是值得深思的事儿。敏捷小组流�
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
           
             <p>
               目的
@@ -1483,31 +1181,11 @@ class XXXScreen extends StatefulWidget &#123;  @override  _XXXScreenState create
     </div>
 
     
-
     
-    
-    
-
-    
-
-    
-      
-    
-    
-
     
 
     <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
         <div class="post-eof"></div>
-      
     </footer>
   </div>
   
@@ -1515,17 +1193,8 @@ class XXXScreen extends StatefulWidget &#123;  @override  _XXXScreenState create
   
   </article>
 
-
     
       
-
-  
-
-  
-  
-  
-
-  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
@@ -1543,11 +1212,8 @@ class XXXScreen extends StatefulWidget &#123;  @override  _XXXScreenState create
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="何永剑的博客">
     </span>
-
-    
       <header class="post-header">
 
-        
         
           <h1 class="post-title" itemprop="name headline">
                 
@@ -1559,13 +1225,7 @@ class XXXScreen extends StatefulWidget &#123;  @override  _XXXScreenState create
         
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -1578,16 +1238,12 @@ class XXXScreen extends StatefulWidget &#123;  @override  _XXXScreenState create
               
 
               <time title="Created: 2018-11-24 22:45:00" itemprop="dateCreated datePublished" datetime="2018-11-24T22:45:00+08:00">2018-11-24</time>
+            </span>
+          
             
 
             
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
@@ -1595,29 +1251,42 @@ class XXXScreen extends StatefulWidget &#123;  @override  _XXXScreenState create
                   <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="Modified: 2018-12-22 21:32:39" itemprop="dateModified" datetime="2018-12-22T21:32:39+08:00">2018-12-22</time>
+              </span>
+            
+          
+
+          
+            <span id="/2018/11/24/2018/Flutter redux/" class="post-meta-item leancloud_visitors" data-flag-title="Flutter Redux">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
               
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
             
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Comments: </span>
+    
+  
+    <a href="/2018/11/24/2018/Flutter redux/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2018/11/24/2018/Flutter redux/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
 
         </div>
       </header>
-    
 
     
     
@@ -1625,10 +1294,6 @@ class XXXScreen extends StatefulWidget &#123;  @override  _XXXScreenState create
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
           
             <p>
               目的
@@ -1657,31 +1322,11 @@ Flutter里如何使用Redux
     </div>
 
     
-
     
-    
-    
-
-    
-
-    
-      
-    
-    
-
     
 
     <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
         <div class="post-eof"></div>
-      
     </footer>
   </div>
   
@@ -1689,17 +1334,8 @@ Flutter里如何使用Redux
   
   </article>
 
-
     
       
-
-  
-
-  
-  
-  
-
-  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
@@ -1717,11 +1353,8 @@ Flutter里如何使用Redux
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="何永剑的博客">
     </span>
-
-    
       <header class="post-header">
 
-        
         
           <h1 class="post-title" itemprop="name headline">
                 
@@ -1733,13 +1366,7 @@ Flutter里如何使用Redux
         
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -1752,16 +1379,12 @@ Flutter里如何使用Redux
               
 
               <time title="Created: 2018-11-08 22:28:00" itemprop="dateCreated datePublished" datetime="2018-11-08T22:28:00+08:00">2018-11-08</time>
+            </span>
+          
             
 
             
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
@@ -1769,29 +1392,42 @@ Flutter里如何使用Redux
                   <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="Modified: 2018-12-22 21:39:36" itemprop="dateModified" datetime="2018-12-22T21:39:36+08:00">2018-12-22</time>
+              </span>
+            
+          
+
+          
+            <span id="/2018/11/08/2018/Flutter Bottom Navigation Bar/" class="post-meta-item leancloud_visitors" data-flag-title="Flutter BottomNavigationBar">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
               
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
             
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Comments: </span>
+    
+  
+    <a href="/2018/11/08/2018/Flutter Bottom Navigation Bar/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2018/11/08/2018/Flutter Bottom Navigation Bar/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
 
         </div>
       </header>
-    
 
     
     
@@ -1799,10 +1435,6 @@ Flutter里如何使用Redux
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
           
             <p>
               
@@ -1826,31 +1458,11 @@ BottomNavigationBar botttomNavBar = BottomNavigationBar(  items: [    BottomNavi
     </div>
 
     
-
     
-    
-    
-
-    
-
-    
-      
-    
-    
-
     
 
     <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
         <div class="post-eof"></div>
-      
     </footer>
   </div>
   
@@ -1858,17 +1470,8 @@ BottomNavigationBar botttomNavBar = BottomNavigationBar(  items: [    BottomNavi
   
   </article>
 
-
     
       
-
-  
-
-  
-  
-  
-
-  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
@@ -1886,11 +1489,8 @@ BottomNavigationBar botttomNavBar = BottomNavigationBar(  items: [    BottomNavi
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="何永剑的博客">
     </span>
-
-    
       <header class="post-header">
 
-        
         
           <h1 class="post-title" itemprop="name headline">
                 
@@ -1902,13 +1502,7 @@ BottomNavigationBar botttomNavBar = BottomNavigationBar(  items: [    BottomNavi
         
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -1921,16 +1515,12 @@ BottomNavigationBar botttomNavBar = BottomNavigationBar(  items: [    BottomNavi
               
 
               <time title="Created: 2018-10-15 14:51:00" itemprop="dateCreated datePublished" datetime="2018-10-15T14:51:00+08:00">2018-10-15</time>
+            </span>
+          
             
 
             
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
@@ -1938,29 +1528,42 @@ BottomNavigationBar botttomNavBar = BottomNavigationBar(  items: [    BottomNavi
                   <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="Modified: 2018-12-22 21:32:45" itemprop="dateModified" datetime="2018-12-22T21:32:45+08:00">2018-12-22</time>
+              </span>
+            
+          
+
+          
+            <span id="/2018/10/15/2018/Flutter Theme/" class="post-meta-item leancloud_visitors" data-flag-title="Flutter Theme">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
               
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
             
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Comments: </span>
+    
+  
+    <a href="/2018/10/15/2018/Flutter Theme/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2018/10/15/2018/Flutter Theme/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
 
         </div>
       </header>
-    
 
     
     
@@ -1968,10 +1571,6 @@ BottomNavigationBar botttomNavBar = BottomNavigationBar(  items: [    BottomNavi
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
           
             <p>
               
@@ -1999,38 +1598,17 @@ Android/iOSandroid应用资源都在资源路径src/res下，style相关改动�
     </div>
 
     
-
     
-    
-    
-
-    
-
-    
-      
-    
-    
-
     
 
     <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
         <div class="post-eof"></div>
-      
     </footer>
   </div>
   
   
   
   </article>
-
 
     
   </section>
@@ -2041,12 +1619,10 @@ Android/iOSandroid应用资源都在资源路径src/res下，style相关改动�
   </nav>
 
 
-
           </div>
           
 
         </div>
-        
           
   
   <div class="sidebar-toggle">
@@ -2060,123 +1636,89 @@ Android/iOSandroid应用资源都在资源路径src/res下，style相关改动�
   <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
 
-      
-
-      
-
       <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
+
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="何永剑">
-            
-              <p class="site-author-name" itemprop="name">何永剑</p>
-              <div class="site-description motion-element" itemprop="description">伪二次元，非专业视觉体验师。</div>
-          </div>
+    <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="何永剑">
+  <p class="site-author-name" itemprop="name">何永剑</p>
+  <div class="site-description motion-element" itemprop="description">伪二次元，非专业视觉体验师。</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">tags</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/hyjfine" title="GitHub &rarr; https://github.com/hyjfine" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:hyjfine@gmail.com" title="E-Mail &rarr; mailto:hyjfine@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
 
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">18</span>
-                    <span class="site-state-item-name">posts</span>
-                  </a>
-                </div>
-              
 
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  
-                    
-                      <a href="/tags/">
-                    
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">7</span>
-                    <span class="site-state-item-name">tags</span>
-                  </a>
-                </div>
-              
-            </nav>
-          
-
-          
-
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://github.com/hyjfine" title="GitHub &rarr; https://github.com/hyjfine" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="mailto:hyjfine@gmail.com" title="E-Mail &rarr; mailto:hyjfine@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                </span>
-              
-            </div>
-          
-
-          
-
-          
-          
-
-          
-            
-          
-          
 
         </div>
       </div>
 
-      
-
-      
-
     </div>
   </aside>
-  
+  <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
@@ -2187,21 +1729,8 @@ Android/iOSandroid应用资源都在资源路径src/res下，style相关改动�
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">hyjfine</span>
-
-  
-
-  
 </div>
-
-
   <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a></div>
-
-
-
-
-
-
-
 
         
 
@@ -2215,93 +1744,31 @@ Android/iOSandroid应用资源都在资源路径src/res下，style相关改动�
         
       </div>
     </footer>
-
-    
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
-        
       </div>
-    
 
     
 
-    
-
-    
   </div>
 
   
-
-<script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
+  <script src="/js/utils.js?v=7.2.0"></script>
+  <script src="/js/motion.js?v=7.2.0"></script>
 
   
-
-
-  <script src="/js/src/utils.js?v=7.0.1"></script>
-
-  <script src="/js/src/motion.js?v=7.0.1"></script>
-
-
-
-  
-  
-
-
-  <script src="/js/src/affix.js?v=7.0.1"></script>
-
-  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
-
+  <script src="/js/affix.js?v=7.2.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
 
 
 
   
 
-  
-
-
-  <script src="/js/src/next-boot.js?v=7.0.1"></script>
-
-
-  
+  <script src="/js/next-boot.js?v=7.2.0"></script>
 
   
 
@@ -2310,39 +1777,130 @@ Android/iOSandroid应用资源都在资源路径src/res下，style相关改动�
   
 
 
-
   
 
 
 
 
-  
+
+
+
+
+
+
 
   
+  <script>
+    function showTime(Counter) {
+      var entries = [];
+      var $visitors = $('.leancloud_visitors');
 
-  
+      $visitors.each(function() {
+        entries.push( $(this).attr('id').trim() );
+      });
 
-  
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { '$in': entries } }) })
+        .done(function({ results }) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
 
-  
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
 
-  
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            var element = document.getElementById(url);
 
-  
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if (countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+    
 
-  
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'yAbH7nCHLnmod1p5gWu1rvXE-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': 'yAbH7nCHLnmod1p5gWu1rvXE-gzGzoHsz',
+                'X-LC-Key': '1oKnVeJr6SSaIQHt1uXbdUca',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+            if ($('.post-title-link').length >= 1) {
+              showTime(Counter);
+            }
+          
+        });
+    });
+  </script>
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'CXylYR7pNX93azPeMMWgqMK1-gzGzoHsz',
+    appKey: 'DbB4mssjG6l3EpItcmPnnNxs',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'en' || 'zh-cn'
+  });
+</script>
+
 
 </body>
 </html>
