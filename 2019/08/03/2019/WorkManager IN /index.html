@@ -66,7 +66,7 @@
 <meta property="og:description" content="WorkManager是Android Jetpack的架构组件（Architecture component）之一，官方对它的定义是用来管理Android后台作业。  简单上手1，添加依赖 123456789// 在app的build.gradle里添加//A： Kotlin + coroutinesimplementation &apos;androidx.work:work-runtime-ktx:">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://doc.heyongjian.cn/hyj-doc-android-workManager.png">
-<meta property="og:updated_time" content="2019-08-03T15:14:58.102Z">
+<meta property="og:updated_time" content="2019-08-25T15:59:53.866Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WorkManager IN Jetpack">
 <meta name="twitter:description" content="WorkManager是Android Jetpack的架构组件（Architecture component）之一，官方对它的定义是用来管理Android后台作业。  简单上手1，添加依赖 123456789// 在app的build.gradle里添加//A： Kotlin + coroutinesimplementation &apos;androidx.work:work-runtime-ktx:">
@@ -235,11 +235,21 @@
                 
               
 
-              <time title="Created: 2019-08-03 23:07:00 / Modified: 23:14:58" itemprop="dateCreated datePublished" datetime="2019-08-03T23:07:00+08:00">2019-08-03</time>
+              <time title="Created: 2019-08-03 23:07:00" itemprop="dateCreated datePublished" datetime="2019-08-03T23:07:00+08:00">2019-08-03</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-25 23:59:53" itemprop="dateModified" datetime="2019-08-25T23:59:53+08:00">2019-08-25</time>
+              </span>
             
           
 
@@ -312,8 +322,41 @@
 <p><strong>敲黑板</strong>：是否需要立即执行的前提很重要，比如用户希望立即运行不被打断，那WorkManager就表示做不到了，这时需要用foreground service。其他情况下首选WorkManager，它具有更高的兼容性和更优雅的封装性。</p>
 <h3 id="进阶使用"><a href="#进阶使用" class="headerlink" title="进阶使用"></a>进阶使用</h3><p>1，传递数据</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//IN： requestBuilder 往worker塞数据</span><br><span class="line">workRequestBuilder.setInputData(getCountData(&quot;bob&quot;,10))</span><br><span class="line"></span><br><span class="line">//IN： Data里面有个Map接收数据</span><br><span class="line">private fun getCountData(name: String, count: Int): Data &#123;</span><br><span class="line">        val builder = Data.Builder()</span><br><span class="line">        CountNumWorker.TAG</span><br><span class="line">        builder.putInt(CountNumWorker.COUNT, count)</span><br><span class="line">        builder.putString(CountNumWorker.NAME, name)</span><br><span class="line">        return builder.build()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">//OUT：worker里面取数据</span><br><span class="line">private val count = inputData.getInt(COUNT, 0)</span><br><span class="line">private val name = inputData.getString(NAME) ?: &quot;bob&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>Tips</strong>: <em>Data 传递的数据只能是<code>Boolean, Integer,Long, Float, Double, String</code>和这些类型的数组，如果想要传递一些复杂对象，那么有下面几种方式</em>：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>实现复杂度</th>
+<th>用法&amp;副作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>静态变量</td>
+<td>简单</td>
+<td>用完忘记置空，影响和内存泄漏差不多</td>
+</tr>
+<tr>
+<td>单例赋值</td>
+<td>简单</td>
+<td>思考是否合适用单例</td>
+</tr>
+<tr>
+<td>借助json</td>
+<td>一般</td>
+<td>对象转成bean，toString后用Data传，接收到在fromJson还原成bean</td>
+</tr>
+<tr>
+<td>数据库</td>
+<td>复杂</td>
+<td>生产者插数据库，用Data传id，消费者用id查数据库</td>
+</tr>
+</tbody>
+</table>
 <p>2，监听worker执行状态</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 实例化一个workRequestBuilder</span><br><span class="line">val workRequestBuilder = OneTimeWorkRequestBuilder&lt;CountNumWorker2&gt;()</span><br><span class="line">// 设置一下TAG</span><br><span class="line">workRequestBuilder.addTag(&quot;bob&quot;)</span><br><span class="line">// 监听特定TAG的worker的执行状态</span><br><span class="line">workerManager.getWorkInfosByTagLiveData(&quot;bob&quot;).observe(this, Observer &#123; workInfo -&gt;</span><br><span class="line">        if (workInfo != null &amp;&amp; workInfo.first().state == WorkInfo.State.SUCCEEDED) &#123;</span><br><span class="line">            UtilToast.show(&quot;----success!&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    </span><br><span class="line">// PS：worker可以有三种方式标示：name，id，tag。tag可以在workRequestBuilder上设置，表示一个组的worker，name和id都是在workRequestBuilder.build()后可以获取，表示单个worker，通过WorkContinuation可以设置。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 实例化一个workRequestBuilder</span><br><span class="line">val workRequestBuilder = OneTimeWorkRequestBuilder&lt;CountNumWorker2&gt;()</span><br><span class="line">// 设置一下TAG</span><br><span class="line">workRequestBuilder.addTag(&quot;bob&quot;)</span><br><span class="line">// 监听特定TAG的worker的执行状态</span><br><span class="line">workerManager.getWorkInfosByTagLiveData(&quot;bob&quot;).observe(this, Observer &#123; workInfo -&gt;</span><br><span class="line">        if (workInfo != null &amp;&amp; workInfo.first().state == WorkInfo.State.SUCCEEDED) &#123;</span><br><span class="line">            UtilToast.show(&quot;----success!&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+<p><strong>Tips</strong>：<em>worker可以有三种方式标示：name，id，tag。tag可以在workRequestBuilder上设置，表示一个组的worker，name和id都是在workRequestBuilder.build()后可以获取，表示单个worker，通过WorkContinuation可以设置</em>。 </p>
 <p>3，串并联worker，S队形B队形随意排</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"> *            A</span><br><span class="line"> *            |</span><br><span class="line"> *      +----------+</span><br><span class="line"> *      |          |</span><br><span class="line"> *     Bob        lucy</span><br><span class="line"> *      |          |</span><br><span class="line"> *      +----------+</span><br><span class="line"> *            |</span><br><span class="line"> *            B</span><br><span class="line"><span class="comment">// A任务先执行，然后bob和lucy一起跑，跑完了再跑B worker</span></span><br><span class="line"><span class="keyword">val</span> workRequestBuilder = OneTimeWorkRequestBuilder&lt;CountNumWorker2&gt;()</span><br><span class="line"><span class="keyword">val</span> workRequestBuilder2 = OneTimeWorkRequestBuilder&lt;CountNumWorker2&gt;()</span><br><span class="line"><span class="keyword">val</span> workRequestBuilderA = OneTimeWorkRequestBuilder&lt;CountNumWorker&gt;()</span><br><span class="line"><span class="keyword">val</span> workRequestBuilderB = OneTimeWorkRequestBuilder&lt;CountNumWorker&gt;()</span><br><span class="line">workRequestBuilder.setInputData(getCountData(<span class="string">"bob"</span>,<span class="number">10</span>))</span><br><span class="line">workRequestBuilder2.setInputData(getCountData(<span class="string">"lucy"</span>,<span class="number">15</span>))</span><br><span class="line">workRequestBuilderA.setInputData(getCountData(<span class="string">"A"</span>, <span class="number">15</span>))</span><br><span class="line">workRequestBuilderB.setInputData(getCountData(<span class="string">"B"</span>, <span class="number">15</span>))</span><br><span class="line"><span class="keyword">val</span> list = listOf(workRequestBuilder.build(), workRequestBuilder2.build())</span><br><span class="line">workerManager.beginWith(workRequestBuilderA.build()).then(list).then(workRequestBuilderB.build()).enqueue()</span><br><span class="line"></span><br><span class="line"> *     A       C</span><br><span class="line"> *     |       |</span><br><span class="line"> *     B       D</span><br><span class="line"> *     |       |</span><br><span class="line"> *     +-------+</span><br><span class="line"> *         |</span><br><span class="line"> *         E </span><br><span class="line"><span class="comment">// 左右两边任务同时跑起来，文体两开花安排上</span></span><br><span class="line">WorkContinuation left = workManager.beginWith(A).then(B);</span><br><span class="line">WorkContinuation right = workManager.beginWith(C).then(D);</span><br><span class="line">WorkContinuation <span class="keyword">final</span> = WorkContinuation.combine(Arrays.asList(left, right)).then(E);</span><br><span class="line"><span class="keyword">final</span>.enqueue();</span><br></pre></td></tr></table></figure>
 <p>4，Cancelling and stopping work</p>
