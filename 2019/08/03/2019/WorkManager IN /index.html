@@ -65,12 +65,12 @@
 <meta property="og:site_name" content="子路宇晟的博客">
 <meta property="og:description" content="WorkManager是Android Jetpack的架构组件（Architecture component）之一，官方对它的定义是用来管理Android后台作业。  简单上手1，添加依赖 123456789// 在app的build.gradle里添加//A： Kotlin + coroutinesimplementation &apos;androidx.work:work-runtime-ktx:">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://doc.heyongjian.cn/hyj-doc-android-workManager.png">
-<meta property="og:updated_time" content="2019-08-25T15:59:53.866Z">
+<meta property="og:image" content="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-workManager.png">
+<meta property="og:updated_time" content="2019-11-20T15:14:20.148Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WorkManager IN Jetpack">
 <meta name="twitter:description" content="WorkManager是Android Jetpack的架构组件（Architecture component）之一，官方对它的定义是用来管理Android后台作业。  简单上手1，添加依赖 123456789// 在app的build.gradle里添加//A： Kotlin + coroutinesimplementation &apos;androidx.work:work-runtime-ktx:">
-<meta name="twitter:image" content="http://doc.heyongjian.cn/hyj-doc-android-workManager.png">
+<meta name="twitter:image" content="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-workManager.png">
   <link rel="canonical" href="http://heyongjian.com/2019/08/03/2019/WorkManager IN /">
 
 
@@ -248,7 +248,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-08-25 23:59:53" itemprop="dateModified" datetime="2019-08-25T23:59:53+08:00">2019-08-25</time>
+                <time title="Modified: 2019-11-20 23:14:20" itemprop="dateModified" datetime="2019-11-20T23:14:20+08:00">2019-11-20</time>
               </span>
             
           
@@ -318,7 +318,7 @@
 <li>发送logs或analytics给后端</li>
 <li>周期性和后端同步app数据</li>
 </ul>
-<h4 id="什么时候用"><a href="#什么时候用" class="headerlink" title="什么时候用"></a>什么时候用</h4><p><img src="http://doc.heyongjian.cn/hyj-doc-android-workManager.png" alt="img"></p>
+<h4 id="什么时候用"><a href="#什么时候用" class="headerlink" title="什么时候用"></a>什么时候用</h4><p><img src="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-workManager.png" alt="img"></p>
 <p><strong>敲黑板</strong>：是否需要立即执行的前提很重要，比如用户希望立即运行不被打断，那WorkManager就表示做不到了，这时需要用foreground service。其他情况下首选WorkManager，它具有更高的兼容性和更优雅的封装性。</p>
 <h3 id="进阶使用"><a href="#进阶使用" class="headerlink" title="进阶使用"></a>进阶使用</h3><p>1，传递数据</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//IN： requestBuilder 往worker塞数据</span><br><span class="line">workRequestBuilder.setInputData(getCountData(&quot;bob&quot;,10))</span><br><span class="line"></span><br><span class="line">//IN： Data里面有个Map接收数据</span><br><span class="line">private fun getCountData(name: String, count: Int): Data &#123;</span><br><span class="line">        val builder = Data.Builder()</span><br><span class="line">        CountNumWorker.TAG</span><br><span class="line">        builder.putInt(CountNumWorker.COUNT, count)</span><br><span class="line">        builder.putString(CountNumWorker.NAME, name)</span><br><span class="line">        return builder.build()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">//OUT：worker里面取数据</span><br><span class="line">private val count = inputData.getInt(COUNT, 0)</span><br><span class="line">private val name = inputData.getString(NAME) ?: &quot;bob&quot;</span><br></pre></td></tr></table></figure>

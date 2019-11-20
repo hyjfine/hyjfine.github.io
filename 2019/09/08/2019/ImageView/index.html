@@ -65,12 +65,12 @@
 <meta property="og:site_name" content="子路宇晟的博客">
 <meta property="og:description" content="ImageView 是很常用的控件，记录下ScaleType和Transition animation  ImageView ScaleType 1234567891011121314151617&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;&amp;lt;androidx.constraintlayout.widget.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://doc.heyongjian.cn/image-20190827232228863.png">
-<meta property="og:updated_time" content="2019-09-08T15:44:49.670Z">
+<meta property="og:image" content="https://hyjdoc.oss-cn-beijing.aliyuncs.com/image-20190827232228863.png">
+<meta property="og:updated_time" content="2019-11-20T15:14:20.156Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ImageView ScaleType and Transition">
 <meta name="twitter:description" content="ImageView 是很常用的控件，记录下ScaleType和Transition animation  ImageView ScaleType 1234567891011121314151617&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;&amp;lt;androidx.constraintlayout.widget.">
-<meta name="twitter:image" content="http://doc.heyongjian.cn/image-20190827232228863.png">
+<meta name="twitter:image" content="https://hyjdoc.oss-cn-beijing.aliyuncs.com/image-20190827232228863.png">
   <link rel="canonical" href="http://heyongjian.com/2019/09/08/2019/ImageView/">
 
 
@@ -235,11 +235,21 @@
                 
               
 
-              <time title="Created: 2019-09-08 23:31:00 / Modified: 23:44:49" itemprop="dateCreated datePublished" datetime="2019-09-08T23:31:00+08:00">2019-09-08</time>
+              <time title="Created: 2019-09-08 23:31:00" itemprop="dateCreated datePublished" datetime="2019-09-08T23:31:00+08:00">2019-09-08</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-11-20 23:14:20" itemprop="dateModified" datetime="2019-11-20T23:14:20+08:00">2019-11-20</time>
+              </span>
             
           
 
@@ -285,7 +295,7 @@
         <blockquote>
 <p>ImageView 是很常用的控件，记录下ScaleType和Transition animation</p>
 </blockquote>
-<h3 id="ImageView-ScaleType"><a href="#ImageView-ScaleType" class="headerlink" title="ImageView ScaleType"></a>ImageView ScaleType</h3><p><img src="http://doc.heyongjian.cn/image-20190827232228863.png" alt="image-20190827232228863"></p>
+<h3 id="ImageView-ScaleType"><a href="#ImageView-ScaleType" class="headerlink" title="ImageView ScaleType"></a>ImageView ScaleType</h3><p><img src="https://hyjdoc.oss-cn-beijing.aliyuncs.com/image-20190827232228863.png" alt="image-20190827232228863"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;androidx.constraintlayout.widget.ConstraintLayout</span><br><span class="line">        xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">        xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:id=&quot;@+id/faceLayout&quot;</span><br><span class="line">        android:layout_height=&quot;match_parent&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">            android:id=&quot;@+id/button2&quot;</span><br><span class="line">            android:layout_width=&quot;0dp&quot;</span><br><span class="line">            android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">            android:text=&quot;Button&quot;</span><br><span class="line">            app:layout_constraintEnd_toEndOf=&quot;parent&quot;</span><br><span class="line">            app:layout_constraintStart_toStartOf=&quot;parent&quot;</span><br><span class="line">            app:layout_constraintTop_toTopOf=&quot;parent&quot;/&gt;</span><br><span class="line">&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 这三个属性尽量搭配一起使用，除了center和matrix，其他效果都一致，显示正常不拉伸的图片。</span><br><span class="line">android:layout_width=&quot;0dp&quot;</span><br><span class="line">android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">android:adjustViewBounds=&quot;true&quot;</span><br></pre></td></tr></table></figure>
 <h3 id="ImageView-Transition"><a href="#ImageView-Transition" class="headerlink" title="ImageView Transition"></a>ImageView Transition</h3><p><a href="https://medium.com/@andkulikov/animate-all-the-things-transitions-in-android-914af5477d50" target="_blank" rel="noopener">https://medium.com/@andkulikov/animate-all-the-things-transitions-in-android-914af5477d50</a></p>

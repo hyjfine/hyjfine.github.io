@@ -65,13 +65,13 @@
 <meta property="og:site_name" content="子路宇晟的博客">
 <meta property="og:description" content="如果你的Android 应用不只在中国运营，还想国际化，比如服务一下美帝人民，那上Google Play是必须的。这里记录下   必要的准备  一个Gmail帐号，Google Play Console 登录只接受Google帐号  一张支持境外支付的信用卡（visa/mastercard），注册需要支付$25  文档理解-Android APP bundle  文档理解-APP Signing">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://doc.heyongjian.cn/hyj-doc-android-googleplay1.png">
-<meta property="og:image" content="http://doc.heyongjian.cn/hyj-doc-android-googleplay2.png">
-<meta property="og:updated_time" content="2019-08-11T16:19:57.050Z">
+<meta property="og:image" content="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-googleplay1.png">
+<meta property="og:image" content="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-googleplay2.png">
+<meta property="og:updated_time" content="2019-11-20T15:14:20.165Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Google Play 上车指南">
 <meta name="twitter:description" content="如果你的Android 应用不只在中国运营，还想国际化，比如服务一下美帝人民，那上Google Play是必须的。这里记录下   必要的准备  一个Gmail帐号，Google Play Console 登录只接受Google帐号  一张支持境外支付的信用卡（visa/mastercard），注册需要支付$25  文档理解-Android APP bundle  文档理解-APP Signing">
-<meta name="twitter:image" content="http://doc.heyongjian.cn/hyj-doc-android-googleplay1.png">
+<meta name="twitter:image" content="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-googleplay1.png">
   <link rel="canonical" href="http://heyongjian.com/2019/08/11/2019/google play 上车指南/">
 
 
@@ -249,7 +249,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-08-12 00:19:57" itemprop="dateModified" datetime="2019-08-12T00:19:57+08:00">2019-08-12</time>
+                <time title="Modified: 2019-11-20 23:14:20" itemprop="dateModified" datetime="2019-11-20T23:14:20+08:00">2019-11-20</time>
               </span>
             
           
@@ -304,7 +304,7 @@
 <li style="list-style: none"><input type="checkbox"> <del>软件著作权（不需要）</del></li>
 </ul>
 <h3 id="帐号注册"><a href="#帐号注册" class="headerlink" title="帐号注册"></a>帐号注册</h3><p>这个流程需要自带<strong>梯子</strong>，注册<a href="https://play.google.com/apps/publish/signup/" target="_blank" rel="noopener">地址</a>，按提示走一般没啥幺蛾子</p>
-<p><img src="http://doc.heyongjian.cn/hyj-doc-android-googleplay1.png" alt="image-20190811144655052"></p>
+<p><img src="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-googleplay1.png" alt="image-20190811144655052"></p>
 <h3 id="App-Bundle"><a href="#App-Bundle" class="headerlink" title="App Bundle"></a>App Bundle</h3><p>Android生态过了10年，系统碎片化严重，应用越来越大。Google终于决定要有所改变了，在2018年中推出了Android App Bundle这个新的文件格式。期望来达到三个目的：1，动态分发，服务器根据用户机型动态下发对应资源的APK，减少应用包体积（落后iOS N年）；2，动态功能模块，比如支付，播放这种功能可以在使用时候动态加载；3，应用安全，集成App signing，保证APP安装和升级的合法性。使用也比较简单</p>
 <ul>
 <li>需要<a href="https://developer.android.com/studio" target="_blank" rel="noopener">Android Studio</a> 3.2+，命令行可以使用<a href="https://developer.android.com/studio/command-line/bundletool" target="_blank" rel="noopener">bundletool</a></li>
@@ -314,7 +314,7 @@
 <li>上传到Google play签名</li>
 </ul>
 <p>一个20M的测试apk，使用app bundle经过google play下发到用户手机只有6m左右，美滋滋。</p>
-<p><img src="http://doc.heyongjian.cn/hyj-doc-android-googleplay2.png" alt="image-20190811173949372"></p>
+<p><img src="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-googleplay2.png" alt="image-20190811173949372"></p>
 <h3 id="App-signing"><a href="#App-signing" class="headerlink" title="App signing"></a>App signing</h3><p>相对于apk，App Bundle的aab是一种新的上传文件格式，<strong>必须</strong>搭配App signing一起使用。Google Play来管理和保护你的应用签名密钥，并使用它来签名apk以进行动态分发。</p>
 <h4 id="怎么工作？"><a href="#怎么工作？" class="headerlink" title="怎么工作？"></a>怎么工作？</h4><p>应用密钥储存在Google的无差别基建服务中，并提供安全可靠行保证。使用密钥签名生成aab文件，aab上传Google Play会校验公共证书是不是来自于受信任的来源（同一个）。</p>
 <h4 id="Upload-key？"><a href="#Upload-key？" class="headerlink" title="Upload key？"></a>Upload key？</h4><p>这个是可选的，就是多生成一个Java keystore，用来区别应用打包签名的keystore。它只用在上传aab文件时做合法性校验。如果App Signing选择了Google自动生成私钥，那这个upload key会是第一次上传文件时的签名keystore。</p>

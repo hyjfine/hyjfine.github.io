@@ -65,12 +65,12 @@
 <meta property="og:site_name" content="子路宇晟的博客">
 <meta property="og:description" content="动画用来描述一个非静态的场景。在android软件中有两种形式，1，算出初态和终态之间的插值，并在一段时间渲染播放这些状态，如animation，animator，layout transition。2，在一段时间内算法不断的绘制状态，这些状态的差异和连贯性在视觉里形成动画。一般有自定义view animation，这就是本文要记录的点。  常见方案自定义视图动画，往往是因为常规的属性动画已经无">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://doc.heyongjian.cn/hyj-doc-android-animation.gif">
-<meta property="og:updated_time" content="2019-07-21T11:06:00.302Z">
+<meta property="og:image" content="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-animation.gif">
+<meta property="og:updated_time" content="2019-11-20T15:14:20.171Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android cool animation">
 <meta name="twitter:description" content="动画用来描述一个非静态的场景。在android软件中有两种形式，1，算出初态和终态之间的插值，并在一段时间渲染播放这些状态，如animation，animator，layout transition。2，在一段时间内算法不断的绘制状态，这些状态的差异和连贯性在视觉里形成动画。一般有自定义view animation，这就是本文要记录的点。  常见方案自定义视图动画，往往是因为常规的属性动画已经无">
-<meta name="twitter:image" content="http://doc.heyongjian.cn/hyj-doc-android-animation.gif">
+<meta name="twitter:image" content="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-animation.gif">
   <link rel="canonical" href="http://heyongjian.com/2019/07/20/2019/Android cool animation  /">
 
 
@@ -248,7 +248,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-07-21 19:06:00" itemprop="dateModified" datetime="2019-07-21T19:06:00+08:00">2019-07-21</time>
+                <time title="Modified: 2019-11-20 23:14:20" itemprop="dateModified" datetime="2019-11-20T23:14:20+08:00">2019-11-20</time>
               </span>
             
           
@@ -349,7 +349,7 @@
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">设定Padding逻辑，一般在onlayout里做，不好做的话可以考虑不做，直接套一层viewGroup使用</span><br><span class="line">oval.<span class="keyword">set</span>(</span><br><span class="line">            <span class="number">0f</span> + paddingLeft, <span class="number">0f</span> + paddingTop,</span><br><span class="line">            (width - paddingRight).toFloat(),</span><br><span class="line">            (height - paddingBottom).toFloat()</span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
 <p>2，给自定义动画加属性</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">在attr中添加属性</span><br><span class="line">&lt;declare-styleable name=<span class="string">"AnimationView"</span>&gt;</span><br><span class="line">        &lt;attr name=<span class="string">"paint_color"</span> format=<span class="string">"color"</span>/&gt;</span><br><span class="line">&lt;/declare-styleable&gt;</span><br><span class="line"></span><br><span class="line">在initView中初始化数值</span><br><span class="line"><span class="keyword">val</span> array = context.obtainStyledAttributes(attrs, R.styleable.AnimationView)</span><br><span class="line">paintColor = array.getColor(R.styleable.AnimationView_paint_color, paintColor)</span><br><span class="line">array.recycle()</span><br></pre></td></tr></table></figure>
-<h3 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h3><p><img src="http://doc.heyongjian.cn/hyj-doc-android-animation.gif" alt="animation"></p>
+<h3 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h3><p><img src="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-animation.gif" alt="animation"></p>
 <h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><p><a href="https://developer.android.com/training/custom-views/custom-drawing" target="_blank" rel="noopener">https://developer.android.com/training/custom-views/custom-drawing</a></p>
 <p><a href="https://juejin.im/post/5bced690e51d457a7e4f8b48" target="_blank" rel="noopener">https://juejin.im/post/5bced690e51d457a7e4f8b48</a></p>
 <p><a href="https://zhuanlan.zhihu.com/p/26304609" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/26304609</a></p>

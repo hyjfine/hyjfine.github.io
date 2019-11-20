@@ -65,23 +65,23 @@
 <meta property="og:site_name" content="子路宇晟的博客">
 <meta property="og:description" content="在Hexo和Github Pages的加持下，现在我们可以只专注在写Blog上，而不用额外的精力管网站发布和运营。一起看起来很美好，然而，一段时间过去了，会发现文章没写几篇，网站倒是卡成姥爷，浏览器还一直显示不安全。需要一些手段来解决下。  名词概念CDN全称是Content Delivery Network，最小CDN网络可以由一个DNS服务器和几台缓存服务器组成，不同地区的访问请求，CDN会">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://doc.heyongjian.cn/hyj-doc-android-hexo-1.png">
-<meta property="og:image" content="http://doc.heyongjian.cn/hyj-doc-android-hexo-2.png">
-<meta property="og:image" content="http://doc.heyongjian.cn/hyj-doc-android-hexo-3.png">
-<meta property="og:image" content="http://doc.heyongjian.cn/hyj-doc-android-hexo-4.png">
-<meta property="og:image" content="http://doc.heyongjian.cn/hyj-doc-android-hexo-5.png">
-<meta property="og:image" content="http://doc.heyongjian.cn/hyj-doc-android-hexo-6.png">
-<meta property="og:image" content="http://doc.heyongjian.cn/hyj-doc-android-hexo-7.png">
-<meta property="og:image" content="http://doc.heyongjian.cn/hyj-doc-android-hexo-8.png">
-<meta property="og:image" content="http://doc.heyongjian.cn/hyj-doc-android-hexo-9.png">
-<meta property="og:image" content="http://doc.heyongjian.cn/hyj-doc-android-hexo-10.png">
-<meta property="og:image" content="http://doc.heyongjian.cn/hyj-doc-android-hexo-12.png">
-<meta property="og:image" content="http://doc.heyongjian.cn/hyj-doc-android-hexo-13.png">
-<meta property="og:updated_time" content="2019-08-25T15:59:53.869Z">
+<meta property="og:image" content="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-hexo-1.png">
+<meta property="og:image" content="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-hexo-2.png">
+<meta property="og:image" content="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-hexo-3.png">
+<meta property="og:image" content="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-hexo-4.png">
+<meta property="og:image" content="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-hexo-5.png">
+<meta property="og:image" content="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-hexo-6.png">
+<meta property="og:image" content="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-hexo-7.png">
+<meta property="og:image" content="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-hexo-8.png">
+<meta property="og:image" content="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-hexo-9.png">
+<meta property="og:image" content="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-hexo-10.png">
+<meta property="og:image" content="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-hexo-12.png">
+<meta property="og:image" content="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-hexo-13.png">
+<meta property="og:updated_time" content="2019-11-20T15:14:20.152Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo+Github Pages CDN &amp; HTTPS">
 <meta name="twitter:description" content="在Hexo和Github Pages的加持下，现在我们可以只专注在写Blog上，而不用额外的精力管网站发布和运营。一起看起来很美好，然而，一段时间过去了，会发现文章没写几篇，网站倒是卡成姥爷，浏览器还一直显示不安全。需要一些手段来解决下。  名词概念CDN全称是Content Delivery Network，最小CDN网络可以由一个DNS服务器和几台缓存服务器组成，不同地区的访问请求，CDN会">
-<meta name="twitter:image" content="http://doc.heyongjian.cn/hyj-doc-android-hexo-1.png">
+<meta name="twitter:image" content="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-hexo-1.png">
   <link rel="canonical" href="http://heyongjian.com/2019/08/18/2019/Hexo+Github Pages CDN & HTTPS /">
 
 
@@ -259,7 +259,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-08-25 23:59:53" itemprop="dateModified" datetime="2019-08-25T23:59:53+08:00">2019-08-25</time>
+                <time title="Modified: 2019-11-20 23:14:20" itemprop="dateModified" datetime="2019-11-20T23:14:20+08:00">2019-11-20</time>
               </span>
             
           
@@ -317,26 +317,26 @@
 <h4 id="CNAME"><a href="#CNAME" class="headerlink" title="CNAME"></a>CNAME</h4><p>想想为啥要用CNAME。用户输入的是xxx.com，打开的是xxx.github.io网页，这中间的魔法就是通过CNAME实现的，我们在DNS域名解析服务里设定了解析规则，*和www开头的记录都重定向到hxx.github.io域名。这里用CNAME的好处是github换IP操作对我们透明，从而不需要手动改配置。</p>
 <h3 id="实施"><a href="#实施" class="headerlink" title="实施"></a>实施</h3><p>有以上储备后，就可以开搞了。诉求是CDN和HTTPS加密，因为域名是万网（阿里云）买的，所以先看了一眼阿里云SSL证书价格，最便宜1256一年，emmm，这不科学，Blog我们当然是要免费的。查阅一番，Cloudflare评价不错。</p>
 <p>打开Cloudflare的官网，竟然对中文有支持，赞👍</p>
-<p><img src="http://doc.heyongjian.cn/hyj-doc-android-hexo-1.png" alt="image-20190818171638362"></p>
+<p><img src="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-hexo-1.png" alt="image-20190818171638362"></p>
 <h4 id="注册Cloudflare"><a href="#注册Cloudflare" class="headerlink" title="注册Cloudflare"></a>注册Cloudflare</h4><p>这步比较简单，按提示注册就行</p>
 <h4 id="配置Site"><a href="#配置Site" class="headerlink" title="配置Site"></a>配置Site</h4><p>注册成功就会让你Add Site， 输入你的域名xxx.com，选套餐，当然是Free</p>
-<h4 id="更改域名商"><a href="#更改域名商" class="headerlink" title="更改域名商"></a>更改域名商</h4><p><img src="http://doc.heyongjian.cn/hyj-doc-android-hexo-2.png" alt="image-20190818172515598"></p>
+<h4 id="更改域名商"><a href="#更改域名商" class="headerlink" title="更改域名商"></a>更改域名商</h4><p><img src="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-hexo-2.png" alt="image-20190818172515598"></p>
 <p>意思是去你的域名服务商更改nameservers，熟练登入阿里云，选择域名点击最右边域名管理</p>
-<p><img src="http://doc.heyongjian.cn/hyj-doc-android-hexo-3.png" alt="image-20190818172944688"></p>
+<p><img src="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-hexo-3.png" alt="image-20190818172944688"></p>
 <p>点击修改DNS，修改成james开头的地址就行，改完点一下同步，一般5分钟内生效。</p>
-<p><img src="http://doc.heyongjian.cn/hyj-doc-android-hexo-4.png" alt="image-20190818173030848"></p>
+<p><img src="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-hexo-4.png" alt="image-20190818173030848"></p>
 <h4 id="验证是否生效"><a href="#验证是否生效" class="headerlink" title="验证是否生效"></a>验证是否生效</h4><p>左上角Cloudflare回主页</p>
-<p><img src="http://doc.heyongjian.cn/hyj-doc-android-hexo-5.png" alt="image-20190818173347505"></p>
+<p><img src="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-hexo-5.png" alt="image-20190818173347505"></p>
 <p>或者命令行：用dig <a href="http://www.hxx.com" target="_blank" rel="noopener">www.hxx.com</a></p>
-<p><img src="http://doc.heyongjian.cn/hyj-doc-android-hexo-6.png" alt="image-20190818173554830"></p>
+<p><img src="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-hexo-6.png" alt="image-20190818173554830"></p>
 <p>搜索一下ip104.31.94.161，确认是Cloudflare的，现在你打开Blog的页面速度应该有数量级的提升！</p>
 <h4 id="对比效果"><a href="#对比效果" class="headerlink" title="对比效果"></a>对比效果</h4><p>Before，2分钟开一个网页，实际上是对人耐心的一种考验</p>
-<p><img src="http://doc.heyongjian.cn/hyj-doc-android-hexo-7.png" alt="image-20190818173909538"></p>
+<p><img src="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-hexo-7.png" alt="image-20190818173909538"></p>
 <p>After，可以说是秒开了，而且有无翻墙，效果一致，193个数据中心不是白吹的，美滋滋。</p>
-<p><img src="http://doc.heyongjian.cn/hyj-doc-android-hexo-8.png" alt="image-20190818174041150"></p>
-<h4 id="地址栏显示不安全"><a href="#地址栏显示不安全" class="headerlink" title="地址栏显示不安全"></a>地址栏显示不安全</h4><p><img src="http://doc.heyongjian.cn/hyj-doc-android-hexo-9.png" alt="image-20190818180518257"></p>
+<p><img src="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-hexo-8.png" alt="image-20190818174041150"></p>
+<h4 id="地址栏显示不安全"><a href="#地址栏显示不安全" class="headerlink" title="地址栏显示不安全"></a>地址栏显示不安全</h4><p><img src="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-hexo-9.png" alt="image-20190818180518257"></p>
 <p>我们的静态页面当然是绿色无害的，但由于没开启HTTPS被Chrome标记为不安全。怎么部署HTTPS有好多方案，这里不多讲，Blog我们就要5分钟能上手的😁</p>
-<h4 id="还是Cloudflare，选择Crypto。"><a href="#还是Cloudflare，选择Crypto。" class="headerlink" title="还是Cloudflare，选择Crypto。"></a>还是Cloudflare，选择Crypto。</h4><p><img src="http://doc.heyongjian.cn/hyj-doc-android-hexo-10.png" alt="image-20190818175035201"></p>
+<h4 id="还是Cloudflare，选择Crypto。"><a href="#还是Cloudflare，选择Crypto。" class="headerlink" title="还是Cloudflare，选择Crypto。"></a>还是Cloudflare，选择Crypto。</h4><p><img src="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-hexo-10.png" alt="image-20190818175035201"></p>
 <p>解释一下右边的类型</p>
 <ul>
 <li>Flexible SSL：使用Cloudflare提供的免费证书，用户到Cloudflare采用加密连接，从Cloudflare到主机（github.io）不走加密连接。</li>
@@ -347,9 +347,9 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Origin Certificates，我们让Cloudflare帮生成一个</span><br><span class="line"></span><br><span class="line">Always Use HTTPS，打开</span><br><span class="line"></span><br><span class="line">HSTS可以打开，按照它推荐的设置</span><br><span class="line"></span><br><span class="line">Opportunistic Encryption，打开</span><br><span class="line"></span><br><span class="line">Onion Routing，打开</span><br><span class="line"></span><br><span class="line">Automatic HTTPS Rewrites，打开</span><br></pre></td></tr></table></figure>
 <p>这个配置改动后，Cloudflare表示最长需要24小时生效，实际上半个小时左右就ok，等待时间可以玩玩Cloudflare的其他功能，毕竟不花钱，推荐配置下Speed</p>
-<p><img src="http://doc.heyongjian.cn/hyj-doc-android-hexo-12.png" alt="image-20190818203301535"></p>
+<p><img src="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-hexo-12.png" alt="image-20190818203301535"></p>
 <h4 id="半个小时后"><a href="#半个小时后" class="headerlink" title="半个小时后"></a>半个小时后</h4><p>强制刷新一下页面，确认效果</p>
-<p><img src="http://doc.heyongjian.cn/hyj-doc-android-hexo-13.png" alt="image-20190818180338211"></p>
+<p><img src="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-hexo-13.png" alt="image-20190818180338211"></p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://www.cloudflare.com/" target="_blank" rel="noopener">https://www.cloudflare.com</a></p>
 <p><a href="https://cloud.tencent.com/developer/article/1354904" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1354904</a></p>
 
