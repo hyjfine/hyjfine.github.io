@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.8.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    search: {
+      root: '/',
+      path: ''
+    },
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="关于λ经常会听到λ演算和λ表达式这两名词，其实分别对应的是理论和应用两个维度。它们的关系可以类比于质能方程和原子弹。  λ演算数学家阿隆佐-邱奇在20世纪30年代提出λ演算，作为数学基础研究的一部分。那个年代，数学界有个领袖，叫希尔伯特（一人之力将葛根廷大学建设为当时数的世界中心）。他提出将数学定理机械化，这样机器就可以通过形式语言推理出大量新定理（AI的味道？）。比他小几岁的图灵和邱奇都受到他">
+<meta name="keywords" content="Dev,Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ClipToPadding &amp; ClipChildren">
+<meta property="og:url" content="http://heyongjian.com/2019/11/01/2019/λ/index.html">
+<meta property="og:site_name" content="子路宇晟的博客">
+<meta property="og:description" content="关于λ经常会听到λ演算和λ表达式这两名词，其实分别对应的是理论和应用两个维度。它们的关系可以类比于质能方程和原子弹。  λ演算数学家阿隆佐-邱奇在20世纪30年代提出λ演算，作为数学基础研究的一部分。那个年代，数学界有个领袖，叫希尔伯特（一人之力将葛根廷大学建设为当时数的世界中心）。他提出将数学定理机械化，这样机器就可以通过形式语言推理出大量新定理（AI的味道？）。比他小几岁的图灵和邱奇都受到他">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-27T15:35:10.025Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ClipToPadding &amp; ClipChildren">
+<meta name="twitter:description" content="关于λ经常会听到λ演算和λ表达式这两名词，其实分别对应的是理论和应用两个维度。它们的关系可以类比于质能方程和原子弹。  λ演算数学家阿隆佐-邱奇在20世纪30年代提出λ演算，作为数学基础研究的一部分。那个年代，数学界有个领袖，叫希尔伯特（一人之力将葛根廷大学建设为当时数的世界中心）。他提出将数学定理机械化，这样机器就可以通过形式语言推理出大量新定理（AI的味道？）。比他小几岁的图灵和邱奇都受到他">
+  <link rel="canonical" href="http://heyongjian.com/2019/11/01/2019/λ/">
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>ClipToPadding & ClipChildren | 子路宇晟的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">子路宇晟的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">love and peace</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+      
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+      
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives<span class="badge">26</span></a>
+
+  </li>
+    </ul>
+</nav>
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://heyongjian.com/2019/11/01/2019/λ/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="银时">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师。">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="子路宇晟的博客">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">ClipToPadding & ClipChildren
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-11-01 23:28:00" itemprop="dateCreated datePublished" datetime="2019-11-01T23:28:00+08:00">2019-11-01</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-11-27 23:35:10" itemprop="dateModified" datetime="2019-11-27T23:35:10+08:00">2019-11-27</time>
+              </span>
+            
+          
+
+          
+            <span id="/2019/11/01/2019/λ/" class="post-meta-item leancloud_visitors" data-flag-title="ClipToPadding & ClipChildren">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Comments: </span>
+    
+  
+    <a href="/2019/11/01/2019/λ/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/01/2019/λ/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>关于λ经常会听到λ演算和λ表达式这两名词，其实分别对应的是理论和应用两个维度。它们的关系可以类比于质能方程和原子弹。</p>
+</blockquote>
+<h3 id="λ演算"><a href="#λ演算" class="headerlink" title="λ演算"></a>λ演算</h3><p>数学家阿隆佐-邱奇在20世纪30年代提出λ演算，作为数学基础研究的一部分。那个年代，数学界有个领袖，叫希尔伯特（一人之力将葛根廷大学建设为当时数的世界中心）。他提出将数学定理机械化，这样机器就可以通过形式语言推理出大量新定理（AI的味道？）。比他小几岁的图灵和邱奇都受到他这一思潮影响，并从不同的角度解决了这同一个问题。理论上，图灵机和λ演算，都可以模拟出我们今天所有的程序。</p>
+<p>λ演算是一种形式系统(formal system)，什么是形式系统呢？大家知道，数学语言是是可以脱离现实而存在的——大家把数学想成了一种符号游戏，脱离生活常识，从公理开始，进行大量的推导和证明——最终产生一个系统，里面有公理、定理、推论、猜想…上述这种自成体系，有公理又有推理证明方法的体系，称为形式系统。而形式系统需要语言去描绘，这种语言就是形式语言(formal language)。邱奇希望用λ演算来表达有关数学的一切，比如用一系列函数来表达自然数，符号，定理等。</p>
+<p>本质上图灵机和λ演算是做同一件事情，也是可以互相转换的。</p>
+<h3 id="Lambda表达式"><a href="#Lambda表达式" class="headerlink" title="Lambda表达式"></a>Lambda表达式</h3><p>区别于λ演算中的λ表达式，编程中提到的Lambda表达式，一般就指一个匿名函数。为什么要用匿名函数，对于一个只用一次的函数，匿名使用当然更简洁方便。eg，给view一个点击事件：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// java 8以前</span></span><br><span class="line">view.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">                Log.d(<span class="string">"click"</span>,<span class="string">"-----"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// java 8用上Lambda的匿名函数</span></span><br><span class="line">view.setOnClickListener(v -&gt; Log.d(<span class="string">"click"</span>,<span class="string">"-----"</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// kotlin 版本</span></span><br><span class="line">view.setOnClickListener &#123; Log.d(<span class="string">"click"</span>, <span class="string">"-----"</span>) &#125;</span><br></pre></td></tr></table></figure>
+<p>那种写法更好一目了然，对吧。</p>
+<p>所以在编程中使用Lambda表达式，可以让代码更符合直觉，写法清晰简练自然也带来更好的维护性。</p>
+<p>好的维护性程序员不挠头，也可以推导出Lambda表达式具有程序员发际线友好特性。</p>
+<h3 id="λ与编程语言"><a href="#λ与编程语言" class="headerlink" title="λ与编程语言"></a>λ与编程语言</h3><p>图灵机奠定了计算机基础，那能和它等价转化的λ演算呢？实际上λ演算在<a href="https://zh.wikipedia.org/wiki/%E6%95%B0%E5%AD%A6" target="_blank" rel="noopener">数学</a>、<a href="https://zh.wikipedia.org/wiki/%E5%93%B2%E5%AD%A6" target="_blank" rel="noopener">哲学</a><a href="https://zh.wikipedia.org/wiki/%CE%9B%E6%BC%94%E7%AE%97#cite_note-2" target="_blank" rel="noopener">[2]</a>、<a href="https://zh.wikipedia.org/wiki/%E8%AF%AD%E8%A8%80%E5%AD%A6" target="_blank" rel="noopener">语言学</a><a href="https://zh.wikipedia.org/wiki/%CE%9B%E6%BC%94%E7%AE%97#cite_note-3" target="_blank" rel="noopener">[3]</a><a href="https://zh.wikipedia.org/wiki/%CE%9B%E6%BC%94%E7%AE%97#cite_note-4" target="_blank" rel="noopener">[4]</a>和<a href="https://zh.wikipedia.org/wiki/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6" target="_blank" rel="noopener">计算机科学</a><a href="https://zh.wikipedia.org/wiki/%CE%9B%E6%BC%94%E7%AE%97#cite_note-5" target="_blank" rel="noopener">[5]</a>中都有许多应用。它在<a href="https://zh.wikipedia.org/wiki/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80%E7%90%86%E8%AB%96" target="_blank" rel="noopener">编程语言理论</a>中占有重要地位，<a href="https://zh.wikipedia.org/wiki/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B" target="_blank" rel="noopener">函数式编程</a>实现了λ演算支持。λ演算在<a href="https://zh.wikipedia.org/wiki/%E8%8C%83%E7%95%B4%E8%AE%BA" target="_blank" rel="noopener">范畴论</a>中也是一个研究热点。</p>
+<p>大部分编程语言都或多或少受λ演算所启发和影响，尤其是函数式友好语言（Lisp，ML，Haskell，Scala，C++，Java8 Lambda）。</p>
+<p>Java8 实现Lambda的方式是通过invokedynamic指令，运行时调用LambdaMetafactory.metafactory动态的生成内部类，在内部类里调用原class的静态方法快来实现的。</p>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>在Java中能被Lambda改写的前提必须是一个函数接口（指内部只有一个抽象方法的接口）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ConsumerInterface</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">accept</span><span class="params">(T t)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码中的@FunctionalInterface不是必须而是可选的，但加上该标注编译器会帮你检查接口是否符合函数接口规范。就像加入@Override标注会检查是否重载了函数一样。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1，点击事件</span></span><br><span class="line">view.setOnClickListener(v -&gt; Log.d(<span class="string">"click"</span>,<span class="string">"-----Hello"</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">//2，线程方法</span></span><br><span class="line">Runnable run = () -&gt; Log.d(<span class="string">"----Hello World"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//3，Collection (list)操作</span></span><br><span class="line">ArrayList&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;(Arrays.asList(<span class="string">"hello"</span>, <span class="string">"world"</span>));</span><br><span class="line">list.forEach(it -&gt; Log.d(<span class="string">"tag"</span>, <span class="string">"---"</span> + it));</span><br><span class="line">list.removeIf(it -&gt; it.startsWith(<span class="string">"h"</span>));</span><br><span class="line">list.sort((o1, o2) -&gt; o1.length() - o2.length());</span><br><span class="line"><span class="comment">//kotlin</span></span><br><span class="line">val list = listOf(<span class="string">"hello"</span>, <span class="string">"world"</span>)</span><br><span class="line">list.forEach &#123; print(it) &#125;</span><br><span class="line">list.filterNot &#123; it.startsWith(<span class="string">"h"</span>) &#125;</span><br><span class="line">list.sortedWith(Comparator &#123; o1, o2 -&gt; o1.length - o2.length &#125;)</span><br><span class="line">    </span><br><span class="line"><span class="comment">//4， Collection (map)操作</span></span><br><span class="line">Map&lt;String, String&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">map.forEach((k, v) -&gt; Log.d(<span class="string">"tag"</span>, <span class="string">"---"</span> + k + v));</span><br><span class="line">map.replaceAll((k, v) -&gt; v.toUpperCase());</span><br><span class="line">map.merge(<span class="string">"key"</span>, <span class="string">"value"</span>, (v1, v2) -&gt; v1 + v2);</span><br><span class="line"><span class="comment">//kotlin</span></span><br><span class="line">val map = HashMap&lt;String, String&gt;()</span><br><span class="line">map.forEach &#123; (t, u) -&gt; print(<span class="string">"----$t $u"</span>) &#125;</span><br><span class="line">map.replaceAll &#123; t, u -&gt; u.toUpperCase() &#125;</span><br><span class="line">map.filter &#123; (t, u) -&gt; t.startsWith(<span class="string">"h"</span>) &#125;</span><br></pre></td></tr></table></figure>
+<p>###参考</p>
+<p><a href="https://zh.wikipedia.org/wiki/%CE%9B%E6%BC%94%E7%AE%97" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/%CE%9B%E6%BC%94%E7%AE%97</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/30510749" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/30510749</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/Dev/" rel="tag"># Dev</a>
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/2019/10/19/2019/ClipToPadding & ClipChildren/" rel="next" title="ClipToPadding & ClipChildren">
+                <i class="fa fa-chevron-left"></i> ClipToPadding & ClipChildren
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="银时">
+  <p class="site-author-name" itemprop="name">银时</p>
+  <div class="site-description motion-element" itemprop="description">二次元爱好者，非专业视觉体验师。</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">tags</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/hyjfine" title="GitHub &rarr; https://github.com/hyjfine" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:hyjfine@gmail.com" title="E-Mail &rarr; mailto:hyjfine@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#λ演算"><span class="nav-number">1.</span> <span class="nav-text">λ演算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lambda表达式"><span class="nav-number">2.</span> <span class="nav-text">Lambda表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#λ与编程语言"><span class="nav-number">3.</span> <span class="nav-text">λ与编程语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用"><span class="nav-number">4.</span> <span class="nav-text">应用</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hyjfine</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a></div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+  
+  <script src="/js/affix.js?v=7.2.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+  
+
+  
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script>
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
+              })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'yAbH7nCHLnmod1p5gWu1rvXE-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': 'yAbH7nCHLnmod1p5gWu1rvXE-gzGzoHsz',
+                'X-LC-Key': '1oKnVeJr6SSaIQHt1uXbdUca',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+            const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+            if (localhost.test(document.URL)) return;
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'CXylYR7pNX93azPeMMWgqMK1-gzGzoHsz',
+    appKey: 'DbB4mssjG6l3EpItcmPnnNxs',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'en' || 'zh-cn'
+  });
+</script>
+
+
+</body>
+</html>
