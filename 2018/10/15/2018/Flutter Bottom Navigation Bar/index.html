@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Flutter Bottom Navigation Bar 底部导航是常见的APP布局方式，实际上我自己常用的app都是底部导航的。Android和iOS都有官方组件可供使用。Flutter也有，使用时有踩坑，这里记录一下。  一般用法普通实现: 1234567891011121314BottomNavigationBar botttomNavBar &#x3D; BottomNavigation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flutter Theme">
+<meta property="og:url" content="http://yoursite.com/2018/10/15/2018/Flutter%20Bottom%20Navigation%20Bar/index.html">
+<meta property="og:site_name" content="子路宇晟的博客">
+<meta property="og:description" content="Flutter Bottom Navigation Bar 底部导航是常见的APP布局方式，实际上我自己常用的app都是底部导航的。Android和iOS都有官方组件可供使用。Flutter也有，使用时有踩坑，这里记录一下。  一般用法普通实现: 1234567891011121314BottomNavigationBar botttomNavBar &#x3D; BottomNavigation">
+<meta property="og:image" content="http://me.wozaihui.com/hyj-doc-1545317403963.jpg">
+<meta property="og:image" content="http://me.wozaihui.com/hyj-doc-flutter-bottom-navigation-bar-item.jpg">
+<meta property="og:image" content="http://me.wozaihui.com/hyj-doc-flutter-bottom-navigation-bar.jpg">
+<meta property="og:image" content="http://me.wozaihui.com/hyj-doc-1545317491239.jpg">
+<meta property="article:published_time" content="2018-10-15T06:51:00.000Z">
+<meta property="article:modified_time" content="2020-04-06T15:18:33.377Z">
+<meta property="article:author" content="子路宇晟">
+<meta property="article:tag" content="DEV">
+<meta property="article:tag" content="Flutter">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://me.wozaihui.com/hyj-doc-1545317403963.jpg">
+
+<link rel="canonical" href="http://yoursite.com/2018/10/15/2018/Flutter%20Bottom%20Navigation%20Bar/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'default'
+  };
+</script>
+
+  <title>Flutter Theme | 子路宇晟的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">子路宇晟的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">love and peace</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/15/2018/Flutter%20Bottom%20Navigation%20Bar/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="子路宇晟">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="子路宇晟的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Flutter Theme
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-10-15 14:51:00" itemprop="dateCreated datePublished" datetime="2018-10-15T14:51:00+08:00">2018-10-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-06 23:18:33" itemprop="dateModified" datetime="2020-04-06T23:18:33+08:00">2020-04-06</time>
+              </span>
+
+          
+            <span id="/2018/10/15/2018/Flutter%20Bottom%20Navigation%20Bar/" class="post-meta-item leancloud_visitors" data-flag-title="Flutter Theme" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2018/10/15/2018/Flutter%20Bottom%20Navigation%20Bar/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2018/10/15/2018/Flutter%20Bottom%20Navigation%20Bar/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Flutter-Bottom-Navigation-Bar"><a href="#Flutter-Bottom-Navigation-Bar" class="headerlink" title="Flutter Bottom Navigation Bar"></a>Flutter Bottom Navigation Bar</h1><blockquote>
+<p>底部导航是常见的APP布局方式，实际上我自己常用的app都是底部导航的。Android和iOS都有官方组件可供使用。Flutter也有，使用时有踩坑，这里记录一下。</p>
+</blockquote>
+<h2 id="一般用法"><a href="#一般用法" class="headerlink" title="一般用法"></a>一般用法</h2><p>普通实现:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">BottomNavigationBar botttomNavBar &#x3D; BottomNavigationBar(</span><br><span class="line">  items: [</span><br><span class="line">    BottomNavigationBarItem(icon: Icon(Icons.code), title: Text(&#39;code&#39;)),</span><br><span class="line">    BottomNavigationBarItem(icon: Icon(Icons.add), title: Text(&#39;add&#39;)),</span><br><span class="line">    BottomNavigationBarItem(icon: Icon(Icons.print), title: Text(&#39;print&#39;))</span><br><span class="line">  ],</span><br><span class="line">  currentIndex: _currentIndex,</span><br><span class="line">  type: BottomNavigationBarType.fixed,</span><br><span class="line">  onTap: (int index) &#123;</span><br><span class="line">    setState(() &#123;</span><br><span class="line">      _currentIndex &#x3D; index;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>问：看起来很简单，至于分析这么多吗？</p>
+<p>答：emmmm，这实现优点是设计标准规范，官方组件也简单稳定可靠。但前提是设计师接受这种设定（即使是fixed，选中图标和文字也会有放大缩小动画），至少中国主流的APP，navigation item都是fixed而且没有动画，官方组件并不提供这种选择。</p>
+<h2 id="有点问题"><a href="#有点问题" class="headerlink" title="有点问题"></a>有点问题</h2><p>既然设计师有要求那不能怂，分析是因为内部的_BottomNavigationTile作祟，那自己实现navigationItem控制是否选中，并且不传currentIndex给BottomNavigationBar，应该可以吧</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">Widget _buildBottomNavigationBar() &#123;</span><br><span class="line">  <span class="keyword">return</span> BottomNavigationBar(</span><br><span class="line">    type: BottomNavigationBarType.fixed,</span><br><span class="line">    items: [</span><br><span class="line">      _buildItem(icon: Icons.code, tabItem: TabItem.code),</span><br><span class="line">      _buildItem(icon: Icons.add, tabItem: TabItem.add),</span><br><span class="line">      _buildItem(icon: Icons.<span class="built_in">print</span>, tabItem: TabItem.<span class="built_in">print</span>),</span><br><span class="line">    ],</span><br><span class="line">    onTap: _onSelectTab,</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用定制化的icon和tabItem构建BottomNavigationBarItem</span></span><br><span class="line">BottomNavigationBarItem _buildItem(&#123;IconData icon, TabItem tabItem&#125;) &#123;</span><br><span class="line">  <span class="built_in">String</span> text = tabItemName(tabItem);</span><br><span class="line">  <span class="keyword">return</span> BottomNavigationBarItem(</span><br><span class="line">    icon: Icon(</span><br><span class="line">      icon,</span><br><span class="line">      color: _colorTabMatching(item: tabItem),</span><br><span class="line">    ),</span><br><span class="line">    title: Text(</span><br><span class="line">      text,</span><br><span class="line">      style: TextStyle(</span><br><span class="line">        color: _colorTabMatching(item: tabItem),</span><br><span class="line">      ),</span><br><span class="line">    ),</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 切换item的颜色，选中用primaryColor，其他都是grey </span></span><br><span class="line">Color _colorTabMatching(&#123;TabItem item&#125;) &#123;</span><br><span class="line">  <span class="keyword">return</span> currentItem == item ? Theme.of(context).primaryColor : Colors.grey;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>问：效果如何？</em></p>
+<p><em>答：嗯，不错。等等。。。啊，怎么有个大一点。没道理啊，事出蹊跷必有妖，需要从源码中找答案了。下图的home明显比mail大，对吧？</em><br><img src="http://me.wozaihui.com/hyj-doc-1545317403963.jpg" alt="image"></p>
+<h2 id="源码阅读"><a href="#源码阅读" class="headerlink" title="源码阅读"></a>源码阅读</h2><p>主要代码都在bottom_navigation_bar.dart里，bottom_navigation_bar_item.dart是item的定义</p>
+<h3 id="bottom-navigation-bar-item-dart"><a href="#bottom-navigation-bar-item-dart" class="headerlink" title="bottom_navigation_bar_item.dart"></a>bottom_navigation_bar_item.dart</h3><p><img src="http://me.wozaihui.com/hyj-doc-flutter-bottom-navigation-bar-item.jpg" alt="image"></p>
+<p>相当于是一个自定义的Button，用来放在BottomNavigationBar上，它实现了<a href="https://material.google.com/components/bottom-navigation.html" target="_blank" rel="noopener">Material(Android)</a>和<a href="https://developer.apple.com/ios/human-interface-guidelines/bars/tab-bars" target="_blank" rel="noopener">Cupertino(iOS)</a>两种风格。</p>
+<h3 id="bottom-navigation-bar-dart"><a href="#bottom-navigation-bar-dart" class="headerlink" title="bottom_navigation_bar.dart"></a>bottom_navigation_bar.dart</h3><p><img src="http://me.wozaihui.com/hyj-doc-flutter-bottom-navigation-bar.jpg" alt="image"></p>
+<p>Scaffold是Root Widget- MaterialApp的脚手架。封装了Material Design App会用到的AppBar，Drawer，SnackBar，BottomNavigationBar等。BottomNavigationBarType有fixed 和shifting两种样式，超过3个才会有区别，一般为了体验一致，我们会用fixed type。</p>
+<p>BottomNavigationBar是一个StatefulWidget，可以按以下步骤分析这种组件：1，先看它持有的状态，2，看下他的生命周期实现，3，再仔细分析它的build方法。</p>
+<ul>
+<li>持有状态</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">List&lt;AnimationController&gt; _controllers = &lt;AnimationController&gt;[];</span><br><span class="line">List&lt;CurvedAnimation&gt; _animations;</span><br><span class="line"></span><br><span class="line"><span class="comment">// A queue of color splashes currently being animated.</span></span><br><span class="line"><span class="keyword">final</span> Queue&lt;_Circle&gt; _circles = Queue&lt;_Circle&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Last splash circle's color, and the final color of the control after</span></span><br><span class="line"><span class="comment">// animation is complete.</span></span><br><span class="line">Color _backgroundColor;</span><br></pre></td></tr></table></figure>
+
+<p>前面三个属性都和动画相关，第四个是设背景。</p>
+<p><em>问：BottomNavigationBar为什么没有变量标记当前哪个item选中？</em></p>
+<p><em>答：函数式编程一个原则是要函数尽量纯，currentIndex这个属性依赖外边传入，每次变化重新触发Render。如果自己维护，则还需要提供一个回调方法供外部调用，返回最新的currentIndex值。</em></p>
+<ul>
+<li>生命周期方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 初始化操作，具体实现再resetState里，对上面的这些状态属性初始化操作</span></span><br><span class="line"><span class="meta">@override</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">initState</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.initState();</span><br><span class="line">  _resetState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 回收资源操作，一般用到动画都需要的</span></span><br><span class="line"><span class="meta">@override</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dispose</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (AnimationController controller in _controllers)</span><br><span class="line">      controller.dispose();</span><br><span class="line">    <span class="keyword">for</span> (_Circle circle in _circles)</span><br><span class="line">      circle.dispose();</span><br><span class="line">    <span class="keyword">super</span>.dispose();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当属性变化时Flutter系统回调该方法。当item数量变化时直接重新初始化；当index变化，做相应动画。</span></span><br><span class="line"><span class="meta">@override</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">didUpdateWidget</span><span class="params">(BottomNavigationBar oldWidget)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.didUpdateWidget(oldWidget);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// No animated segue if the length of the items list changes.</span></span><br><span class="line">    <span class="keyword">if</span> (widget.items.length != oldWidget.items.length) &#123;</span><br><span class="line">      _resetState();</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (widget.currentIndex != oldWidget.currentIndex) &#123;</span><br><span class="line">      <span class="keyword">switch</span> (widget.type) &#123;</span><br><span class="line">        <span class="keyword">case</span> BottomNavigationBarType.fixed:</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> BottomNavigationBarType.shifting:</span><br><span class="line">          _pushCircle(widget.currentIndex);</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      _controllers[oldWidget.currentIndex].reverse();</span><br><span class="line">      _controllers[widget.currentIndex].forward();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (_backgroundColor != widget.items[widget.currentIndex].backgroundColor)</span><br><span class="line">      _backgroundColor = widget.items[widget.currentIndex].backgroundColor;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 下面分析</span></span><br><span class="line"><span class="meta">@override</span></span><br><span class="line"><span class="function">Widget <span class="title">build</span><span class="params">(BuildContext context)</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：initState里有个操作比较隐蔽：_controllers[widget.currentIndex].value = 1.0;</p>
+<ul>
+<li>分析build方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@override</span></span><br><span class="line"> <span class="function">Widget <span class="title">build</span><span class="params">(BuildContext context)</span> </span>&#123;</span><br><span class="line">   <span class="comment">// debug 检查</span></span><br><span class="line">   <span class="keyword">assert</span>(debugCheckHasDirectionality(context));</span><br><span class="line">   <span class="keyword">assert</span>(debugCheckHasMaterialLocalizations(context));</span><br><span class="line"></span><br><span class="line">   <span class="comment">// Labels apply up to _bottomMargin padding. Remainder is media padding.</span></span><br><span class="line">   <span class="keyword">final</span> <span class="keyword">double</span> additionalBottomPadding = math.max(MediaQuery.of(context).padding.bottom - _kBottomMargin, <span class="number">0.0</span>);</span><br><span class="line">   </span><br><span class="line">   <span class="comment">// 根据BottomNavigationBarType设背景色，shifting才会有</span></span><br><span class="line">   Color backgroundColor;</span><br><span class="line">   <span class="keyword">switch</span> (widget.type) &#123;</span><br><span class="line">     <span class="keyword">case</span> BottomNavigationBarType.fixed:</span><br><span class="line">       <span class="keyword">break</span>;</span><br><span class="line">     <span class="keyword">case</span> BottomNavigationBarType.shifting:</span><br><span class="line">       backgroundColor = _backgroundColor;</span><br><span class="line">       <span class="keyword">break</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> Semantics( <span class="comment">// Semantics用来实现无障碍的</span></span><br><span class="line">     container: <span class="keyword">true</span>,</span><br><span class="line">     explicitChildNodes: <span class="keyword">true</span>,</span><br><span class="line">     child: Stack(</span><br><span class="line">       children: &lt;Widget&gt;[</span><br><span class="line">         Positioned.fill(</span><br><span class="line">           child: Material( <span class="comment">// Casts shadow.</span></span><br><span class="line">             elevation: <span class="number">8.0</span>,</span><br><span class="line">             color: backgroundColor,</span><br><span class="line">           ),</span><br><span class="line">         ),</span><br><span class="line">         ConstrainedBox(</span><br><span class="line">           constraints: BoxConstraints(minHeight: kBottomNavigationBarHeight + additionalBottomPadding),</span><br><span class="line">           child: Stack(</span><br><span class="line">             children: &lt;Widget&gt;[</span><br><span class="line">               Positioned.fill(  <span class="comment">// 点击时的圆形类波纹动画</span></span><br><span class="line">                 child: CustomPaint(</span><br><span class="line">                   painter: _RadialPainter(</span><br><span class="line">                     circles: _circles.toList(),</span><br><span class="line">                     textDirection: Directionality.of(context),</span><br><span class="line">                   ),</span><br><span class="line">                 ),</span><br><span class="line">               ),</span><br><span class="line">               Material( <span class="comment">// Splashes.</span></span><br><span class="line">                 type: MaterialType.transparency,</span><br><span class="line">                 child: Padding(</span><br><span class="line">                   padding: EdgeInsets.only(bottom: additionalBottomPadding),</span><br><span class="line">                   child: MediaQuery.removePadding(</span><br><span class="line">                     context: context,</span><br><span class="line">                     removeBottom: <span class="keyword">true</span>, </span><br><span class="line">                     <span class="comment">// tiles就是_BottomNavigationTile，里面放BottomNavigationBarItem</span></span><br><span class="line">                     child: _createContainer(_createTiles()),</span><br><span class="line">                   )))]))]));</span><br><span class="line"> &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>_BottomNavigationTile看下</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">  Widget _buildIcon() &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">// 构建Iocn</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Widget _buildFixedLabel() &#123;</span><br><span class="line">   ....</span><br><span class="line">          <span class="comment">// 骚操作，用矩阵来给文字作动画，更平滑</span></span><br><span class="line">          <span class="comment">// The font size should grow here when active, but because of the way</span></span><br><span class="line">          <span class="comment">// font rendering works, it doesn't grow smoothly if we just animate</span></span><br><span class="line">          <span class="comment">// the font size, so we use a transform instead.</span></span><br><span class="line">          child: Transform(</span><br><span class="line">            transform: Matrix4.diagonal3(</span><br><span class="line">              Vector3.all(</span><br><span class="line">                Tween&lt;<span class="built_in">double</span>&gt;(</span><br><span class="line">                  begin: _kInactiveFontSize / _kActiveFontSize,</span><br><span class="line">                  end: <span class="number">1.0</span>,</span><br><span class="line">                ).evaluate(animation),</span><br><span class="line">              ),</span><br><span class="line">            ),</span><br><span class="line">            alignment: Alignment.bottomCenter,</span><br><span class="line">            child: item.title,</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Widget _buildShiftingLabel() &#123;</span><br><span class="line">    <span class="keyword">return</span> Align(</span><br><span class="line">.....</span><br><span class="line">        <span class="comment">// shifting的label是fade动画，只有当前选中的才会显示label</span></span><br><span class="line">        child: FadeTransition(</span><br><span class="line">          alwaysIncludeSemantics: <span class="keyword">true</span>,</span><br><span class="line">          opacity: animation,</span><br><span class="line">          child: DefaultTextStyle.merge(</span><br><span class="line">            style: <span class="keyword">const</span> TextStyle(</span><br><span class="line">              fontSize: _kActiveFontSize,</span><br><span class="line">              color: Colors.white,</span><br><span class="line">            ),</span><br><span class="line">            child: item.title,</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="built_in">int</span> size;</span><br><span class="line">    Widget label;</span><br><span class="line">    <span class="comment">// 生成不同的label</span></span><br><span class="line">    <span class="keyword">switch</span> (type) &#123;</span><br><span class="line">      <span class="keyword">case</span> BottomNavigationBarType.fixed:</span><br><span class="line">        size = <span class="number">1</span>;</span><br><span class="line">        label = _buildFixedLabel();</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> BottomNavigationBarType.shifting:</span><br><span class="line">        size = (flex * <span class="number">1000.0</span>).round();</span><br><span class="line">        label = _buildShiftingLabel();</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> Expanded(</span><br><span class="line">    ....</span><br><span class="line">                children: &lt;Widget&gt;[</span><br><span class="line">                  _buildIcon(),</span><br><span class="line">                  label,</span><br><span class="line">                ],</span><br><span class="line">              ),</span><br><span class="line">            ),</span><br><span class="line">            Semantics(</span><br><span class="line">              label: indexLabel,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="改进实现"><a href="#改进实现" class="headerlink" title="改进实现"></a>改进实现</h2><p>通过分析分析源码，发现原因是bottomNavigationBarState的initState里<code>_controllers[widget.currentIndex].value = 1.0</code>设了currentIndex item动画的初值，currentIndex的默认值是0，所以第一个图标会大一点点。这个问题也有比较鸡贼的手法可以处理（魔改源码什么～），但这样大家都觉得不妥。同事眉头一皱，做了一个大胆的决定，不用系统组件BottomNavigationBar，自己封装一下：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SafeArea来兼容下iPhone X，android和iOS阴影不一样，所以区分下。</span></span><br><span class="line">Widget _buildBottomNavigationBar() &#123;</span><br><span class="line">  <span class="keyword">return</span> SafeArea(</span><br><span class="line">      child: SizedBox(</span><br><span class="line">          height: <span class="number">50.0</span>,</span><br><span class="line">          child: Card(</span><br><span class="line">              color: Platform.isIOS ? Colors.transparent : Colors.white,</span><br><span class="line">              elevation: Platform.isIOS ? <span class="number">0.0</span> : <span class="number">8.0</span>,</span><br><span class="line">              <span class="comment">// iphone 无阴影</span></span><br><span class="line">              shape: RoundedRectangleBorder(),</span><br><span class="line">              margin: EdgeInsets.all(<span class="number">0.0</span>),</span><br><span class="line">              child: Column(</span><br><span class="line">                  mainAxisAlignment: MainAxisAlignment.center,</span><br><span class="line">                  children: &lt;Widget&gt;[</span><br><span class="line">                    Divider(),</span><br><span class="line">                    Expanded(</span><br><span class="line">                      child: Row(</span><br><span class="line">                          mainAxisAlignment: MainAxisAlignment.center,</span><br><span class="line">                          crossAxisAlignment: CrossAxisAlignment.center,</span><br><span class="line">                          children: &lt;Widget&gt;[</span><br><span class="line">                            _buildBottomItem(</span><br><span class="line">                                image: HImages.home, text: <span class="string">'首页'</span>, index: <span class="number">0</span>),</span><br><span class="line">                            _buildBottomItem(</span><br><span class="line">                                image: HImages.stats, text: <span class="string">'数据'</span>, index: <span class="number">1</span>),</span><br><span class="line">                            _buildBottomItem(</span><br><span class="line">                                image: HImages.mine, text: <span class="string">'我的'</span>, index: <span class="number">3</span>)</span><br><span class="line">                          ]),</span><br><span class="line">                    )</span><br><span class="line">                  ]))));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 封装的BottomItem，选中颜色为primaryColor，未选中grey。点击波纹效果InkResponse</span></span><br><span class="line">Widget _buildBottomItem(&#123;<span class="built_in">String</span> image, <span class="built_in">String</span> text, <span class="built_in">int</span> index&#125;) &#123;</span><br><span class="line">  Color color =</span><br><span class="line">      currentIndex == index ? Theme.of(context).primaryColor : Colors.grey;</span><br><span class="line">  <span class="keyword">return</span> Expanded(</span><br><span class="line">      child: InkResponse(</span><br><span class="line">          child: Column(</span><br><span class="line">              mainAxisAlignment: MainAxisAlignment.center,</span><br><span class="line">              crossAxisAlignment: CrossAxisAlignment.center,</span><br><span class="line">              children: &lt;Widget&gt;[</span><br><span class="line">                Image.asset(image, color: color, width: <span class="number">22.0</span>, height: <span class="number">22.0</span>),</span><br><span class="line">                Text(text, style: TextStyle(color: color, fontSize: <span class="number">10.0</span>))</span><br><span class="line">              ]),</span><br><span class="line">          onTap: () =&gt; setState(() =&gt; currentIndex = index)));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://me.wozaihui.com/hyj-doc-1545317491239.jpg" alt="image"></p>
+<p>问：这该是最终版了吧？*</p>
+<p><em>答：Naive，是连iPhone X都考虑了，但细节渐变颜色，platform特性支持还没有。。。<del>说到特性我就佛了，一佛，我就想起西天取经，明年年初，中美合拍的西游记即将正式开机，我继续扮演美猴王孙悟空，我会用美猴王艺术形象努力创造一个正能量的形象，文体两开花，弘扬中华文化</del>，希望大家多多关注。</em></p>
+<h2 id="一些收获"><a href="#一些收获" class="headerlink" title="一些收获"></a>一些收获</h2><ul>
+<li>组件动画实现可以参考BottomNavigationBar，规范，</li>
+<li>文字动画实现可以用Matrix4和Vector3，比较高级（这个在TabBar用上了），</li>
+<li>考虑给官方提个issue（需求比较区域化）。</li>
+</ul>
+<p>本文源码地址：<a href="https://github.com/hyjfine/flutter-play" target="_blank" rel="noopener">https://github.com/hyjfine/flutter-play</a></p>
+<p>（完）</p>
+<blockquote>
+<p><a href="https://github.com/hyjfine" target="_blank" rel="noopener">@子路宇</a>, 本文版权属于再惠研发团队，欢迎转载，转载请保留出处。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/DEV/" rel="tag"># DEV</a>
+              <a href="/tags/Flutter/" rel="tag"># Flutter</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/10/08/2018/Flutter%20setup/" rel="prev" title="Fish setup">
+      <i class="fa fa-chevron-left"></i> Fish setup
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/11/24/2018/Flutter%20redux/" rel="next" title="Fish Redux">
+      Fish Redux <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Flutter-Bottom-Navigation-Bar"><span class="nav-number">1.</span> <span class="nav-text">Flutter Bottom Navigation Bar</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一般用法"><span class="nav-number">1.1.</span> <span class="nav-text">一般用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有点问题"><span class="nav-number">1.2.</span> <span class="nav-text">有点问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源码阅读"><span class="nav-number">1.3.</span> <span class="nav-text">源码阅读</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bottom-navigation-bar-item-dart"><span class="nav-number">1.3.1.</span> <span class="nav-text">bottom_navigation_bar_item.dart</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bottom-navigation-bar-dart"><span class="nav-number">1.3.2.</span> <span class="nav-text">bottom_navigation_bar.dart</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改进实现"><span class="nav-number">1.4.</span> <span class="nav-text">改进实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些收获"><span class="nav-number">1.5.</span> <span class="nav-text">一些收获</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="子路宇晟"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">子路宇晟</p>
+  <div class="site-description" itemprop="description">二次元爱好者，非专业视觉体验师</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hyjfine" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hyjfine" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hyjfine@gmail.com" title="E-Mail → mailto:hyjfine@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">子路宇晟</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'CXylYR7pNX93azPeMMWgqMK1-gzGzoHsz',
+      appKey     : 'DbB4mssjG6l3EpItcmPnnNxs',
+      placeholder: "Just go go",
+      avatar     : '/images/avatar.jpg mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

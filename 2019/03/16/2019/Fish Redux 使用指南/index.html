@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="FishRedux 使用为啥要使用Fish redux 年前就被咸鱼大佬安利，种草已久 想要对比Flutter Redux，学习体会它带来的优越性 支持一下国产，现在Flutter生态还在早期  准备工作1，Redux.js 文档 2，Fish Redux 文档 3，Pub使用文档 萌新（没接触过Redux）：建议按顺序看一遍，扎实的理论基础是很有用处的 熟练玩家（Demo用过Redux）：建议把">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fish Redux 使用指南">
+<meta property="og:url" content="http://yoursite.com/2019/03/16/2019/Fish%20Redux%20%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="子路宇晟的博客">
+<meta property="og:description" content="FishRedux 使用为啥要使用Fish redux 年前就被咸鱼大佬安利，种草已久 想要对比Flutter Redux，学习体会它带来的优越性 支持一下国产，现在Flutter生态还在早期  准备工作1，Redux.js 文档 2，Fish Redux 文档 3，Pub使用文档 萌新（没接触过Redux）：建议按顺序看一遍，扎实的理论基础是很有用处的 熟练玩家（Demo用过Redux）：建议把">
+<meta property="article:published_time" content="2019-03-16T12:41:00.000Z">
+<meta property="article:modified_time" content="2020-04-06T15:10:01.858Z">
+<meta property="article:author" content="子路宇晟">
+<meta property="article:tag" content="DEV">
+<meta property="article:tag" content="Flutter">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2019/03/16/2019/Fish%20Redux%20%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'default'
+  };
+</script>
+
+  <title>Fish Redux 使用指南 | 子路宇晟的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">子路宇晟的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">love and peace</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/16/2019/Fish%20Redux%20%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="子路宇晟">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="子路宇晟的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Fish Redux 使用指南
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-03-16 20:41:00" itemprop="dateCreated datePublished" datetime="2019-03-16T20:41:00+08:00">2019-03-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-06 23:10:01" itemprop="dateModified" datetime="2020-04-06T23:10:01+08:00">2020-04-06</time>
+              </span>
+
+          
+            <span id="/2019/03/16/2019/Fish%20Redux%20%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="post-meta-item leancloud_visitors" data-flag-title="Fish Redux 使用指南" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/03/16/2019/Fish%20Redux%20%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/03/16/2019/Fish%20Redux%20%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="FishRedux-使用"><a href="#FishRedux-使用" class="headerlink" title="FishRedux 使用"></a>FishRedux 使用</h1><h3 id="为啥要使用Fish-redux"><a href="#为啥要使用Fish-redux" class="headerlink" title="为啥要使用Fish redux"></a>为啥要使用Fish redux</h3><ul>
+<li>年前就被咸鱼大佬安利，种草已久</li>
+<li>想要对比Flutter Redux，学习体会它带来的优越性</li>
+<li>支持一下国产，现在Flutter生态还在早期</li>
+</ul>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>1，Redux.js 文档</p>
+<p>2，Fish Redux 文档</p>
+<p>3，Pub使用文档</p>
+<p>萌新（没接触过Redux）：建议按顺序看一遍，扎实的理论基础是很有用处的</p>
+<p>熟练玩家（Demo用过Redux）：建议把Fish Redux文档的简介和Component看下，尤其是Component，这是它独特的地方</p>
+<p>老司机（项目中用过Redux.js或Flutter Redux）：可以重点看下Component中的Effect，Dependencies，Page，还有Adapter</p>
+<p>在看文档时，可以把Fish Redux项目Clone下来，先把Example改下跑跑看，再对着源码理解下文档中的概念。</p>
+<h3 id="重要概念"><a href="#重要概念" class="headerlink" title="重要概念"></a>重要概念</h3><p>当然以下概念还是需要理解的：</p>
+<h4 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h4><p>Action定义一种行为，可以携带信息，发往Store。换言之Store发生改变须由Action触发，fish redux 有以下约定：Action 包含两个字段type和payload；推荐写法是在action.dart里定义一个type枚举类和一个ActionCreator类，这样有利于约束payload的类型。</p>
+<h4 id="Reducer-Effect"><a href="#Reducer-Effect" class="headerlink" title="Reducer/Effect"></a>Reducer/Effect</h4><p>这两个函数都是用来处理数据的函数，Reducer是纯函数响应Action对Store数据进行改变。Effect用来处理来自视图的意图，如点击事件，发起异步请求，这些有副作用的操作。</p>
+<h4 id="Page"><a href="#Page" class="headerlink" title="Page"></a>Page</h4><p>可以看成是一个容器，它用来配置聚合state，effect，reduce，view，dependencies等</p>
+<ul>
+<li>一个页面内都有且仅有一个 Store（意思是会有好多个Store，这是区别于flutter redux的）</li>
+<li>Page 继承于 Component，所以它能配置所有 Component 的要素（意思是比component多了middleware和initState）</li>
+<li>Page 能配置 Middleware，用于对 Redux 做 AOP 管理（意思是可以无侵入的实现一些如log打印，性能分析这样的通用功能。中间件定义是可插拔，可叠加，但不会改变事件流程）</li>
+<li>Page 必须配置一个初始化页面数据的初始化函数  initState （页面有初始数据是必须的吧）</li>
+</ul>
+<h4 id="Adapter（可选）"><a href="#Adapter（可选）" class="headerlink" title="Adapter（可选）"></a>Adapter（可选）</h4><p>这个不是必须，但确实很屌，很好用，使用和Android的老配方差不多，妙在效果拔群。有追求的可以看下<a href="https://github.com/alibaba/fish-redux/blob/master/doc/concept/what' target="_blank" rel="noopener"s-adapter.md">历史</a>和<a href="https://github.com/alibaba/fish-redux/blob/master/doc/concept/adapter-cn.md" target="_blank" rel="noopener">原理</a>，当然还有源码。</p>
+<p>有这些储备，那么可以开始写代码了</p>
+<h3 id="接入"><a href="#接入" class="headerlink" title="接入"></a>接入</h3><p>1，创建一个flutter project，按照<a href="https://pub.flutter-io.cn/packages/fish_redux#-installing-tab-" target="_blank" rel="noopener">文档</a>加入依赖</p>
+<p>2，按照定义（当然也可以对着example）分别创建action，state，effect，reducer，view，page这几个文件，并写套路代码。</p>
+<p>3，运行代码观察效果</p>
+<h3 id="个人体验"><a href="#个人体验" class="headerlink" title="个人体验"></a>个人体验</h3><p>1，集中，分治</p>
+<p>Fish Redux完整复刻了Redux.js的核心概念，状态是一颗State树，[Predictable],[Centralized],[Debuggable],[Flexible]，数据状态是由Redux集中管理的。分治是分而治之，把一个大的问题拆解成独立的小问题去解决，比如Effect的实现和Component的封装，一个页面可以由多个Component和Effect共同组成，分治带来的一个额外好处是提高了内聚性和复用性。</p>
+<p>2，Adapter</p>
+<p>这个是咸鱼团队的基于现实业务的一个很重要创造，Listview可以占到一个应用的50%以上界面，它的体验至关重要。事实证明Adapter封装的很友好，性能也很突出，在Demo上就可以明显对比出来，很妙。</p>
+<p>3，文档</p>
+<p>这点我们理解一下，毕竟刚开源。现状是注释少，好多模块还没有加，文档有，但不太生动，友好，没带入容易产生字都认识，但看几遍还不解其意。</p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>1，Fish Redux 一个页面一个Store的资源开销？</p>
+<p>2，Store的生命周期，应用的一些长期共用数据怎么维护？</p>
+<h3 id="DEMO"><a href="#DEMO" class="headerlink" title="DEMO"></a><a href="https://github.com/hyjfine/flutter_redux_sample/tree/fish-redux-adapter" target="_blank" rel="noopener">DEMO</a></h3>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/DEV/" rel="tag"># DEV</a>
+              <a href="/tags/Flutter/" rel="tag"># Flutter</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/12/28/2018/%E5%90%88%E4%BC%99%E4%BA%BAFlutter%E9%87%8D%E6%9E%84%E6%80%BB%E7%BB%93/" rel="prev" title="Flutter 重写app总结">
+      <i class="fa fa-chevron-left"></i> Flutter 重写app总结
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/04/18/2019/2018/" rel="next" title="2018">
+      2018 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#FishRedux-使用"><span class="nav-number">1.</span> <span class="nav-text">FishRedux 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为啥要使用Fish-redux"><span class="nav-number">1.0.1.</span> <span class="nav-text">为啥要使用Fish redux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作"><span class="nav-number">1.0.2.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重要概念"><span class="nav-number">1.0.3.</span> <span class="nav-text">重要概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Action"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">Action</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Reducer-Effect"><span class="nav-number">1.0.3.2.</span> <span class="nav-text">Reducer&#x2F;Effect</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Page"><span class="nav-number">1.0.3.3.</span> <span class="nav-text">Page</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Adapter（可选）"><span class="nav-number">1.0.3.4.</span> <span class="nav-text">Adapter（可选）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接入"><span class="nav-number">1.0.4.</span> <span class="nav-text">接入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#个人体验"><span class="nav-number">1.0.5.</span> <span class="nav-text">个人体验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.0.6.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DEMO"><span class="nav-number">1.0.7.</span> <span class="nav-text">DEMO</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="子路宇晟"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">子路宇晟</p>
+  <div class="site-description" itemprop="description">二次元爱好者，非专业视觉体验师</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hyjfine" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hyjfine" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hyjfine@gmail.com" title="E-Mail → mailto:hyjfine@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">子路宇晟</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'CXylYR7pNX93azPeMMWgqMK1-gzGzoHsz',
+      appKey     : 'DbB4mssjG6l3EpItcmPnnNxs',
+      placeholder: "Just go go",
+      avatar     : '/images/avatar.jpg mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
