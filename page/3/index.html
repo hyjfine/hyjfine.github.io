@@ -4,58 +4,109 @@
 
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
-  <meta charset="UTF-8">
-<meta name="generator" content="Hexo 4.2.0">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
-  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
-
-<link rel="stylesheet" href="/css/main.css?v=7.3.0">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
-<script id="hexo.configurations">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
-    version: '7.3.0',
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
+    scheme: 'Gemini',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: false,
-    mediumzoom: false,
+    fastclick: false,
     lazyload: false,
-    pangu: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
       applicationID: '',
       apiKey: '',
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    search: {
-      root: '/',
-      path: ''
-    },
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: 'Copy',
-      copy_success: 'Copied',
-      copy_failure: 'Copy failed'
     }
   };
 </script>
+
+
+  
+
+
+
 
   <meta name="description" content="二次元爱好者，非专业视觉体验师">
 <meta property="og:type" content="website">
@@ -68,10 +119,17 @@
 <meta property="article:tag" content=" kotlin">
 <meta property="article:tag" content=" flutter">
 <meta name="twitter:card" content="summary">
-  <link rel="canonical" href="http://yoursite.com/page/3/">
 
 
-<script id="page.configurations">
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/page/3/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
   CONFIG.page = {
     sidebar: "",
   };
@@ -87,41 +145,53 @@
 
 
 
+
+
+
   <noscript>
-  <style>
-  .use-motion .motion-element,
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
 
-  .use-motion .logo,
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
   </style>
 </noscript>
 
-</head>
+<meta name="generator" content="Hexo 4.2.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-  <div class="container sidebar-position-left page-home">
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta">
+  <div class="site-meta ">
+    
 
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
@@ -130,8 +200,11 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
+      
         <p class="site-subtitle">love and peace</p>
       
+    
   </div>
 
   <div class="site-nav-toggle">
@@ -146,33 +219,41 @@
 
 
 <nav class="site-nav">
+  
     <ul id="menu" class="menu">
+      
         
         
         
           
           <li class="menu-item menu-item-home">
-      
-    
-
-    <a href="/" rel="section">&lt;i class&#x3D;&quot;menu-item-icon fa fa-fw fa-home&quot;&gt;&lt;&#x2F;i&gt; &lt;br&gt;Home</a>
-
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-      
-    
-
-    <a href="/archives/" rel="section">&lt;i class&#x3D;&quot;menu-item-icon fa fa-fw fa-archive&quot;&gt;&lt;&#x2F;i&gt; &lt;br&gt;Archives</a>
-
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
   </li>
-    </ul>
-    
 
+      
+      
+    </ul>
+  
+
+  
+
+  
 </nav>
+
+
+
+  
+
+
 
 </div>
     </header>
@@ -183,41 +264,64 @@
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
+            
+
+          
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
       
+
+  
+
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/09/2018/Flutter%20Theme/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/09/2018/Flutter%20redux%20%E8%BF%9B%E9%98%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="子路宇晟">
       <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="子路宇晟的博客">
     </span>
+
+    
       <header class="post-header">
 
         
+        
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/2018/12/09/2018/Flutter%20Theme/" class="post-title-link" itemprop="url">Fish Redux 进阶</a>
+                <a class="post-title-link" href="/2018/12/09/2018/Flutter%20redux%20%E8%BF%9B%E9%98%B6/" itemprop="url">
+                  Fish Redux 进阶
+                </a>
               
             
           </h1>
         
 
         <div class="post-meta">
-            <span class="post-meta-item">
+          <span class="post-time">
+
+            
+            
+            
+
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -230,27 +334,66 @@
               
 
               <time title="Created: 2018-12-09 23:08:00" itemprop="dateCreated datePublished" datetime="2018-12-09T23:08:00+08:00">2018-12-09</time>
-            </span>
-          
             
 
             
-              <span class="post-meta-item">
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2020-04-06 23:15:30" itemprop="dateModified" datetime="2020-04-06T23:15:30+08:00">2020-04-06</time>
+                <time title="Modified: 2020-04-06 23:12:59" itemprop="dateModified" datetime="2020-04-06T23:12:59+08:00">2020-04-06</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/09/2018/Flutter%20redux%20%E8%BF%9B%E9%98%B6/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/09/2018/Flutter%20redux%20%E8%BF%9B%E9%98%B6/" itemprop="commentCount"></span>
+                </a>
               </span>
             
           
 
-          <br>
+          
+          
+             <span id="/2018/12/09/2018/Flutter%20redux%20%E8%BF%9B%E9%98%B6/" class="leancloud_visitors" data-flag-title="Fish Redux 进阶">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
 
         </div>
       </header>
+    
 
     
     
@@ -258,35 +401,62 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Flutter-Theme"><a href="#Flutter-Theme" class="headerlink" title="Flutter Theme"></a>Flutter Theme</h1><blockquote>
-<p>主题（Theme）在软件开发里属于高级追求，Mac OS经过多年演化后终于在macOS Mojave中加入深色主题，可以让你做起事来更专注。</p>
-</blockquote>
-<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><ul>
-<li>取悦用户，白菜萝卜给用户更多个性化选择</li>
-<li>提升效率，比如深色主题让人更专注，演示模式让内容更突出</li>
-</ul>
-<h2 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h2><p>主题（Theme）一般是由color，BG image，fontSize，font等资源组成</p>
-<h3 id="Android-iOS"><a href="#Android-iOS" class="headerlink" title="Android/iOS"></a>Android/iOS</h3><p>android应用资源都在资源路径src/res下，style相关改动可以通过activity的setTheme来切换，图片换肤一般会将资源打成一个不带launcher icon的Apk，用Resource实例去加载特定资源；而iOS相应的配置信息都预先写在plist文件里，通过一个ThemeManager实例来控制应用使用哪套资源配置。</p>
-<h3 id="Flutter"><a href="#Flutter" class="headerlink" title="Flutter"></a>Flutter</h3><p>MaterialApp组件接受一个theme参数，通过改变theme的数据，组件会实时重新渲染</p>
+      
+
+      
+        
+          <h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><ol>
+<li>认识Flutter Redux局限性</li>
+<li>引入Middleware必要性</li>
+<li>全方位集成UT</li>
+</ol>
+<h2 id="Flutter-Redux初代实现局限性"><a href="#Flutter-Redux初代实现局限性" class="headerlink" title="Flutter Redux初代实现局限性"></a>Flutter Redux初代实现局限性</h2><h3 id="UT不好覆盖"><a href="#UT不好覆盖" class="headerlink" title="UT不好覆盖"></a>UT不好覆盖</h3><ol>
+<li>页面</li>
+</ol>
+<p>初代实现一个页面的结构是这样的：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">XXXScreen</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  _XXXScreenState createState() =&gt; _XXXScreenState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_XXXScreenState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">XXXScreen</span>&gt; </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> StoreConnector&lt;AppState, _XXXViewModel&gt;(</span><br><span class="line">        converter: (store) =&gt; _XXXViewModel.fromStore(store),</span><br><span class="line">        builder: (BuildContext context, _XXXViewModel vm) =&gt;</span><br><span class="line">            Container());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>会有两个问题：UI视图和Redux数据通用逻辑耦和在一起，无发通过mock数据来对UI进行UT；大家习惯套路代码，上来就是一个stful，不会想是不是stless更科学点（事实上初代实现80%的Screen是Statefull的，重构后90%都能写成Stateless，提升了页面刷新效率）。</p>
+<ol start="2">
+<li>API call</li>
+</ol>
+<p>我们的API就是一个静态方法：</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2018/12/09/2018/Flutter%20Theme/#more" rel="contents">
+              <a class="btn" href="/2018/12/09/2018/Flutter%20redux%20%E8%BF%9B%E9%98%B6/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
-          
+         
           <!--/noindex-->
         
       
     </div>
 
     
+
+    
     
     
 
+    
+
+    
+
+    
+
     <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
         <div class="post-eof"></div>
+      
     </footer>
   </div>
   
@@ -294,8 +464,17 @@
   
   </article>
 
+
     
       
+
+  
+
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -307,26 +486,36 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="子路宇晟">
       <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="子路宇晟的博客">
     </span>
+
+    
       <header class="post-header">
 
         
+        
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/2018/11/24/2018/Flutter%20redux/" class="post-title-link" itemprop="url">Fish Redux</a>
+                <a class="post-title-link" href="/2018/11/24/2018/Flutter%20redux/" itemprop="url">
+                  Fish Redux
+                </a>
               
             
           </h1>
         
 
         <div class="post-meta">
-            <span class="post-meta-item">
+          <span class="post-time">
+
+            
+            
+            
+
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -339,12 +528,16 @@
               
 
               <time title="Created: 2018-11-24 22:45:00" itemprop="dateCreated datePublished" datetime="2018-11-24T22:45:00+08:00">2018-11-24</time>
-            </span>
-          
             
 
             
-              <span class="post-meta-item">
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
@@ -352,14 +545,49 @@
                   <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="Modified: 2020-04-06 23:14:18" itemprop="dateModified" datetime="2020-04-06T23:14:18+08:00">2020-04-06</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/24/2018/Flutter%20redux/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/11/24/2018/Flutter%20redux/" itemprop="commentCount"></span>
+                </a>
               </span>
             
           
 
-          <br>
+          
+          
+             <span id="/2018/11/24/2018/Flutter%20redux/" class="leancloud_visitors" data-flag-title="Fish Redux">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
 
         </div>
       </header>
+    
 
     
     
@@ -367,6 +595,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
+      
+
+      
+        
           <h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><ol>
 <li>Redux是什么</li>
 <li>Redux在Flutter里的作用</li>
@@ -385,18 +617,35 @@
                 Read more &raquo;
               </a>
             </div>
-          
+         
           <!--/noindex-->
         
       
     </div>
 
     
+
+    
     
     
 
+    
+
+    
+
+    
+
     <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
         <div class="post-eof"></div>
+      
     </footer>
   </div>
   
@@ -404,8 +653,17 @@
   
   </article>
 
+
     
       
+
+  
+
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -417,26 +675,36 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="子路宇晟">
       <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="子路宇晟的博客">
     </span>
+
+    
       <header class="post-header">
 
         
+        
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/2018/10/15/2018/Flutter%20Bottom%20Navigation%20Bar/" class="post-title-link" itemprop="url">Flutter Theme</a>
+                <a class="post-title-link" href="/2018/10/15/2018/Flutter%20Bottom%20Navigation%20Bar/" itemprop="url">
+                  Flutter Theme
+                </a>
               
             
           </h1>
         
 
         <div class="post-meta">
-            <span class="post-meta-item">
+          <span class="post-time">
+
+            
+            
+            
+
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -449,12 +717,16 @@
               
 
               <time title="Created: 2018-10-15 14:51:00" itemprop="dateCreated datePublished" datetime="2018-10-15T14:51:00+08:00">2018-10-15</time>
-            </span>
-          
             
 
             
-              <span class="post-meta-item">
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
@@ -462,14 +734,49 @@
                   <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="Modified: 2020-04-06 23:18:33" itemprop="dateModified" datetime="2020-04-06T23:18:33+08:00">2020-04-06</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/15/2018/Flutter%20Bottom%20Navigation%20Bar/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/10/15/2018/Flutter%20Bottom%20Navigation%20Bar/" itemprop="commentCount"></span>
+                </a>
               </span>
             
           
 
-          <br>
+          
+          
+             <span id="/2018/10/15/2018/Flutter%20Bottom%20Navigation%20Bar/" class="leancloud_visitors" data-flag-title="Flutter Theme">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
 
         </div>
       </header>
+    
 
     
     
@@ -477,6 +784,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
+      
+
+      
+        
           <h1 id="Flutter-Bottom-Navigation-Bar"><a href="#Flutter-Bottom-Navigation-Bar" class="headerlink" title="Flutter Bottom Navigation Bar"></a>Flutter Bottom Navigation Bar</h1><blockquote>
 <p>底部导航是常见的APP布局方式，实际上我自己常用的app都是底部导航的。Android和iOS都有官方组件可供使用。Flutter也有，使用时有踩坑，这里记录一下。</p>
 </blockquote>
@@ -494,18 +805,35 @@
                 Read more &raquo;
               </a>
             </div>
-          
+         
           <!--/noindex-->
         
       
     </div>
 
     
+
+    
     
     
 
+    
+
+    
+
+    
+
     <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
         <div class="post-eof"></div>
+      
     </footer>
   </div>
   
@@ -513,8 +841,17 @@
   
   </article>
 
+
     
       
+
+  
+
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -526,26 +863,36 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="子路宇晟">
       <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="子路宇晟的博客">
     </span>
+
+    
       <header class="post-header">
 
         
+        
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/2018/10/08/2018/Flutter%20setup/" class="post-title-link" itemprop="url">Fish setup</a>
+                <a class="post-title-link" href="/2018/10/08/2018/Flutter%20setup/" itemprop="url">
+                  Fish setup
+                </a>
               
             
           </h1>
         
 
         <div class="post-meta">
-            <span class="post-meta-item">
+          <span class="post-time">
+
+            
+            
+            
+
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -558,12 +905,16 @@
               
 
               <time title="Created: 2018-10-08 21:20:00" itemprop="dateCreated datePublished" datetime="2018-10-08T21:20:00+08:00">2018-10-08</time>
-            </span>
-          
             
 
             
-              <span class="post-meta-item">
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
@@ -571,14 +922,49 @@
                   <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="Modified: 2020-04-06 23:19:33" itemprop="dateModified" datetime="2020-04-06T23:19:33+08:00">2020-04-06</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/08/2018/Flutter%20setup/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/10/08/2018/Flutter%20setup/" itemprop="commentCount"></span>
+                </a>
               </span>
             
           
 
-          <br>
+          
+          
+             <span id="/2018/10/08/2018/Flutter%20setup/" class="leancloud_visitors" data-flag-title="Fish setup">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
 
         </div>
       </header>
+    
 
     
     
@@ -586,6 +972,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
+      
+
+      
+        
           <blockquote>
 <p>万事开头难，先把环境搞起来</p>
 </blockquote>
@@ -614,18 +1004,35 @@
                 Read more &raquo;
               </a>
             </div>
-          
+         
           <!--/noindex-->
         
       
     </div>
 
     
+
+    
     
     
 
+    
+
+    
+
+    
+
     <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
         <div class="post-eof"></div>
+      
     </footer>
   </div>
   
@@ -633,8 +1040,17 @@
   
   </article>
 
+
     
       
+
+  
+
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -646,26 +1062,36 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="子路宇晟">
       <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="子路宇晟的博客">
     </span>
+
+    
       <header class="post-header">
 
         
+        
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/2018/03/25/2018/2017/" class="post-title-link" itemprop="url">2017</a>
+                <a class="post-title-link" href="/2018/03/25/2018/2017/" itemprop="url">
+                  2017
+                </a>
               
             
           </h1>
         
 
         <div class="post-meta">
-            <span class="post-meta-item">
+          <span class="post-time">
+
+            
+            
+            
+
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -678,12 +1104,16 @@
               
 
               <time title="Created: 2018-03-25 21:08:00" itemprop="dateCreated datePublished" datetime="2018-03-25T21:08:00+08:00">2018-03-25</time>
-            </span>
-          
             
 
             
-              <span class="post-meta-item">
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
@@ -691,14 +1121,49 @@
                   <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="Modified: 2020-04-05 23:53:30" itemprop="dateModified" datetime="2020-04-05T23:53:30+08:00">2020-04-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/25/2018/2017/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/03/25/2018/2017/" itemprop="commentCount"></span>
+                </a>
               </span>
             
           
 
-          <br>
+          
+          
+             <span id="/2018/03/25/2018/2017/" class="leancloud_visitors" data-flag-title="2017">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
 
         </div>
       </header>
+    
 
     
     
@@ -706,6 +1171,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
+      
+
+      
+        
           <h2 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h2><p>17年奋战在一线，参与并推进了这些事儿的进程：</p>
 <ul>
 <li>商家APP惠管家上线运行</li>
@@ -727,18 +1196,35 @@
                 Read more &raquo;
               </a>
             </div>
-          
+         
           <!--/noindex-->
         
       
     </div>
 
     
+
+    
     
     
 
+    
+
+    
+
+    
+
     <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
         <div class="post-eof"></div>
+      
     </footer>
   </div>
   
@@ -746,8 +1232,17 @@
   
   </article>
 
+
     
       
+
+  
+
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -759,26 +1254,36 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="子路宇晟">
       <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="子路宇晟的博客">
     </span>
+
+    
       <header class="post-header">
 
         
+        
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/2017/12/19/2017/git%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/" class="post-title-link" itemprop="url">开发流程约定</a>
+                <a class="post-title-link" href="/2017/12/19/2017/git%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/" itemprop="url">
+                  开发流程约定
+                </a>
               
             
           </h1>
         
 
         <div class="post-meta">
-            <span class="post-meta-item">
+          <span class="post-time">
+
+            
+            
+            
+
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -791,12 +1296,16 @@
               
 
               <time title="Created: 2017-12-19 21:46:00" itemprop="dateCreated datePublished" datetime="2017-12-19T21:46:00+08:00">2017-12-19</time>
-            </span>
-          
             
 
             
-              <span class="post-meta-item">
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
@@ -804,14 +1313,49 @@
                   <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="Modified: 2018-12-22 16:58:50" itemprop="dateModified" datetime="2018-12-22T16:58:50+08:00">2018-12-22</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/19/2017/git%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2017/12/19/2017/git%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/" itemprop="commentCount"></span>
+                </a>
               </span>
             
           
 
-          <br>
+          
+          
+             <span id="/2017/12/19/2017/git%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/" class="leancloud_visitors" data-flag-title="开发流程约定">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
 
         </div>
       </header>
+    
 
     
     
@@ -819,6 +1363,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
+      
+
+      
+        
           <h1 id="开发流程约定"><a href="#开发流程约定" class="headerlink" title="开发流程约定"></a>开发流程约定</h1><blockquote>
 <p>大部分参考百姓的开发流程，感谢。</p>
 </blockquote>
@@ -840,18 +1388,35 @@
                 Read more &raquo;
               </a>
             </div>
-          
+         
           <!--/noindex-->
         
       
     </div>
 
     
+
+    
     
     
 
+    
+
+    
+
+    
+
     <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
         <div class="post-eof"></div>
+      
     </footer>
   </div>
   
@@ -859,8 +1424,17 @@
   
   </article>
 
+
     
       
+
+  
+
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -872,26 +1446,36 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="子路宇晟">
       <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="子路宇晟的博客">
     </span>
+
+    
       <header class="post-header">
 
         
+        
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/2017/07/09/2017/Hot%20Fix/" class="post-title-link" itemprop="url">Android Hotfix</a>
+                <a class="post-title-link" href="/2017/07/09/2017/Hot%20Fix/" itemprop="url">
+                  Android Hotfix
+                </a>
               
             
           </h1>
         
 
         <div class="post-meta">
-            <span class="post-meta-item">
+          <span class="post-time">
+
+            
+            
+            
+
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -904,12 +1488,16 @@
               
 
               <time title="Created: 2017-07-09 19:48:00" itemprop="dateCreated datePublished" datetime="2017-07-09T19:48:00+08:00">2017-07-09</time>
-            </span>
-          
             
 
             
-              <span class="post-meta-item">
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
@@ -917,14 +1505,49 @@
                   <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="Modified: 2018-12-22 17:02:16" itemprop="dateModified" datetime="2018-12-22T17:02:16+08:00">2018-12-22</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/09/2017/Hot%20Fix/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2017/07/09/2017/Hot%20Fix/" itemprop="commentCount"></span>
+                </a>
               </span>
             
           
 
-          <br>
+          
+          
+             <span id="/2017/07/09/2017/Hot%20Fix/" class="leancloud_visitors" data-flag-title="Android Hotfix">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
 
         </div>
       </header>
+    
 
     
     
@@ -932,6 +1555,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
+      
+
+      
+        
           <h1 id="Hot-fix"><a href="#Hot-fix" class="headerlink" title="Hot fix"></a>Hot fix</h1><blockquote>
 <p>会讲述我们为什么这个时间点需要引入热修复，市面上多种解决方案我们选择哪种，为何？</p>
 </blockquote>
@@ -1047,18 +1674,35 @@
                 Read more &raquo;
               </a>
             </div>
-          
+         
           <!--/noindex-->
         
       
     </div>
 
     
+
+    
     
     
 
+    
+
+    
+
+    
+
     <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
         <div class="post-eof"></div>
+      
     </footer>
   </div>
   
@@ -1066,8 +1710,17 @@
   
   </article>
 
+
     
       
+
+  
+
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -1079,26 +1732,36 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="子路宇晟">
       <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="子路宇晟的博客">
     </span>
+
+    
       <header class="post-header">
 
         
+        
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/2017/05/31/2017/%E4%B8%89%E6%98%9FS8%E4%BD%93%E9%AA%8C/" class="post-title-link" itemprop="url">三星S8</a>
+                <a class="post-title-link" href="/2017/05/31/2017/%E4%B8%89%E6%98%9FS8%E4%BD%93%E9%AA%8C/" itemprop="url">
+                  三星S8
+                </a>
               
             
           </h1>
         
 
         <div class="post-meta">
-            <span class="post-meta-item">
+          <span class="post-time">
+
+            
+            
+            
+
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -1111,12 +1774,16 @@
               
 
               <time title="Created: 2017-05-31 10:32:00" itemprop="dateCreated datePublished" datetime="2017-05-31T10:32:00+08:00">2017-05-31</time>
-            </span>
-          
             
 
             
-              <span class="post-meta-item">
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
@@ -1124,14 +1791,49 @@
                   <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="Modified: 2018-12-22 16:54:49" itemprop="dateModified" datetime="2018-12-22T16:54:49+08:00">2018-12-22</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/31/2017/%E4%B8%89%E6%98%9FS8%E4%BD%93%E9%AA%8C/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2017/05/31/2017/%E4%B8%89%E6%98%9FS8%E4%BD%93%E9%AA%8C/" itemprop="commentCount"></span>
+                </a>
               </span>
             
           
 
-          <br>
+          
+          
+             <span id="/2017/05/31/2017/%E4%B8%89%E6%98%9FS8%E4%BD%93%E9%AA%8C/" class="leancloud_visitors" data-flag-title="三星S8">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
 
         </div>
       </header>
+    
 
     
     
@@ -1139,6 +1841,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
+      
+
+      
+        
           <h1 id="三星S8"><a href="#三星S8" class="headerlink" title="三星S8"></a>三星S8</h1><h2 id="软件："><a href="#软件：" class="headerlink" title="软件："></a>软件：</h2><ul>
 <li><p>自带应用就看设置，s8的设置归类科学，显示清新，顶部有快速搜索也非常实用。</p>
 </li>
@@ -1177,18 +1883,35 @@
                 Read more &raquo;
               </a>
             </div>
-          
+         
           <!--/noindex-->
         
       
     </div>
 
     
+
+    
     
     
 
+    
+
+    
+
+    
+
     <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
         <div class="post-eof"></div>
+      
     </footer>
   </div>
   
@@ -1196,8 +1919,17 @@
   
   </article>
 
+
     
       
+
+  
+
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -1209,26 +1941,36 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="子路宇晟">
       <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="子路宇晟的博客">
     </span>
+
+    
       <header class="post-header">
 
         
+        
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/2017/04/09/2017/lodash/" class="post-title-link" itemprop="url">Lodash</a>
+                <a class="post-title-link" href="/2017/04/09/2017/lodash/" itemprop="url">
+                  Lodash
+                </a>
               
             
           </h1>
         
 
         <div class="post-meta">
-            <span class="post-meta-item">
+          <span class="post-time">
+
+            
+            
+            
+
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -1241,12 +1983,16 @@
               
 
               <time title="Created: 2017-04-09 15:06:00" itemprop="dateCreated datePublished" datetime="2017-04-09T15:06:00+08:00">2017-04-09</time>
-            </span>
-          
             
 
             
-              <span class="post-meta-item">
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
@@ -1254,14 +2000,49 @@
                   <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="Modified: 2018-12-22 16:50:44" itemprop="dateModified" datetime="2018-12-22T16:50:44+08:00">2018-12-22</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/09/2017/lodash/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2017/04/09/2017/lodash/" itemprop="commentCount"></span>
+                </a>
               </span>
             
           
 
-          <br>
+          
+          
+             <span id="/2017/04/09/2017/lodash/" class="leancloud_visitors" data-flag-title="Lodash">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
 
         </div>
       </header>
+    
 
     
     
@@ -1269,6 +2050,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
+      
+
+      
+        
           <h1 id="Lodash概述"><a href="#Lodash概述" class="headerlink" title="Lodash概述"></a>Lodash概述</h1><p>随着时间的过去，我们写码会积累一些习惯，思想，工具和套路代码，让我们下次在做类似工作时可以事半功倍。lodash就是一个js的工具库，它内部封装了常见的数据处理，如字符，数组，对象，日期。传承于underscore，但性能上却更优异。</p>
 <h2 id="模块组成"><a href="#模块组成" class="headerlink" title="模块组成"></a>模块组成</h2><ul>
 <li>Array，适用于数组类型，比如填充数据、查找元素、数组分片等操作</li>
@@ -1295,18 +2080,35 @@
                 Read more &raquo;
               </a>
             </div>
-          
+         
           <!--/noindex-->
         
       
     </div>
 
     
+
+    
     
     
 
+    
+
+    
+
+    
+
     <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
         <div class="post-eof"></div>
+      
     </footer>
   </div>
   
@@ -1314,8 +2116,17 @@
   
   </article>
 
+
     
       
+
+  
+
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -1327,26 +2138,36 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="子路宇晟">
       <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="子路宇晟的博客">
     </span>
+
+    
       <header class="post-header">
 
         
+        
           <h1 class="post-title" itemprop="name headline">
                 
-                
-                <a href="/2017/02/02/2017/2016/" class="post-title-link" itemprop="url">我的2016</a>
+                <a class="post-title-link" href="/2017/02/02/2017/2016/" itemprop="url">
+                  我的2016
+                </a>
               
             
           </h1>
         
 
         <div class="post-meta">
-            <span class="post-meta-item">
+          <span class="post-time">
+
+            
+            
+            
+
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -1359,12 +2180,16 @@
               
 
               <time title="Created: 2017-02-02 06:02:00" itemprop="dateCreated datePublished" datetime="2017-02-02T06:02:00+08:00">2017-02-02</time>
-            </span>
-          
             
 
             
-              <span class="post-meta-item">
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
@@ -1372,14 +2197,49 @@
                   <span class="post-meta-item-text">Edited on</span>
                 
                 <time title="Modified: 2020-04-05 23:07:24" itemprop="dateModified" datetime="2020-04-05T23:07:24+08:00">2020-04-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/02/2017/2016/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2017/02/02/2017/2016/" itemprop="commentCount"></span>
+                </a>
               </span>
             
           
 
-          <br>
+          
+          
+             <span id="/2017/02/02/2017/2016/" class="leancloud_visitors" data-flag-title="我的2016">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
 
         </div>
       </header>
+    
 
     
     
@@ -1387,6 +2247,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
+      
+
+      
+        
           <h1 id="2016"><a href="#2016" class="headerlink" title="2016"></a>2016</h1><p>作为一个每年都要迁徙回家过年的俗人，现在写16年的总结应该也是说的过去的。</p>
 <h2 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h2><p>16年主要工作还是android方向，还写了点python接口，现学现用了react大礼包。在pad，pos和数据面板做了一点微小的工作。</p>
 <p>感谢组织的信任，日常维护着商户管家的相关FAQ。</p>
@@ -1401,24 +2265,42 @@
                 Read more &raquo;
               </a>
             </div>
-          
+         
           <!--/noindex-->
         
       
     </div>
 
     
+
+    
     
     
 
+    
+
+    
+
+    
+
     <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
         <div class="post-eof"></div>
+      
     </footer>
   </div>
   
   
   
   </article>
+
 
     
   </section>
@@ -1429,10 +2311,12 @@
   </nav>
 
 
+
           </div>
           
 
         </div>
+        
           
   
   <div class="sidebar-toggle">
@@ -1444,80 +2328,145 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">子路宇晟</p>
-  <div class="site-description motion-element" itemprop="description">二次元爱好者，非专业视觉体验师</div>
-</div>
-  <nav class="site-state motion-element">
-      <div class="site-state-item site-state-posts">
-        
-          <a href="/archives/%20%7C%7C%20archive">
-        
-          <span class="site-state-item-count">30</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-    
-      
-      
-      <div class="site-state-item site-state-tags">
-        
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-        <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">tags</span>
-        
-      </div>
-    
-  </nav>
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="子路宇晟" />
+            
+              <p class="site-author-name" itemprop="name">子路宇晟</p>
+              <p class="site-description motion-element" itemprop="description">二次元爱好者，非专业视觉体验师</p>
+          </div>
 
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
 
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/hyjfine" target="_blank" title="GitHub"><i class="fa fa-fw fa-fab fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:hyjfine@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-fa fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
 
         </div>
-      </div>
+      </section>
+
+      
+
+      
 
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
 
 
+        
       </div>
     </main>
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright"> &copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">子路宇晟</span>
+
+  
+
+  
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v4.2.0</div>
+
+
+
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.3.0</div>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.5.0</div>
+
+
+
 
         
 
@@ -1531,29 +2480,143 @@
         
       </div>
     </footer>
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-      </div>
 
     
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
 
+    
+	
+    
+
+    
   </div>
 
   
-  <script src="/lib/jquery/index.js?v=3.4.1"></script>
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-  <script src="/js/utils.js?v=7.3.0"></script>
-  <script src="/js/motion.js?v=7.3.0"></script>
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   
-  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
 
 
   
 
-  <script src="/js/next-boot.js?v=7.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'CXylYR7pNX93azPeMMWgqMK1-gzGzoHsz',
+        appKey: 'DbB4mssjG6l3EpItcmPnnNxs',
+        placeholder: 'Just go go',
+        avatar:'/images/avatar.jpg mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: true
+    });
+  </script>
+
+
+
+  
+
+
+
+
 
   
 
@@ -1561,43 +2624,22 @@
 
   
 
+  
 
   
 
+  
+  
 
+  
 
+  
 
+  
 
+  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
 
 </body>
 </html>
