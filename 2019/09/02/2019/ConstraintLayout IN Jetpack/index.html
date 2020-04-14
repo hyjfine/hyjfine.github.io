@@ -4,67 +4,63 @@
 
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html lang="zh-Hans">
 <head>
   <meta charset="UTF-8">
-<meta name="generator" content="Hexo 3.8.0">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
-  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
 
-<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
-<script id="hexo.configurations">
+<script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
-    version: '7.2.0',
+    scheme: 'Muse',
+    version: '7.4.0',
+    exturl: false,
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: false,
     lazyload: false,
     pangu: false,
     algolia: {
-      applicationID: '',
+      appID: '',
       apiKey: '',
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
     localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    search: {
-      root: '/',
-      path: ''
-    },
-    tabs: true,
+    path: '',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
       copy_button: 'Copy',
       copy_success: 'Copied',
       copy_failure: 'Copy failed'
-    }
+    },
+    sidebarPadding: 40
   };
 </script>
 
-  <meta name="description" content="曾经Android布局就一把梭，RelativeLayout+LinearLayout，直到用ConstraintLayout写了几个页面后发现是真的香，现在任何布局第一选择都是它。  ConstraintLayout是什么？ 它属于Android JetPack，当前版本implementation &amp;#39;com.android.support.constraint:constraint-">
-<meta name="keywords" content="Dev,android">
+  <meta name="description" content="曾经Android布局就一把梭，RelativeLayout+LinearLayout，直到用ConstraintLayout写了几个页面后发现是真的香，现在任何布局第一选择都是它。  ConstraintLayout是什么？ 它属于Android JetPack，当前版本implementation &#39;com.android.support.constraint:constraint-">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ConstraintLayout IN Jetpack">
-<meta property="og:url" content="http://heyongjian.com/2019/09/02/2019/ConstraintLayout IN Jetpack/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/09/02/2019/ConstraintLayout%20IN%20Jetpack/index.html">
 <meta property="og:site_name" content="子路宇晟的博客">
-<meta property="og:description" content="曾经Android布局就一把梭，RelativeLayout+LinearLayout，直到用ConstraintLayout写了几个页面后发现是真的香，现在任何布局第一选择都是它。  ConstraintLayout是什么？ 它属于Android JetPack，当前版本implementation &amp;#39;com.android.support.constraint:constraint-">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:description" content="曾经Android布局就一把梭，RelativeLayout+LinearLayout，直到用ConstraintLayout写了几个页面后发现是真的香，现在任何布局第一选择都是它。  ConstraintLayout是什么？ 它属于Android JetPack，当前版本implementation &#39;com.android.support.constraint:constraint-">
 <meta property="og:image" content="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-cl-1.png">
 <meta property="og:image" content="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-cl-2.png">
 <meta property="og:image" content="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-cl-3.png">
@@ -75,21 +71,29 @@
 <meta property="og:image" content="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-cl-7.png">
 <meta property="og:image" content="https://developer.android.com/reference/android/support/constraint/resources/images/visibility-behavior.png">
 <meta property="og:image" content="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-cl-8.png">
-<meta property="og:updated_time" content="2019-11-20T15:14:20.136Z">
+<meta property="article:published_time" content="2019-09-01T16:30:00.000Z">
+<meta property="article:modified_time" content="2020-04-06T14:52:41.334Z">
+<meta property="article:author" content="子路宇晟">
+<meta property="article:tag" content="DEV">
+<meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ConstraintLayout IN Jetpack">
-<meta name="twitter:description" content="曾经Android布局就一把梭，RelativeLayout+LinearLayout，直到用ConstraintLayout写了几个页面后发现是真的香，现在任何布局第一选择都是它。  ConstraintLayout是什么？ 它属于Android JetPack，当前版本implementation &amp;#39;com.android.support.constraint:constraint-">
 <meta name="twitter:image" content="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-cl-1.png">
-  <link rel="canonical" href="http://heyongjian.com/2019/09/02/2019/ConstraintLayout IN Jetpack/">
+  <link rel="canonical" href="http://yoursite.com/2019/09/02/2019/ConstraintLayout%20IN%20Jetpack/">
 
 
-<script id="page.configurations">
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
   };
 </script>
 
   <title>ConstraintLayout IN Jetpack | 子路宇晟的博客</title>
+  <meta name="generator" content="Hexo 4.2.0">
   
 
 
@@ -101,7 +105,6 @@
 
   <noscript>
   <style>
-  .use-motion .motion-element,
   .use-motion .brand,
   .use-motion .menu-item,
   .sidebar-inner,
@@ -110,7 +113,7 @@
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
+  .use-motion .collection-header { opacity: initial; }
 
   .use-motion .logo,
   .use-motion .site-title,
@@ -127,15 +130,14 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
+      <div class="header-inner"><div class="site-brand-container">
   <div class="site-meta">
 
-    <div class="custom-logo-site-title">
+    <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">子路宇晟的博客</span>
@@ -156,89 +158,81 @@
 </div>
 
 
-
 <nav class="site-nav">
-    <ul id="menu" class="menu">
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
+  
+  <ul id="menu" class="menu">
       
-    
       
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
       
-    
+        
+        <li class="menu-item menu-item-home">
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives<span class="badge">26</span></a>
+    <a href="/" rel="section">&lt;i class&#x3D;&quot;menu-item-icon fa fa-fw fa-home&quot;&gt;&lt;&#x2F;i&gt; &lt;br&gt;Home</a>
 
   </li>
-    </ul>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section">&lt;i class&#x3D;&quot;menu-item-icon fa fa-fw fa-archive&quot;&gt;&lt;&#x2F;i&gt; &lt;br&gt;Archives</a>
+
+  </li>
+  </ul>
+
+    
+
 </nav>
-
 </div>
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
-            
-
           <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
-    
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/02/2019/ConstraintLayout%20IN%20Jetpack/">
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://heyongjian.com/2019/09/02/2019/ConstraintLayout IN Jetpack/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="银时">
-      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师。">
-      <meta itemprop="image" content="/images/avatar.jpg">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="子路宇晟">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="子路宇晟的博客">
     </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">ConstraintLayout IN Jetpack
 
-        
-          <h1 class="post-title" itemprop="name headline">ConstraintLayout IN Jetpack
-
-              
-            
-          </h1>
-        
+          
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               
                 
@@ -254,43 +248,13 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-11-20 23:14:20" itemprop="dateModified" datetime="2019-11-20T23:14:20+08:00">2019-11-20</time>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-06 22:52:41" itemprop="dateModified" datetime="2020-04-06T22:52:41+08:00">2020-04-06</time>
               </span>
             
           
 
           
-            <span id="/2019/09/02/2019/ConstraintLayout IN Jetpack/" class="post-meta-item leancloud_visitors" data-flag-title="ConstraintLayout IN Jetpack">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-            
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
-    
-      <span class="post-meta-item-text">Comments: </span>
-    
-  
-    <a href="/2019/09/02/2019/ConstraintLayout IN Jetpack/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/09/02/2019/ConstraintLayout IN Jetpack/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          <br>
 
         </div>
       </header>
@@ -316,55 +280,64 @@
 <table>
 <thead>
 <tr>
-<th></th>
-<th>Relative Layout</th>
-<th>Constraint Layout</th>
+<th align="left"></th>
+<th align="left">Relative Layout</th>
+<th align="left">Constraint Layout</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td>垂直居中</td>
-<td>android:layout_centerVertical=”true”</td>
-<td>app:layout_constraintBottom_toBottomOf=”parent” app:layout_constraintTop_toTopOf=”parent”</td>
+<tbody><tr>
+<td align="left">垂直居中</td>
+<td align="left">android:layout_centerVertical=”true”</td>
+<td align="left">app:layout_constraintBottom_toBottomOf=”parent” app:layout_constraintTop_toTopOf=”parent”</td>
 </tr>
 <tr>
-<td>居下</td>
-<td>android:layout_below=”@id/view”</td>
-<td>app:layout_constraintTop_toBottomOf=”@id/view”</td>
+<td align="left">居下</td>
+<td align="left">android:layout_below=”@id/view”</td>
+<td align="left">app:layout_constraintTop_toBottomOf=”@id/view”</td>
 </tr>
 <tr>
-<td>居右</td>
-<td>android:layout_toEndOf=”@id/view”</td>
-<td>app:layout_constraintStart_toEndOf=”@id/view”</td>
+<td align="left">居右</td>
+<td align="left">android:layout_toEndOf=”@id/view”</td>
+<td align="left">app:layout_constraintStart_toEndOf=”@id/view”</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <h4 id="2，对齐，整整齐齐还是错落有致，当然是都要"><a href="#2，对齐，整整齐齐还是错落有致，当然是都要" class="headerlink" title="2，对齐，整整齐齐还是错落有致，当然是都要"></a>2，对齐，整整齐齐还是错落有致，当然是都要</h4><p>严格来讲Relative Layout里面的子View之间是无法相互对齐的。有两种方式可以间接做到：是基于父视图对齐和嵌套一个ViewGroup比如LinearLayout来对齐。这也就是为什么即使用Relative Layout做的布局也很可能层数过多，出现overDraw。而ConstraintLayout就很优雅了，<strong>要领就是Start_toStartOf，End_toEndOf，Top_toTopOf，Bottom_toBottomOf两两结对出现就行</strong>。</p>
 <p><img src="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-cl-1.png" alt="image-20190831210915915"></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">// 上图示例，基于View水平对齐</span><br><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">androidx.constraintlayout.widget.ConstraintLayout</span></span></span><br><span class="line"><span class="tag">        <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/btn1"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"Button test"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintEnd_toEndOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintStart_toStartOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintTop_toTopOf</span>=<span class="string">"parent"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/btn2"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"btn2"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintEnd_toEndOf</span>=<span class="string">"@id/btn1"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintStart_toStartOf</span>=<span class="string">"@id/btn1"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintTop_toBottomOf</span>=<span class="string">"@id/btn1"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">androidx.constraintlayout.widget.ConstraintLayout</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 上图示例，基于View水平对齐</span><br><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;androidx.constraintlayout.widget.ConstraintLayout</span><br><span class="line">        xmlns:android&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res&#x2F;android&quot;</span><br><span class="line">        xmlns:app&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res-auto&quot;</span><br><span class="line">        android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">        android:layout_height&#x3D;&quot;match_parent&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">            android:id&#x3D;&quot;@+id&#x2F;btn1&quot;</span><br><span class="line">            android:layout_width&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:text&#x3D;&quot;Button test&quot;</span><br><span class="line">            app:layout_constraintEnd_toEndOf&#x3D;&quot;parent&quot;</span><br><span class="line">            app:layout_constraintStart_toStartOf&#x3D;&quot;parent&quot;</span><br><span class="line">            app:layout_constraintTop_toTopOf&#x3D;&quot;parent&quot;&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">            android:id&#x3D;&quot;@+id&#x2F;btn2&quot;</span><br><span class="line">            android:layout_width&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:text&#x3D;&quot;btn2&quot;</span><br><span class="line">            app:layout_constraintEnd_toEndOf&#x3D;&quot;@id&#x2F;btn1&quot;</span><br><span class="line">            app:layout_constraintStart_toStartOf&#x3D;&quot;@id&#x2F;btn1&quot;</span><br><span class="line">            app:layout_constraintTop_toBottomOf&#x3D;&quot;@id&#x2F;btn1&quot;&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;androidx.constraintlayout.widget.ConstraintLayout</span><br></pre></td></tr></table></figure>
+
 <p><img src="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-cl-2.png" alt="image-20190831211525496"></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">// 基于View垂直对齐</span><br><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">androidx.constraintlayout.widget.ConstraintLayout</span></span></span><br><span class="line"><span class="tag">        <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/btn1"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_marginTop</span>=<span class="string">"50dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"Button test"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintEnd_toEndOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintStart_toStartOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintTop_toTopOf</span>=<span class="string">"parent"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/btn2"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"40dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_marginStart</span>=<span class="string">"10dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"btn2"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintBottom_toBottomOf</span>=<span class="string">"@id/btn1"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintStart_toEndOf</span>=<span class="string">"@id/btn1"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintTop_toTopOf</span>=<span class="string">"@id/btn1"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">androidx.constraintlayout.widget.ConstraintLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 基于View垂直对齐</span><br><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;androidx.constraintlayout.widget.ConstraintLayout</span><br><span class="line">        xmlns:android&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res&#x2F;android&quot;</span><br><span class="line">        xmlns:app&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res-auto&quot;</span><br><span class="line">        android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">        android:layout_height&#x3D;&quot;match_parent&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">            android:id&#x3D;&quot;@+id&#x2F;btn1&quot;</span><br><span class="line">            android:layout_width&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:layout_marginTop&#x3D;&quot;50dp&quot;</span><br><span class="line">            android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:text&#x3D;&quot;Button test&quot;</span><br><span class="line">            app:layout_constraintEnd_toEndOf&#x3D;&quot;parent&quot;</span><br><span class="line">            app:layout_constraintStart_toStartOf&#x3D;&quot;parent&quot;</span><br><span class="line">            app:layout_constraintTop_toTopOf&#x3D;&quot;parent&quot;&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">            android:id&#x3D;&quot;@+id&#x2F;btn2&quot;</span><br><span class="line">            android:layout_width&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height&#x3D;&quot;40dp&quot;</span><br><span class="line">            android:layout_marginStart&#x3D;&quot;10dp&quot;</span><br><span class="line">            android:text&#x3D;&quot;btn2&quot;</span><br><span class="line">            app:layout_constraintBottom_toBottomOf&#x3D;&quot;@id&#x2F;btn1&quot;</span><br><span class="line">            app:layout_constraintStart_toEndOf&#x3D;&quot;@id&#x2F;btn1&quot;</span><br><span class="line">            app:layout_constraintTop_toTopOf&#x3D;&quot;@id&#x2F;btn1&quot;&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;androidx.constraintlayout.widget.ConstraintLayout&gt;</span><br></pre></td></tr></table></figure>
+
 <h4 id="3，大小控制"><a href="#3，大小控制" class="headerlink" title="3，大小控制"></a>3，大小控制</h4><p>基本用法和普通ViewGroup一致，无非就是wrap_content,0dp,margin,padding这些来控制View大小。</p>
 <p>熟练掌握这些，已经可以愉快的和ConstraintLayout玩起来了，慢慢的也能体会到它的精妙之处，当然Constraintlayout还有些进阶用法。</p>
 <h3 id="进阶用法"><a href="#进阶用法" class="headerlink" title="进阶用法"></a>进阶用法</h3><h4 id="1，Guideline（可以影响View的位置，大小，对齐方式）"><a href="#1，Guideline（可以影响View的位置，大小，对齐方式）" class="headerlink" title="1，Guideline（可以影响View的位置，大小，对齐方式）"></a>1，Guideline（可以影响View的位置，大小，对齐方式）</h4><p><img src="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-cl-3.png" alt="image-20190831214717727"></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// 不可见的辅助布局线，水平和垂直，数值和百分比都支持，常用来切割页面，辅助布局</span><br><span class="line"><span class="tag">&lt;<span class="name">androidx.constraintlayout.widget.Guideline</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/guideline2"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintGuide_percent</span>=<span class="string">"0.27980536"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">androidx.constraintlayout.widget.Guideline</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/guideline3"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:orientation</span>=<span class="string">"horizontal"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintGuide_begin</span>=<span class="string">"171dp"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 不可见的辅助布局线，水平和垂直，数值和百分比都支持，常用来切割页面，辅助布局</span><br><span class="line">&lt;androidx.constraintlayout.widget.Guideline</span><br><span class="line">            android:id&#x3D;&quot;@+id&#x2F;guideline2&quot;</span><br><span class="line">            android:layout_width&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:orientation&#x3D;&quot;vertical&quot;</span><br><span class="line">            app:layout_constraintGuide_percent&#x3D;&quot;0.27980536&quot;&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">&lt;androidx.constraintlayout.widget.Guideline</span><br><span class="line">            android:id&#x3D;&quot;@+id&#x2F;guideline3&quot;</span><br><span class="line">            android:layout_width&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:orientation&#x3D;&quot;horizontal&quot;</span><br><span class="line">            app:layout_constraintGuide_begin&#x3D;&quot;171dp&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
 <h4 id="2，Barrier（主要影响View的位置）"><a href="#2，Barrier（主要影响View的位置）" class="headerlink" title="2，Barrier（主要影响View的位置）"></a>2，Barrier（主要影响View的位置）</h4><p><img src="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-cl-4.png" alt="image-20190831230407493"></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">// 同样是不可见的辅助布局线，区别于Guideline，它自己不定义位置，而且根据它绑定的View动态确定位置</span><br><span class="line">// 右边的C始终距离左边的A，B有一个固定的距离margin</span><br><span class="line">// barrierDirection 指定 barrier相对于绑定View的方位</span><br><span class="line">// constraint_referenced_ids 指定绑定子View的id，用逗号分隔</span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/btn1"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_marginTop</span>=<span class="string">"50dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"Button test"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintStart_toStartOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintTop_toTopOf</span>=<span class="string">"parent"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/btn2"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"btn2"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintStart_toStartOf</span>=<span class="string">"@id/btn1"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintTop_toBottomOf</span>=<span class="string">"@id/btn1"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_marginStart</span>=<span class="string">"20dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"btn3"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintStart_toEndOf</span>=<span class="string">"@id/barrier"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintTop_toTopOf</span>=<span class="string">"@id/btn1"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">androidx.constraintlayout.widget.Barrier</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/barrier"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:barrierDirection</span>=<span class="string">"right"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:constraint_referenced_ids</span>=<span class="string">"btn1,btn2"</span></span></span><br><span class="line"><span class="tag">            /&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 同样是不可见的辅助布局线，区别于Guideline，它自己不定义位置，而且根据它绑定的View动态确定位置</span><br><span class="line">&#x2F;&#x2F; 右边的C始终距离左边的A，B有一个固定的距离margin</span><br><span class="line">&#x2F;&#x2F; barrierDirection 指定 barrier相对于绑定View的方位</span><br><span class="line">&#x2F;&#x2F; constraint_referenced_ids 指定绑定子View的id，用逗号分隔</span><br><span class="line">    &lt;Button</span><br><span class="line">            android:id&#x3D;&quot;@+id&#x2F;btn1&quot;</span><br><span class="line">            android:layout_width&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:layout_marginTop&#x3D;&quot;50dp&quot;</span><br><span class="line">            android:text&#x3D;&quot;Button test&quot;</span><br><span class="line">            app:layout_constraintStart_toStartOf&#x3D;&quot;parent&quot;</span><br><span class="line">            app:layout_constraintTop_toTopOf&#x3D;&quot;parent&quot;&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">            android:id&#x3D;&quot;@+id&#x2F;btn2&quot;</span><br><span class="line">            android:layout_width&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:text&#x3D;&quot;btn2&quot;</span><br><span class="line">            app:layout_constraintStart_toStartOf&#x3D;&quot;@id&#x2F;btn1&quot;</span><br><span class="line">            app:layout_constraintTop_toBottomOf&#x3D;&quot;@id&#x2F;btn1&quot;&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">            android:layout_width&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:layout_marginStart&#x3D;&quot;20dp&quot;</span><br><span class="line">            android:text&#x3D;&quot;btn3&quot;</span><br><span class="line">            app:layout_constraintStart_toEndOf&#x3D;&quot;@id&#x2F;barrier&quot;</span><br><span class="line">            app:layout_constraintTop_toTopOf&#x3D;&quot;@id&#x2F;btn1&quot;&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;androidx.constraintlayout.widget.Barrier</span><br><span class="line">            android:id&#x3D;&quot;@+id&#x2F;barrier&quot;</span><br><span class="line">            android:layout_width&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            app:barrierDirection&#x3D;&quot;right&quot;</span><br><span class="line">            app:constraint_referenced_ids&#x3D;&quot;btn1,btn2&quot;</span><br><span class="line">            &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
 <h4 id="3，Bias（偏移，影响位置）"><a href="#3，Bias（偏移，影响位置）" class="headerlink" title="3，Bias（偏移，影响位置）"></a>3，Bias（偏移，影响位置）</h4><p><img src="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-cl-5.png" alt="image-20190831232252829"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// Bias的起作用的前提是：有成对的水平约束（Start_toStartOf和End_toEndOf）或竖直约束（Top_toTopOf和</span><br><span class="line">// Bottom_toBottomOf），并且view没有设置wrap_content和fixed（也就是说还有剩余的位置可供偏移，默认是</span><br><span class="line">// 居中）</span><br><span class="line">&lt;Button</span><br><span class="line">            android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_marginStart=&quot;20dp&quot;</span><br><span class="line">            android:layout_marginEnd=&quot;8dp&quot;</span><br><span class="line">            android:text=&quot;btn3&quot;</span><br><span class="line">            app:layout_constraintEnd_toEndOf=&quot;parent&quot;</span><br><span class="line">            app:layout_constraintHorizontal_bias=&quot;0.4&quot;</span><br><span class="line">            app:layout_constraintStart_toStartOf=&quot;parent&quot;</span><br><span class="line">            app:layout_constraintTop_toTopOf=&quot;parent&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Bias的起作用的前提是：有成对的水平约束（Start_toStartOf和End_toEndOf）或竖直约束（Top_toTopOf和</span><br><span class="line">&#x2F;&#x2F; Bottom_toBottomOf），并且view没有设置wrap_content和fixed（也就是说还有剩余的位置可供偏移，默认是</span><br><span class="line">&#x2F;&#x2F; 居中）</span><br><span class="line">&lt;Button</span><br><span class="line">            android:layout_width&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:layout_marginStart&#x3D;&quot;20dp&quot;</span><br><span class="line">            android:layout_marginEnd&#x3D;&quot;8dp&quot;</span><br><span class="line">            android:text&#x3D;&quot;btn3&quot;</span><br><span class="line">            app:layout_constraintEnd_toEndOf&#x3D;&quot;parent&quot;</span><br><span class="line">            app:layout_constraintHorizontal_bias&#x3D;&quot;0.4&quot;</span><br><span class="line">            app:layout_constraintStart_toStartOf&#x3D;&quot;parent&quot;</span><br><span class="line">            app:layout_constraintTop_toTopOf&#x3D;&quot;parent&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
 <h4 id="4，Chain（链条，影响位置和对齐）"><a href="#4，Chain（链条，影响位置和对齐）" class="headerlink" title="4，Chain（链条，影响位置和对齐）"></a>4，Chain（链条，影响位置和对齐）</h4><p>在ConstraintLayout中生成一个链条，最少只需要两个View相互指定Constraint。作用类似于Flex 布局中的轴axis。</p>
 <p><img src="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-cl-6.png" alt="image-20190901220633245"></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/button2"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"Button"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintEnd_toStartOf</span>=<span class="string">"@+id/button3"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintStart_toStartOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintTop_toTopOf</span>=<span class="string">"parent"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/button3"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"Button"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintEnd_toEndOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintStart_toEndOf</span>=<span class="string">"@+id/button2"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintTop_toTopOf</span>=<span class="string">"parent"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;Button</span><br><span class="line">            android:id&#x3D;&quot;@+id&#x2F;button2&quot;</span><br><span class="line">            android:layout_width&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:text&#x3D;&quot;Button&quot;</span><br><span class="line">            app:layout_constraintEnd_toStartOf&#x3D;&quot;@+id&#x2F;button3&quot;</span><br><span class="line">            app:layout_constraintStart_toStartOf&#x3D;&quot;parent&quot;</span><br><span class="line">            app:layout_constraintTop_toTopOf&#x3D;&quot;parent&quot;&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">            android:id&#x3D;&quot;@+id&#x2F;button3&quot;</span><br><span class="line">            android:layout_width&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:text&#x3D;&quot;Button&quot;</span><br><span class="line">            app:layout_constraintEnd_toEndOf&#x3D;&quot;parent&quot;</span><br><span class="line">            app:layout_constraintStart_toEndOf&#x3D;&quot;@+id&#x2F;button2&quot;</span><br><span class="line">            app:layout_constraintTop_toTopOf&#x3D;&quot;parent&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
 <p>Chain既然像Flex，那确实是可以像Flex类似的用的：</p>
 <p><img src="https://developer.android.com/reference/android/support/constraint/resources/images/chains-styles.png" alt="是是"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">// layout_constraintHorizontal_chainStyle 默认是spread，还有Packed和Spread Inside可以选，</span><br><span class="line">// layout_constraintHorizontal_weight 和Learnelayout的weight一样用法，需要0dp（match_constraint）</span><br><span class="line"></span><br><span class="line"> &lt;Button</span><br><span class="line">            android:id=&quot;@+id/button2&quot;</span><br><span class="line">            android:layout_width=&quot;0dp&quot;</span><br><span class="line">            android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">            android:text=&quot;Button&quot;</span><br><span class="line">            app:layout_constraintHorizontal_chainStyle=&quot;spread&quot;</span><br><span class="line">            app:layout_constraintEnd_toStartOf=&quot;@+id/button3&quot;</span><br><span class="line">            app:layout_constraintHorizontal_weight=&quot;1&quot;</span><br><span class="line">            app:layout_constraintStart_toStartOf=&quot;parent&quot;</span><br><span class="line">            app:layout_constraintTop_toTopOf=&quot;parent&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">            android:id=&quot;@+id/button3&quot;</span><br><span class="line">            android:layout_width=&quot;0dp&quot;</span><br><span class="line">            android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">            android:text=&quot;Button&quot;</span><br><span class="line">            app:layout_constraintHorizontal_weight=&quot;2&quot;</span><br><span class="line">            app:layout_constraintEnd_toStartOf=&quot;@id/button4&quot;</span><br><span class="line">            app:layout_constraintStart_toEndOf=&quot;@+id/button2&quot;</span><br><span class="line">            app:layout_constraintTop_toTopOf=&quot;parent&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">            android:id=&quot;@+id/button4&quot;</span><br><span class="line">            android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">            android:text=&quot;Button&quot;</span><br><span class="line">            app:layout_constraintEnd_toEndOf=&quot;parent&quot;</span><br><span class="line">            app:layout_constraintStart_toEndOf=&quot;@id/button3&quot;</span><br><span class="line">            app:layout_constraintTop_toTopOf=&quot;parent&quot;</span><br><span class="line">            /&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; layout_constraintHorizontal_chainStyle 默认是spread，还有Packed和Spread Inside可以选，</span><br><span class="line">&#x2F;&#x2F; layout_constraintHorizontal_weight 和Learnelayout的weight一样用法，需要0dp（match_constraint）</span><br><span class="line"></span><br><span class="line"> &lt;Button</span><br><span class="line">            android:id&#x3D;&quot;@+id&#x2F;button2&quot;</span><br><span class="line">            android:layout_width&#x3D;&quot;0dp&quot;</span><br><span class="line">            android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:text&#x3D;&quot;Button&quot;</span><br><span class="line">            app:layout_constraintHorizontal_chainStyle&#x3D;&quot;spread&quot;</span><br><span class="line">            app:layout_constraintEnd_toStartOf&#x3D;&quot;@+id&#x2F;button3&quot;</span><br><span class="line">            app:layout_constraintHorizontal_weight&#x3D;&quot;1&quot;</span><br><span class="line">            app:layout_constraintStart_toStartOf&#x3D;&quot;parent&quot;</span><br><span class="line">            app:layout_constraintTop_toTopOf&#x3D;&quot;parent&quot;&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">            android:id&#x3D;&quot;@+id&#x2F;button3&quot;</span><br><span class="line">            android:layout_width&#x3D;&quot;0dp&quot;</span><br><span class="line">            android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:text&#x3D;&quot;Button&quot;</span><br><span class="line">            app:layout_constraintHorizontal_weight&#x3D;&quot;2&quot;</span><br><span class="line">            app:layout_constraintEnd_toStartOf&#x3D;&quot;@id&#x2F;button4&quot;</span><br><span class="line">            app:layout_constraintStart_toEndOf&#x3D;&quot;@+id&#x2F;button2&quot;</span><br><span class="line">            app:layout_constraintTop_toTopOf&#x3D;&quot;parent&quot;&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">            android:id&#x3D;&quot;@+id&#x2F;button4&quot;</span><br><span class="line">            android:layout_width&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:text&#x3D;&quot;Button&quot;</span><br><span class="line">            app:layout_constraintEnd_toEndOf&#x3D;&quot;parent&quot;</span><br><span class="line">            app:layout_constraintStart_toEndOf&#x3D;&quot;@id&#x2F;button3&quot;</span><br><span class="line">            app:layout_constraintTop_toTopOf&#x3D;&quot;parent&quot;</span><br><span class="line">            &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
 <p><img src="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-cl-7.png" alt="image-20190901222300428"></p>
-<h4 id="5，Ratio（比例，影响大小）"><a href="#5，Ratio（比例，影响大小）" class="headerlink" title="5，Ratio（比例，影响大小）"></a>5，Ratio（比例，影响大小）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 根据宽高比例自适应View大小，至少一个被设为0dp（match_constraint）,下面的代码你将收获一个全屏的按钮</span><br><span class="line">&lt;Button android:layout_width=&quot;0dp&quot;</span><br><span class="line">            android:layout_height=&quot;0dp&quot;</span><br><span class="line">            app:layout_constraintDimensionRatio=&quot;H,16:9&quot;</span><br><span class="line">            app:layout_constraintBottom_toBottomOf=&quot;parent&quot;</span><br><span class="line">            app:layout_constraintTop_toTopOf=&quot;parent&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="5，Ratio（比例，影响大小）"><a href="#5，Ratio（比例，影响大小）" class="headerlink" title="5，Ratio（比例，影响大小）"></a>5，Ratio（比例，影响大小）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 根据宽高比例自适应View大小，至少一个被设为0dp（match_constraint）,下面的代码你将收获一个全屏的按钮</span><br><span class="line">&lt;Button android:layout_width&#x3D;&quot;0dp&quot;</span><br><span class="line">            android:layout_height&#x3D;&quot;0dp&quot;</span><br><span class="line">            app:layout_constraintDimensionRatio&#x3D;&quot;H,16:9&quot;</span><br><span class="line">            app:layout_constraintBottom_toBottomOf&#x3D;&quot;parent&quot;</span><br><span class="line">            app:layout_constraintTop_toTopOf&#x3D;&quot;parent&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
 <h4 id="6，Visibility-behavior（影响位置）"><a href="#6，Visibility-behavior（影响位置）" class="headerlink" title="6，Visibility behavior（影响位置）"></a>6，Visibility behavior（影响位置）</h4><p><img src="https://developer.android.com/reference/android/support/constraint/resources/images/visibility-behavior.png" alt="aa"></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 如上图，A的margin_start 16,B的margin_start 20,那A变gone了，B希望start margin加大一点，只需要</span><br><span class="line">// 加一句</span><br><span class="line">app:layout_goneMarginStart="@dimen/margin_26"</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 如上图，A的margin_start 16,B的margin_start 20,那A变gone了，B希望start margin加大一点，只需要</span><br><span class="line">&#x2F;&#x2F; 加一句</span><br><span class="line">app:layout_goneMarginStart&#x3D;&quot;@dimen&#x2F;margin_26&quot;</span><br></pre></td></tr></table></figure>
+
 <h4 id="7，Circular-positioning（影响位置）"><a href="#7，Circular-positioning（影响位置）" class="headerlink" title="7，Circular positioning（影响位置）"></a>7，Circular positioning（影响位置）</h4><p><img src="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-cl-8.png" alt="image-20190901224428846"></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 比较少能用上，原理就是A根据原点半径和角度来定位B</span><br><span class="line"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">android:id</span>=<span class="string">"@+id/buttonA"</span> <span class="attr">...</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Button</span> <span class="attr">android:id</span>=<span class="string">"@+id/buttonB"</span> <span class="attr">...</span></span></span><br><span class="line"><span class="tag">      <span class="attr">app:layout_constraintCircle</span>=<span class="string">"@+id/buttonA"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">app:layout_constraintCircleRadius</span>=<span class="string">"100dp"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">app:layout_constraintCircleAngle</span>=<span class="string">"45"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="8，Keyframe-animations（影响大小，位置，但不会改变颜色）"><a href="#8，Keyframe-animations（影响大小，位置，但不会改变颜色）" class="headerlink" title="8，Keyframe animations（影响大小，位置，但不会改变颜色）"></a>8，Keyframe animations（影响大小，位置，但不会改变颜色）</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">// MotionLayout才是完全体，不过这个也很简单好用了</span><br><span class="line"></span><br><span class="line">// MainActivity.kt</span><br><span class="line">private lateinit var constraintLayout: ConstraintLayout</span><br><span class="line">fun onCreate(savedInstanceState: Bundle?) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState)</span><br><span class="line">    setContentView(R.layout.keyframe_one)</span><br><span class="line">    constraintLayout = findViewById(R.id.constraint_layout) // member variable</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fun animateToKeyframeTwo() &#123;</span><br><span class="line">     val constraintSet = ConstraintSet()</span><br><span class="line">        constraintSet.load(context, R.layout.fragment_key_2)</span><br><span class="line">        TransitionManager.beginDelayedTransition(constraintLayout)</span><br><span class="line">        constraintSet.applyTo(constraintLayout)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// layout/keyframe1.xml</span><br><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">androidx.constraintlayout.widget.ConstraintLayout</span></span></span><br><span class="line"><span class="tag">        <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/faceLayout"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/button2"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"Button"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintEnd_toEndOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintStart_toStartOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintTop_toTopOf</span>=<span class="string">"parent"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">androidx.constraintlayout.widget.ConstraintLayout</span>&gt;</span></span><br><span class="line"></span><br><span class="line">// layout/keyframe2.xml</span><br><span class="line">// Keyframe 2 contains another ConstraintLayout with the final positions</span><br><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">androidx.constraintlayout.widget.ConstraintLayout</span></span></span><br><span class="line"><span class="tag">        <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/keyLayout"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/button2"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"Button"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintBottom_toBottomOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintEnd_toEndOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintStart_toStartOf</span>=<span class="string">"parent"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">androidx.constraintlayout.widget.ConstraintLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 比较少能用上，原理就是A根据原点半径和角度来定位B</span><br><span class="line">&lt;Button android:id&#x3D;&quot;@+id&#x2F;buttonA&quot; ... &#x2F;&gt;</span><br><span class="line">  &lt;Button android:id&#x3D;&quot;@+id&#x2F;buttonB&quot; ...</span><br><span class="line">      app:layout_constraintCircle&#x3D;&quot;@+id&#x2F;buttonA&quot;</span><br><span class="line">      app:layout_constraintCircleRadius&#x3D;&quot;100dp&quot;</span><br><span class="line">      app:layout_constraintCircleAngle&#x3D;&quot;45&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="8，Keyframe-animations（影响大小，位置，但不会改变颜色）"><a href="#8，Keyframe-animations（影响大小，位置，但不会改变颜色）" class="headerlink" title="8，Keyframe animations（影响大小，位置，但不会改变颜色）"></a>8，Keyframe animations（影响大小，位置，但不会改变颜色）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; MotionLayout才是完全体，不过这个也很简单好用了</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; MainActivity.kt</span><br><span class="line">private lateinit var constraintLayout: ConstraintLayout</span><br><span class="line">fun onCreate(savedInstanceState: Bundle?) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState)</span><br><span class="line">    setContentView(R.layout.keyframe_one)</span><br><span class="line">    constraintLayout &#x3D; findViewById(R.id.constraint_layout) &#x2F;&#x2F; member variable</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fun animateToKeyframeTwo() &#123;</span><br><span class="line">     val constraintSet &#x3D; ConstraintSet()</span><br><span class="line">        constraintSet.load(context, R.layout.fragment_key_2)</span><br><span class="line">        TransitionManager.beginDelayedTransition(constraintLayout)</span><br><span class="line">        constraintSet.applyTo(constraintLayout)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; layout&#x2F;keyframe1.xml</span><br><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;androidx.constraintlayout.widget.ConstraintLayout</span><br><span class="line">        xmlns:android&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res&#x2F;android&quot;</span><br><span class="line">        xmlns:app&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res-auto&quot;</span><br><span class="line">        android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">        android:id&#x3D;&quot;@+id&#x2F;faceLayout&quot;</span><br><span class="line">        android:layout_height&#x3D;&quot;match_parent&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">            android:id&#x3D;&quot;@+id&#x2F;button2&quot;</span><br><span class="line">            android:layout_width&#x3D;&quot;0dp&quot;</span><br><span class="line">            android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:text&#x3D;&quot;Button&quot;</span><br><span class="line">            app:layout_constraintEnd_toEndOf&#x3D;&quot;parent&quot;</span><br><span class="line">            app:layout_constraintStart_toStartOf&#x3D;&quot;parent&quot;</span><br><span class="line">            app:layout_constraintTop_toTopOf&#x3D;&quot;parent&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;androidx.constraintlayout.widget.ConstraintLayout&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; layout&#x2F;keyframe2.xml</span><br><span class="line">&#x2F;&#x2F; Keyframe 2 contains another ConstraintLayout with the final positions</span><br><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;androidx.constraintlayout.widget.ConstraintLayout</span><br><span class="line">        xmlns:android&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res&#x2F;android&quot;</span><br><span class="line">        xmlns:app&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res-auto&quot;</span><br><span class="line">        android:id&#x3D;&quot;@+id&#x2F;keyLayout&quot;</span><br><span class="line">        android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">        android:layout_height&#x3D;&quot;match_parent&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">            android:id&#x3D;&quot;@+id&#x2F;button2&quot;</span><br><span class="line">            android:layout_width&#x3D;&quot;0dp&quot;</span><br><span class="line">            android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:text&#x3D;&quot;Button&quot;</span><br><span class="line">            app:layout_constraintBottom_toBottomOf&#x3D;&quot;parent&quot;</span><br><span class="line">            app:layout_constraintEnd_toEndOf&#x3D;&quot;parent&quot;</span><br><span class="line">            app:layout_constraintStart_toStartOf&#x3D;&quot;parent&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;androidx.constraintlayout.widget.ConstraintLayout&gt;</span><br></pre></td></tr></table></figure>
+
 <p>总结：用过就回不去了，没有Constraintlayout甚至不会布局。</p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://developer.android.com/reference/android/support/constraint/ConstraintLayout#VirtualHelpers" target="_blank" rel="noopener">https://developer.android.com/reference/android/support/constraint/ConstraintLayout#VirtualHelpers</a></p>
 <p><a href="https://developer.android.com/training/constraint-layout#constrain-to-a-barrier" target="_blank" rel="noopener">https://developer.android.com/training/constraint-layout#constrain-to-a-barrier</a></p>
@@ -374,34 +347,46 @@
     
     
     
-
-    <footer class="post-footer">
-          
         
-        <div class="post-tags">
-            <a href="/tags/Dev/" rel="tag"># Dev</a>
+      
+
+      <footer class="post-footer">
           
-            <a href="/tags/android/" rel="tag"># android</a>
+            
           
-        </div>
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-              <a href="/2019/08/18/2019/Hexo+Github Pages CDN & HTTPS /" rel="next" title="Hexo+Github Pages CDN & HTTPS">
-                <i class="fa fa-chevron-left"></i> Hexo+Github Pages CDN & HTTPS
-              </a>
+          <div class="post-tags">
+            
+              <a href="/tags/DEV/" rel="tag"># DEV</a>
+            
+              <a href="/tags/Android/" rel="tag"># Android</a>
             
           </div>
+        
 
-          <span class="post-nav-divider"></span>
+        
 
-          <div class="post-nav-prev post-nav-item">
-              <a href="/2019/09/08/2019/ImageView/" rel="prev" title="ImageView ScaleType and Transition">
-                ImageView ScaleType and Transition <i class="fa fa-chevron-right"></i>
-              </a>
-            
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/09/01/2019/ImageView%20ScaleType%20and%20Transition/" rel="next" title="ImageView ScaleType and Transition">
+                  <i class="fa fa-chevron-left"></i> ImageView ScaleType and Transition
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/09/16/2019/HashMap/" rel="prev" title="HashMap">
+                  HashMap <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
           </div>
-        </div>
-    </footer>
+        
+      </footer>
+    
   </div>
   
   
@@ -413,10 +398,6 @@
 
           </div>
           
-    
-    <div class="comments" id="comments"></div>
-  
-
 
         </div>
           
@@ -429,32 +410,41 @@
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
+  <aside class="sidebar">
     <div class="sidebar-inner">
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
+        
+        
+        
+        
       
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
 
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="银时">
-  <p class="site-author-name" itemprop="name">银时</p>
-  <div class="site-description motion-element" itemprop="description">二次元爱好者，非专业视觉体验师。</div>
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ConstraintLayout是什么？"><span class="nav-number">1.</span> <span class="nav-text">ConstraintLayout是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本用法"><span class="nav-number">2.</span> <span class="nav-text">基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1，位置，View放在哪里"><span class="nav-number">2.1.</span> <span class="nav-text">1，位置，View放在哪里</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2，对齐，整整齐齐还是错落有致，当然是都要"><span class="nav-number">2.2.</span> <span class="nav-text">2，对齐，整整齐齐还是错落有致，当然是都要</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3，大小控制"><span class="nav-number">2.3.</span> <span class="nav-text">3，大小控制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进阶用法"><span class="nav-number">3.</span> <span class="nav-text">进阶用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1，Guideline（可以影响View的位置，大小，对齐方式）"><span class="nav-number">3.1.</span> <span class="nav-text">1，Guideline（可以影响View的位置，大小，对齐方式）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2，Barrier（主要影响View的位置）"><span class="nav-number">3.2.</span> <span class="nav-text">2，Barrier（主要影响View的位置）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3，Bias（偏移，影响位置）"><span class="nav-number">3.3.</span> <span class="nav-text">3，Bias（偏移，影响位置）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4，Chain（链条，影响位置和对齐）"><span class="nav-number">3.4.</span> <span class="nav-text">4，Chain（链条，影响位置和对齐）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5，Ratio（比例，影响大小）"><span class="nav-number">3.5.</span> <span class="nav-text">5，Ratio（比例，影响大小）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6，Visibility-behavior（影响位置）"><span class="nav-number">3.6.</span> <span class="nav-text">6，Visibility behavior（影响位置）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7，Circular-positioning（影响位置）"><span class="nav-number">3.7.</span> <span class="nav-text">7，Circular positioning（影响位置）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8，Keyframe-animations（影响大小，位置，但不会改变颜色）"><span class="nav-number">3.8.</span> <span class="nav-text">8，Keyframe animations（影响大小，位置，但不会改变颜色）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">子路宇晟</p>
+  <div class="site-description" itemprop="description">二次元爱好者，非专业视觉体验师</div>
 </div>
   <nav class="site-state motion-element">
       <div class="site-state-item site-state-posts">
         
-          <a href="/archives/">
+          <a href="/archives/%20%7C%7C%20archive">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -463,10 +453,6 @@
       
       <div class="site-state-item site-state-tags">
         
-          
-            <a href="/tags/">
-          
-        
         
         
           
@@ -487,62 +473,16 @@
         
           
         
-          
-        
-          
-        
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">tags</span>
-        </a>
+        
       </div>
     
   </nav>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-      
-      
-        
-      
-      
-        
-      
-        <a href="https://github.com/hyjfine" title="GitHub &rarr; https://github.com/hyjfine" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-    
-      <span class="links-of-author-item">
-      
-      
-        
-      
-      
-        
-      
-        <a href="mailto:hyjfine@gmail.com" title="E-Mail &rarr; mailto:hyjfine@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-    
-  </div>
 
 
 
-        </div>
       </div>
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ConstraintLayout是什么？"><span class="nav-number">1.</span> <span class="nav-text">ConstraintLayout是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本用法"><span class="nav-number">2.</span> <span class="nav-text">基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1，位置，View放在哪里"><span class="nav-number">2.1.</span> <span class="nav-text">1，位置，View放在哪里</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2，对齐，整整齐齐还是错落有致，当然是都要"><span class="nav-number">2.2.</span> <span class="nav-text">2，对齐，整整齐齐还是错落有致，当然是都要</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3，大小控制"><span class="nav-number">2.3.</span> <span class="nav-text">3，大小控制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进阶用法"><span class="nav-number">3.</span> <span class="nav-text">进阶用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1，Guideline（可以影响View的位置，大小，对齐方式）"><span class="nav-number">3.1.</span> <span class="nav-text">1，Guideline（可以影响View的位置，大小，对齐方式）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2，Barrier（主要影响View的位置）"><span class="nav-number">3.2.</span> <span class="nav-text">2，Barrier（主要影响View的位置）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3，Bias（偏移，影响位置）"><span class="nav-number">3.3.</span> <span class="nav-text">3，Bias（偏移，影响位置）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4，Chain（链条，影响位置和对齐）"><span class="nav-number">3.4.</span> <span class="nav-text">4，Chain（链条，影响位置和对齐）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5，Ratio（比例，影响大小）"><span class="nav-number">3.5.</span> <span class="nav-text">5，Ratio（比例，影响大小）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6，Visibility-behavior（影响位置）"><span class="nav-number">3.6.</span> <span class="nav-text">6，Visibility behavior（影响位置）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7，Circular-positioning（影响位置）"><span class="nav-number">3.7.</span> <span class="nav-text">7，Circular positioning（影响位置）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8，Keyframe-animations（影响大小，位置，但不会改变颜色）"><span class="nav-number">3.8.</span> <span class="nav-text">8，Keyframe animations（影响大小，位置，但不会改变颜色）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
 
     </div>
   </aside>
@@ -554,15 +494,21 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">hyjfine</span>
+  <span class="author" itemprop="copyrightHolder">子路宇晟</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a></div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.0</div>
 
         
+
+
+
+
 
 
 
@@ -574,118 +520,29 @@
         
       </div>
     </footer>
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-      </div>
-
-    
-
   </div>
 
   
-  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-  <script src="/js/utils.js?v=7.2.0"></script>
-  <script src="/js/motion.js?v=7.2.0"></script>
+<script src="/js/utils.js?v=7.4.0.js"></script>
 
-  
-  <script src="/js/affix.js?v=7.2.0"></script>
-  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+<script src="/js/motion.js?v=7.4.0.js"></script>
 
 
-
-  
-  <script src="/js/scrollspy.js?v=7.2.0"></script>
-<script src="/js/post-details.js?v=7.2.0"></script>
+<script src="/js/schemes/muse.js?v=7.4.0.js"></script>
 
 
-
-  <script src="/js/next-boot.js?v=7.2.0"></script>
-
-  
-
-  
-
-  
-
-
-  
-
-
-
-
-
-
-
+<script src="/js/next-boot.js?v=7.4.0.js"></script>
 
 
 
 
   
-  <script>
-    function addCount(Counter) {
-      var $visitors = $('.leancloud_visitors');
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-
-      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
-        .done(function({ results }) {
-          if (results.length > 0) {
-            var counter = results[0];
-            
-            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
-            
-              .done(function() {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.time + 1);
-              })
-            
-              .fail(function ({ responseJSON }) {
-                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
-              })
-          } else {
-            
-              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
-                .done(function() {
-                  var $element = $(document.getElementById(url));
-                  $element.find('.leancloud-visitors-count').text(1);
-                })
-                .fail(function() {
-                  console.log('Failed to create');
-                });
-            
-          }
-        })
-        .fail(function ({ responseJSON }) {
-          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
-        });
-    }
-    
-
-    $(function() {
-      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'yAbH7nCHLnmod1p5gWu1rvXE-gzGzoHsz')
-        .done(function({ api_server }) {
-          var Counter = function(method, url, data) {
-            return $.ajax({
-              method: method,
-              url: `https://${api_server}/1.1${url}`,
-              headers: {
-                'X-LC-Id': 'yAbH7nCHLnmod1p5gWu1rvXE-gzGzoHsz',
-                'X-LC-Key': '1oKnVeJr6SSaIQHt1uXbdUca',
-                'Content-Type': 'application/json',
-              },
-              data: data
-            });
-          };
-            const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
-            if (localhost.test(document.URL)) return;
-            addCount(Counter);
-          
-        });
-    });
-  </script>
 
 
 
@@ -707,33 +564,11 @@
 
 
 
+  
 
+  
 
-
-    
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-
-<script>
-  var GUEST = ['nick', 'mail', 'link'];
-  var guest = 'nick,mail,link';
-  guest = guest.split(',').filter(function(item) {
-    return GUEST.indexOf(item) > -1;
-  });
-  new Valine({
-    el: '#comments',
-    verify: false,
-    notify: false,
-    appId: 'CXylYR7pNX93azPeMMWgqMK1-gzGzoHsz',
-    appKey: 'DbB4mssjG6l3EpItcmPnnNxs',
-    placeholder: 'Just go go',
-    avatar: 'mm',
-    meta: guest,
-    pageSize: '10' || 10,
-    visitor: false,
-    lang: 'en' || 'zh-cn'
-  });
-</script>
-
+  
 
 </body>
 </html>

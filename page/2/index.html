@@ -4,80 +4,84 @@
 
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html lang="zh-Hans">
 <head>
   <meta charset="UTF-8">
-<meta name="generator" content="Hexo 3.8.0">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
-  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
 
-<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
-<script id="hexo.configurations">
+<script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
-    version: '7.2.0',
+    scheme: 'Muse',
+    version: '7.4.0',
+    exturl: false,
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: false,
     lazyload: false,
     pangu: false,
     algolia: {
-      applicationID: '',
+      appID: '',
       apiKey: '',
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
     localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    search: {
-      root: '/',
-      path: ''
-    },
-    tabs: true,
+    path: '',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
       copy_button: 'Copy',
       copy_success: 'Copied',
       copy_failure: 'Copy failed'
-    }
+    },
+    sidebarPadding: 40
   };
 </script>
 
-  <meta name="description" content="二次元爱好者，非专业视觉体验师。">
-<meta name="keywords" content="移动端,android,react,react netive,js,javascript,开发者,用户体验,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek">
+  <meta name="description" content="二次元爱好者，非专业视觉体验师">
 <meta property="og:type" content="website">
 <meta property="og:title" content="子路宇晟的博客">
-<meta property="og:url" content="http://heyongjian.com/page/2/index.html">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="子路宇晟的博客">
-<meta property="og:description" content="二次元爱好者，非专业视觉体验师。">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:description" content="二次元爱好者，非专业视觉体验师">
+<meta property="article:author" content="子路宇晟">
+<meta property="article:tag" content="android">
+<meta property="article:tag" content=" kotlin">
+<meta property="article:tag" content=" flutter">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="子路宇晟的博客">
-<meta name="twitter:description" content="二次元爱好者，非专业视觉体验师。">
-  <link rel="canonical" href="http://heyongjian.com/page/2/">
+  <link rel="canonical" href="http://yoursite.com/page/2/">
 
 
-<script id="page.configurations">
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
+    isHome: true,
+    isPost: false,
+    isPage: false,
+    isArchive: false
   };
 </script>
 
   <title>子路宇晟的博客</title>
+  <meta name="generator" content="Hexo 4.2.0">
   
 
 
@@ -89,7 +93,6 @@
 
   <noscript>
   <style>
-  .use-motion .motion-element,
   .use-motion .brand,
   .use-motion .menu-item,
   .sidebar-inner,
@@ -98,7 +101,7 @@
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
+  .use-motion .collection-header { opacity: initial; }
 
   .use-motion .logo,
   .use-motion .site-title,
@@ -115,15 +118,14 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  <div class="container sidebar-position-left page-home">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
+      <div class="header-inner"><div class="site-brand-container">
   <div class="site-meta">
 
-    <div class="custom-logo-site-title">
+    <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">子路宇晟的博客</span>
@@ -144,90 +146,524 @@
 </div>
 
 
-
 <nav class="site-nav">
-    <ul id="menu" class="menu">
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
+  
+  <ul id="menu" class="menu">
       
-    
       
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
       
-    
+        
+        <li class="menu-item menu-item-home">
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives<span class="badge">26</span></a>
+    <a href="/" rel="section">&lt;i class&#x3D;&quot;menu-item-icon fa fa-fw fa-home&quot;&gt;&lt;&#x2F;i&gt; &lt;br&gt;Home</a>
 
   </li>
-    </ul>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section">&lt;i class&#x3D;&quot;menu-item-icon fa fa-fw fa-archive&quot;&gt;&lt;&#x2F;i&gt; &lt;br&gt;Archives</a>
+
+  </li>
+  </ul>
+
+    
+
 </nav>
-
 </div>
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
-            
-
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
-      
+  <div id="posts" class="posts-expand">
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/11/2019/google%20play%20%E4%B8%8A%E8%BD%A6%E6%8C%87%E5%8D%97/">
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://heyongjian.com/2019/07/12/2019/Android NDK 上手指南/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="银时">
-      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师。">
-      <meta itemprop="image" content="/images/avatar.jpg">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="子路宇晟">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="子路宇晟的博客">
     </span>
       <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/12/2019/Android NDK 上手指南/" class="post-title-link" itemprop="url">Android NDK 上手指南</a>
-              
+        <h1 class="post-title" itemprop="name headline">
             
-          </h1>
-        
+            <a href="/2019/08/11/2019/google%20play%20%E4%B8%8A%E8%BD%A6%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">Android Google Play 上车指南</a>
+          
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
+              <span class="post-meta-item-text">Posted on</span>
+
               
-                <span class="post-meta-item-text">Posted on</span>
+                
               
+
+              <time title="Created: 2019-08-11 23:07:00" itemprop="dateCreated datePublished" datetime="2019-08-11T23:07:00+08:00">2019-08-11</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-06 22:58:11" itemprop="dateModified" datetime="2020-04-06T22:58:11+08:00">2020-04-06</time>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>如果你的Android 应用不只在中国运营，还想国际化，比如服务一下美帝人民，那上Google Play是必须的。这里记录下 </p>
+</blockquote>
+<h3 id="必要的准备"><a href="#必要的准备" class="headerlink" title="必要的准备"></a>必要的准备</h3><ul>
+<li><input checked disabled type="checkbox"> 一个Gmail帐号，Google Play Console 登录只接受Google帐号</li>
+<li><input checked disabled type="checkbox"> 一张支持境外支付的信用卡（visa/mastercard），注册需要支付$25</li>
+<li><input checked disabled type="checkbox"> 文档理解-<a href="https://support.google.com/googleplay/android-developer/answer/9006925?hl=en" target="_blank" rel="noopener">Android APP bundle</a></li>
+<li><input checked disabled type="checkbox"> 文档理解-<a href="https://support.google.com/googleplay/android-developer/answer/7384423" target="_blank" rel="noopener">APP Signing</a> </li>
+<li><input disabled type="checkbox"> <del>软件著作权（不需要）</del></li>
+</ul>
+<h3 id="帐号注册"><a href="#帐号注册" class="headerlink" title="帐号注册"></a>帐号注册</h3><p>这个流程需要自带<strong>梯子</strong>，注册<a href="https://play.google.com/apps/publish/signup/" target="_blank" rel="noopener">地址</a>，按提示走一般没啥幺蛾子</p>
+<p><img src="http://doc.heyongjian.cn/hyj-doc-android-googleplay1.png" alt="image-20190811144655052"></p>
+<h3 id="App-Bundle"><a href="#App-Bundle" class="headerlink" title="App Bundle"></a>App Bundle</h3><p>Android生态过了10年，系统碎片化严重，应用越来越大。Google终于决定要有所改变了，在2018年中推出了Android App Bundle这个新的文件格式。期望来达到三个目的：1，动态分发，服务器根据用户机型动态下发对应资源的APK，减少应用包体积（落后iOS N年）；2，动态功能模块，比如支付，播放这种功能可以在使用时候动态加载；3，应用安全，集成App signing，保证APP安装和升级的合法性。使用也比较简单</p>
+<ul>
+<li>需要<a href="https://developer.android.com/studio" target="_blank" rel="noopener">Android Studio</a> 3.2+，命令行可以使用<a href="https://developer.android.com/studio/command-line/bundletool" target="_blank" rel="noopener">bundletool</a></li>
+<li>添加<a href="https://developer.android.com/studio/projects/dynamic-delivery" target="_blank" rel="noopener">Dynamic Delivery</a>支持</li>
+<li>用AS打一个<a href="https://developer.android.com/studio/run/#reference" target="_blank" rel="noopener">Android APP bundle</a>文件，在AS工具栏选build，选build bundles，文件格式是.aab</li>
+<li>测试<a href="https://developer.android.com/guide/app-bundle#bundletool" target="_blank" rel="noopener">aab bundle</a>文件</li>
+<li>上传到Google play签名</li>
+</ul>
+<p>一个20M的测试apk，使用app bundle经过google play下发到用户手机只有6m左右，美滋滋。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/08/11/2019/google%20play%20%E4%B8%8A%E8%BD%A6%E6%8C%87%E5%8D%97/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/03/2019/WorkManager%20IN%20/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="子路宇晟">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="子路宇晟的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/08/03/2019/WorkManager%20IN%20/" class="post-title-link" itemprop="url">WorkManager IN Jetpack</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-08-03 23:07:00" itemprop="dateCreated datePublished" datetime="2019-08-03T23:07:00+08:00">2019-08-03</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-06 23:00:10" itemprop="dateModified" datetime="2020-04-06T23:00:10+08:00">2020-04-06</time>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>WorkManager是Android Jetpack的架构组件（Architecture component）之一，官方对它的定义是用来管理Android后台作业。</p>
+</blockquote>
+<h3 id="简单上手"><a href="#简单上手" class="headerlink" title="简单上手"></a>简单上手</h3><p>1，添加<a href="https://developer.android.com/jetpack/androidx/releases/work#declaring_dependencies" target="_blank" rel="noopener">依赖</a></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在app的build.gradle里添加</span></span><br><span class="line"><span class="comment">//A： Kotlin + coroutines</span></span><br><span class="line">implementation <span class="string">'androidx.work:work-runtime-ktx:2.1.0'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//B： Java only</span></span><br><span class="line">implementation <span class="string">'androidx.work:work-runtime:2.1.0'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//C： optional - RxJava2 support</span></span><br><span class="line">implementation <span class="string">'androidx.work:work-rxjava2:2.1.0'</span></span><br></pre></td></tr></table></figure>
+
+<p>2，实现一个Worker</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 相当于一个Task</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CountNumWorker</span></span>(appContext: Context, workerParams: WorkerParameters) :   Worker(appContext, workerParams) &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> count = inputData.getInt(COUNT, <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> name = inputData.getString(NAME) ?: <span class="string">"bob"</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">doWork</span><span class="params">()</span></span>: Result &#123;</span><br><span class="line">        <span class="keyword">var</span> sum = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">0</span>..count) &#123;</span><br><span class="line">            sum += i</span><br><span class="line">            sleep()</span><br><span class="line">            Log.d(TAG, <span class="string">"-----<span class="variable">$name</span> count <span class="variable">$count</span> || sum <span class="variable">$sum</span>"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> Result.success()</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">sleep</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">val</span> time = Math.random() * <span class="number">400</span> + <span class="number">100</span></span><br><span class="line">        Log.d(CountNumWorker.TAG, <span class="string">"----<span class="variable">$time</span>"</span>)</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">           Thread.sleep(time.toLong(), <span class="number">0</span>)</span><br><span class="line">        &#125; <span class="keyword">catch</span> (e: InterruptedException) &#123;</span><br><span class="line">           Log.e(CountNumWorker.TAG, <span class="string">"----<span class="variable">$e</span>"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">val</span> TAG = <span class="string">"CountNumWorker"</span></span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">val</span> COUNT = <span class="string">"count"</span></span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">val</span> NAME = <span class="string">"name"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3，创建一个WorkRequest</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 定义怎么运行Worker，下面这个worker将只运行一次，对应的还有周期运行的PeriodicWorkRequestBuilder</span><br><span class="line">val workRequest &#x3D; OneTimeWorkRequestBuilder&lt;CountNumWorker2&gt;().build()</span><br></pre></td></tr></table></figure>
+
+<p>4，执行Worker</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 调用WorkManager单例开始worker</span></span><br><span class="line">WorkManager.getInstance().enqueue(workRequest)</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/08/03/2019/WorkManager%20IN%20/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/29/2019/%E8%87%AA%E5%AE%9A%E4%B9%89%E9%AA%8C%E8%AF%81%E7%A0%81%E8%BE%93%E5%85%A5View/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="子路宇晟">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="子路宇晟的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/07/29/2019/%E8%87%AA%E5%AE%9A%E4%B9%89%E9%AA%8C%E8%AF%81%E7%A0%81%E8%BE%93%E5%85%A5View/" class="post-title-link" itemprop="url">自定义验证码输入View</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-07-29 20:28:00" itemprop="dateCreated datePublished" datetime="2019-07-29T20:28:00+08:00">2019-07-29</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-06 23:01:38" itemprop="dateModified" datetime="2020-04-06T23:01:38+08:00">2020-04-06</time>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>我们现在要实现一个自定义输入框，显示用户接受到的验证码，大概是长这样</p>
+</blockquote>
+<img align="left" with="270" height="555" src="http://doc.heyongjian.cn/hyj-doc-android-customInputView.png">
+
+<h3 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h3><p>Q：需要有哪些功能？</p>
+<p>A：框代表的是验证码长度，这个需要可配置；只接收数字并可以编辑删除；输入和未输入有状态区别</p>
+<p>Q：可以怎么实现？</p>
+<p>A：直觉上是直接继承EditView，重写onDraw方法</p>
+<p>Q：为什么要继承EditView而不是TextView甚至是View？</p>
+<p>A：如果继承View，那控件的逻辑能力也需要自己实现，比如输入法的弹出和隐藏，输入法内容的接收需要重写onCreateInputConnection等方法。EditView比TextView多的能力是设置Selection光标位置，文字默认可编辑可定义输入法类型。</p>
+<p>综上：该自定义需求，系统控件的EditView功能上可以满足，只是需要自定义魔改下UI。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/07/29/2019/%E8%87%AA%E5%AE%9A%E4%B9%89%E9%AA%8C%E8%AF%81%E7%A0%81%E8%BE%93%E5%85%A5View/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/20/2019/Android%20cool%20animation%20%20/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="子路宇晟">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="子路宇晟的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/07/20/2019/Android%20cool%20animation%20%20/" class="post-title-link" itemprop="url">Android cool animation</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-07-20 22:37:00" itemprop="dateCreated datePublished" datetime="2019-07-20T22:37:00+08:00">2019-07-20</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-06 23:03:06" itemprop="dateModified" datetime="2020-04-06T23:03:06+08:00">2020-04-06</time>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>动画用来描述一个非静态的场景。在android软件中有两种形式，1，算出初态和终态之间的插值，并在一段时间渲染播放这些状态，如animation，animator，layout transition。2，在一段时间内算法不断的绘制状态，这些状态的差异和连贯性在视觉里形成动画。一般有自定义view animation，这就是本文要记录的点。</p>
+</blockquote>
+<h3 id="常见方案"><a href="#常见方案" class="headerlink" title="常见方案"></a>常见方案</h3><p>自定义视图动画，往往是因为常规的属性动画已经无法满足设计师要求了。常见的也有三种：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>效果上限</th>
+<th>实现复杂度</th>
+<th>工程依赖</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Canvas</td>
+<td>中等</td>
+<td>中等</td>
+<td>无</td>
+</tr>
+<tr>
+<td>SVG</td>
+<td>中等</td>
+<td>需要专业软件制作SVG</td>
+<td>无</td>
+</tr>
+<tr>
+<td>Lottie</td>
+<td>高（anything）</td>
+<td>需要AE软件输出动画Json</td>
+<td>需要依赖Airbnb lib</td>
+</tr>
+<tr>
+<td>SVGA</td>
+<td>中高</td>
+<td>需要AE软件</td>
+<td>需要集成播放lib</td>
+</tr>
+</tbody></table>
+<p>可以看出想要更好的效果，投入必然需要更多：0。脑补了下要实现的操作完成动画用Canvas应该就够了。当然没有AE设计师和自己也不会sketch也是事实。</p>
+<h3 id="怎么搞"><a href="#怎么搞" class="headerlink" title="怎么搞"></a>怎么搞</h3><p>1，得有个自定义view，复写onDraw 就有Canvas了</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AnimationView</span> : <span class="type">View &#123;</span></span></span><br><span class="line">    <span class="keyword">constructor</span>(context: Context?) : <span class="keyword">super</span>(context)</span><br><span class="line">    <span class="keyword">constructor</span>(context: Context?, attrs: AttributeSet?) : <span class="keyword">super</span>(context, attrs)</span><br><span class="line">    <span class="keyword">constructor</span>(context: Context?, attrs: AttributeSet?, defStyleAttr: <span class="built_in">Int</span>) : <span class="keyword">super</span>(context, attrs, defStyleAttr)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDraw</span><span class="params">(canvas: <span class="type">Canvas</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onDraw(canvas)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2，有画布，还得需要笔</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">lateinit</span> <span class="keyword">var</span> mCirclePaint: Paint</span><br><span class="line">mCirclePaint = Paint(Paint.ANTI_ALIAS_FLAG) <span class="comment">// 抗锯齿，线条流畅</span></span><br><span class="line">mCirclePaint.apply &#123;</span><br><span class="line">            isDither = <span class="literal">true</span>                      <span class="comment">// 动态采样</span></span><br><span class="line">            style = Paint.Style.STROKE           <span class="comment">// 线条样式</span></span><br><span class="line">            color = Color.parseColor(<span class="string">"#6C9CFF"</span>)  <span class="comment">// 画笔颜色</span></span><br><span class="line">            strokeCap = Paint.Cap.ROUND          <span class="comment">// 线头形状</span></span><br><span class="line">            strokeWidth = <span class="number">30f</span>                    <span class="comment">// 线条宽度</span></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/07/20/2019/Android%20cool%20animation%20%20/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/12/2019/Android%20NDK%20%E4%B8%8A%E6%89%8B%E6%8C%87%E5%8D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="子路宇晟">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="子路宇晟的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/07/12/2019/Android%20NDK%20%E4%B8%8A%E6%89%8B%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">Android NDK 上手指南</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
 
               
                 
@@ -243,29 +679,13 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-07-21 19:06:00" itemprop="dateModified" datetime="2019-07-21T19:06:00+08:00">2019-07-21</time>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-06 23:04:21" itemprop="dateModified" datetime="2020-04-06T23:04:21+08:00">2020-04-06</time>
               </span>
             
           
 
           
-            <span id="/2019/07/12/2019/Android NDK 上手指南/" class="post-meta-item leancloud_visitors" data-flag-title="Android NDK 上手指南">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-            
-  
-  
-          <br>
 
         </div>
       </header>
@@ -276,27 +696,26 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
-            <p>
-              
-对于大部分android应用开发者来说，NDK开发是陌生的，很多时候只是会引用到一些so库需要写个aidl来JNI调用。最近做的一个app有媒体播放和音效处理，所以就需要上手一下NDK开发。
-
-NDK的作用NDK是一套开发工具，通过它，就可以在android应用里调用并调试C和C++代码，特定场景下就可以做的更多更好：
-
-需要密集计算的，如游戏或物理仿真模拟，如android早期实现实时blur效果
-复用我们已经封装好的C和C++库，如io调度，引擎渲染库
-
-环境配置为了能调试Native代码，以下组件是必须的：
-
-AndroidStudio（3.4.1）和SDK
-Android NDK：native开发全家桶
-CMake：外部编译工具，可以搭配Gradle来编译原生库。ndk-build
-              ...
-            </p>
+          <blockquote>
+<p>对于大部分android应用开发者来说，NDK开发是陌生的，很多时候只是会引用到一些so库需要写个aidl来JNI调用。最近做的一个app有媒体播放和音效处理，所以就需要上手一下NDK开发。</p>
+</blockquote>
+<h3 id="NDK的作用"><a href="#NDK的作用" class="headerlink" title="NDK的作用"></a>NDK的作用</h3><p>NDK是一套开发工具，通过它，就可以在android应用里调用并调试C和C++代码，特定场景下就可以做的更多更好：</p>
+<ul>
+<li>需要密集计算的，如游戏或物理仿真模拟，如android早期实现实时blur效果</li>
+<li>复用我们已经封装好的C和C++库，如io调度，引擎渲染库</li>
+</ul>
+<h3 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h3><p>为了能调试Native代码，以下组件是必须的：</p>
+<ul>
+<li>AndroidStudio（3.4.1）和SDK</li>
+<li>Android NDK：native开发全家桶</li>
+<li>CMake：外部编译工具，可以搭配Gradle来编译原生库。ndk-build的备胎，已转正</li>
+<li>LLDB：用调试原生代码的工具</li>
+</ul>
+<h3 id="认识小伙伴"><a href="#认识小伙伴" class="headerlink" title="认识小伙伴"></a>认识小伙伴</h3><h4 id="ndk-build"><a href="#ndk-build" class="headerlink" title="ndk-build"></a>ndk-build</h4><p>看过android源码编译的会有印象，编译模块都是通过make命令来执行android.mk和Application.mk文件来构建的。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/07/12/2019/Android NDK 上手指南/#more" rel="contents">
+              <a class="btn" href="/2019/07/12/2019/Android%20NDK%20%E4%B8%8A%E6%89%8B%E6%8C%87%E5%8D%97/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -309,10 +728,10 @@ CMake：外部编译工具，可以搭配Gradle来编译原生库。ndk-build
     
     
     
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
@@ -320,50 +739,41 @@ CMake：外部编译工具，可以搭配Gradle来编译原生库。ndk-build
   </article>
 
     
-      
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/2019/String%20to%20JsonObject/">
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://heyongjian.com/2019/06/28/2019/String to JsonObject/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="银时">
-      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师。">
-      <meta itemprop="image" content="/images/avatar.jpg">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="子路宇晟">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="子路宇晟的博客">
     </span>
       <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/28/2019/String to JsonObject/" class="post-title-link" itemprop="url">String to JsonObject</a>
-              
+        <h1 class="post-title" itemprop="name headline">
             
-          </h1>
-        
+            <a href="/2019/06/28/2019/String%20to%20JsonObject/" class="post-title-link" itemprop="url">String to JsonObject</a>
+          
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               
                 
               
 
-              <time title="Created: 2019-06-28 11:28:00" itemprop="dateCreated datePublished" datetime="2019-06-28T11:28:00+08:00">2019-06-28</time>
+              <time title="Created: 2019-06-28 23:28:00" itemprop="dateCreated datePublished" datetime="2019-06-28T23:28:00+08:00">2019-06-28</time>
             </span>
           
             
@@ -373,29 +783,13 @@ CMake：外部编译工具，可以搭配Gradle来编译原生库。ndk-build
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-07-07 17:34:18" itemprop="dateModified" datetime="2019-07-07T17:34:18+08:00">2019-07-07</time>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-06 23:06:06" itemprop="dateModified" datetime="2020-04-06T23:06:06+08:00">2020-04-06</time>
               </span>
             
           
 
           
-            <span id="/2019/06/28/2019/String to JsonObject/" class="post-meta-item leancloud_visitors" data-flag-title="String to JsonObject">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-            
-  
-  
-          <br>
 
         </div>
       </header>
@@ -406,18 +800,23 @@ CMake：外部编译工具，可以搭配Gradle来编译原生库。ndk-build
     <div class="post-body" itemprop="articleBody">
 
       
-          
-            <p>
-              
-今天搞了一天JsonObject，心态爆炸，记录一下，细节还是挺好玩的
+          <p>JsonObject</p>
+<blockquote>
+<p>今天搞了一天JsonObject，心态爆炸，记录一下，细节还是挺好玩的</p>
+</blockquote>
+<h3 id="String-to-JsonObject"><a href="#String-to-JsonObject" class="headerlink" title="String to JsonObject"></a>String to JsonObject</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JsonParser</span></span><br><span class="line"><span class="keyword">val</span> json = <span class="string">"&#123;"</span>name<span class="string">":"</span>bob<span class="string">","</span>age<span class="string">":"</span><span class="number">18</span><span class="string">","</span>score<span class="string">":&#123;"</span>eng<span class="string">":"</span>g<span class="string">","</span>fre<span class="string">":"</span>h<span class="string">"&#125;&#125;"</span></span><br><span class="line"><span class="keyword">val</span> jsonObject = JsonParser().parse(json).asJsonObject</span><br><span class="line"><span class="keyword">val</span> name = jsonObject.<span class="keyword">get</span>(<span class="string">"name"</span>).asString <span class="comment">// bob</span></span><br><span class="line"><span class="keyword">val</span> scoreObject = jsonObject.getAsJsonObject(<span class="string">"score"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// fromJson</span></span><br><span class="line"><span class="keyword">val</span> json = <span class="string">"&#123;"</span>name<span class="string">":"</span>bob<span class="string">","</span>age<span class="string">":"</span><span class="number">18</span><span class="string">","</span>score<span class="string">":&#123;"</span>eng<span class="string">":"</span>g<span class="string">","</span>fre<span class="string">":"</span>h<span class="string">"&#125;&#125;"</span></span><br><span class="line"><span class="keyword">val</span> jsonObject = Gson().fromJson&lt;JsonObject&gt;(json, JsonObject::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>)</span></span><br><span class="line"><span class="keyword">val</span> name = jsonObject.<span class="keyword">get</span>(<span class="string">"age"</span>).asString <span class="comment">// 18</span></span><br></pre></td></tr></table></figure>
 
-String to JsonObject// JsonParserval json = "&#123;"name":"bob","age":"18","score":&#123;"eng":"g","fre":"h"&#125;&#125;"val jsonObject = JsonParser().parse(json).asJsonObjectval name = jsonObject.get("name").asString // bobval scoreObject = jsonObject.getAsJsonObject("score")// fromJsonval json = "&#123;"name"
-              ...
-            </p>
+<h3 id="isJsonPrimitive"><a href="#isJsonPrimitive" class="headerlink" title="isJsonPrimitive"></a>isJsonPrimitive</h3><p>区别于private私有，primitive是元数据的意思，Json数据会被Gson解析成一棵LinkedTreeMap，tree上的node都是JsonElement，它有4个子类，JsonObject，JsonArray，JsonPrimitive，JsonNull。叶子节点一定是元数据JsonPrimitive或JsonNull。如果前端把一个json JSON.stringify塞到一个key里，那它就是一个叶子节点JsonPrimitive。如果需要把这个叶子节点还原成json，则需要额外parse。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> json = <span class="string">"&#123;"</span>name<span class="string">":"</span>bob<span class="string">","</span>age<span class="string">":"</span><span class="number">18</span><span class="string">","</span>score<span class="string">":&#123;"</span>eng<span class="string">":"</span>g<span class="string">","</span>fre<span class="string">":"</span>h<span class="string">"&#125;&#125;"</span></span><br><span class="line"><span class="keyword">val</span> jsonObject = JsonParser().parse(json).asJsonObject</span><br><span class="line"><span class="keyword">val</span> scoreObject = jsonObject.getAsJsonObject(<span class="string">"score"</span>)</span><br><span class="line">jsonObject.addProperty(<span class="string">"scorePri"</span>, scoreObject.toString())</span><br><span class="line">println(jsonObject) <span class="comment">// &#123;"name":"name","age":"age","score":&#123;"eng":"g","fre":"h"&#125;,"scorePri":"&#123;\"eng\":\"g\",\"fre\":\"h\"&#125;"&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> scorePriObject = jsonObject.getAsJsonPrimitive(<span class="string">"scorePri"</span>).asString</span><br><span class="line"><span class="keyword">val</span> eng = JsonParser().parse(scorePriObject).asJsonObject.<span class="keyword">get</span>(<span class="string">"eng"</span>).asString <span class="comment">// g</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="safe-opration"><a href="#safe-opration" class="headerlink" title="safe opration"></a>safe opration</h3><p>硬解json不确定key是不是null，kotlin可以用？操作符确保安全。取出来的数据也可以用isXXX来预先检查数据类型。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// null</span></span><br><span class="line"><span class="keyword">val</span> json = <span class="string">"&#123;"</span>name<span class="string">":"</span>bob<span class="string">","</span>age<span class="string">":"</span><span class="number">18</span><span class="string">","</span>score<span class="string">":&#123;"</span>eng<span class="string">":"</span>g<span class="string">","</span>fre<span class="string">":"</span>h<span class="string">"&#125;&#125;"</span></span><br><span class="line"><span class="keyword">val</span> jsonObject = JsonParser().parse(json).asJsonObject</span><br><span class="line"><span class="keyword">val</span> name = jsonObject.<span class="keyword">get</span>(<span class="string">"hobby"</span>)?.asString <span class="comment">// null</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// check type isXXX</span></span><br><span class="line">JsonElement.isJsonArray</span><br><span class="line">JsonElement.isJsonObject</span><br><span class="line">JsonElement.isJsonPrimitive</span><br><span class="line">JsonElement.isJsonNull</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/06/28/2019/String to JsonObject/#more" rel="contents">
+              <a class="btn" href="/2019/06/28/2019/String%20to%20JsonObject/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -430,10 +829,10 @@ String to JsonObject// JsonParserval json = "&#123;"name":"bob","age":"18","scor
     
     
     
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
@@ -441,44 +840,35 @@ String to JsonObject// JsonParserval json = "&#123;"name":"bob","age":"18","scor
   </article>
 
     
-      
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/18/2019/2018/">
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://heyongjian.com/2019/04/18/2019/2018/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="银时">
-      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师。">
-      <meta itemprop="image" content="/images/avatar.jpg">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="子路宇晟">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="子路宇晟的博客">
     </span>
       <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/18/2019/2018/" class="post-title-link" itemprop="url">2018</a>
-              
+        <h1 class="post-title" itemprop="name headline">
             
-          </h1>
-        
+            <a href="/2019/04/18/2019/2018/" class="post-title-link" itemprop="url">2018</a>
+          
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               
                 
@@ -494,29 +884,13 @@ String to JsonObject// JsonParserval json = "&#123;"name":"bob","age":"18","scor
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-07-07 17:25:01" itemprop="dateModified" datetime="2019-07-07T17:25:01+08:00">2019-07-07</time>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-06 23:08:03" itemprop="dateModified" datetime="2020-04-06T23:08:03+08:00">2020-04-06</time>
               </span>
             
           
 
           
-            <span id="/2019/04/18/2019/2018/" class="post-meta-item leancloud_visitors" data-flag-title="2018">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-            
-  
-  
-          <br>
 
         </div>
       </header>
@@ -527,24 +901,22 @@ String to JsonObject// JsonParserval json = "&#123;"name":"bob","age":"18","scor
     <div class="post-body" itemprop="articleBody">
 
       
-          
-            <p>
-              
-今年经历了很多，很多的第一次，感谢生活让我丰满
-
-工作作为移动端Leader，写的代码少了，需要思考的东西变多。主要参与并推进了这些事：
-
-外卖敏捷小组EO，并上线
-外卖小组和移动端OKR推进未落实
-再惠合伙人App RN版上线
-Flutter技术栈引入，并重构再惠合伙人App
-工程师文化建设，消除iOS，android工程师意识隔阂；组织大家技术分享和Blog输出
-
-OKR从结果上来看并没啥用，是值得深思的事儿。敏捷小组流程引入好处是产品开发节奏更好控制，坏处是工程师积极性有负面影响。以前产品一有问题，大家不论前后端都会扑上去看，分了以后就没见过这个画面了。
-生活两人在一起久了，就会把自己最真实的一面毫无保留的曝露出来，这时难免需要磨合并重新了解一下彼此。日常点滴，都是以后的回忆。
-3月
-              ...
-            </p>
+          <blockquote>
+<p>今年经历了很多，很多的第一次，感谢生活让我丰满</p>
+</blockquote>
+<h2 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h2><p>作为移动端Leader，写的代码少了，需要思考的东西变多。主要参与并推进了这些事：</p>
+<ul>
+<li>外卖敏捷小组EO，并上线</li>
+<li>外卖小组和移动端OKR推进未落实</li>
+<li>再惠合伙人App RN版上线</li>
+<li>Flutter技术栈引入，并重构再惠合伙人App</li>
+<li>工程师文化建设，消除iOS，android工程师意识隔阂；组织大家技术分享和Blog输出</li>
+</ul>
+<p>OKR从结果上来看并没啥用，是值得深思的事儿。敏捷小组流程引入好处是产品开发节奏更好控制，坏处是工程师积极性有负面影响。以前产品一有问题，大家不论前后端都会扑上去看，分了以后就没见过这个画面了。</p>
+<h2 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h2><p>两人在一起久了，就会把自己最真实的一面毫无保留的曝露出来，这时难免需要磨合并重新了解一下彼此。日常点滴，都是以后的回忆。</p>
+<p>3月和女票，合租室友一块去陈行公园玩，春风和煦，好不放松，虽然是个小公园，但由于各种原因，竟然是上半年唯一去的公园。</p>
+<p>4月清明回家扫墓，自从毕业后就没回去扫墓了，对于普通来说人会分两次消失，一次是肉体死亡，在物理上被这个世界除名，一次精神上死亡，当所有人记忆中都没有这个人时，他的存在也就被彻底抹去了。清明就是这样一种形式，给自己的亲人拔拔草，松松土，记忆有份传承。</p>
+<p>5月女票爸比生日，我们合伙买了个大金链子贺寿，未来女婿好感值+1。顺便去看了一下装修公司，对比下来选了一家全包的。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -561,10 +933,10 @@ OKR从结果上来看并没啥用，是值得深思的事儿。敏捷小组流�
     
     
     
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
@@ -572,72 +944,57 @@ OKR从结果上来看并没啥用，是值得深思的事儿。敏捷小组流�
   </article>
 
     
-      
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/16/2019/Fish%20Redux%20%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://heyongjian.com/2019/03/16/2019/Fish redux/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="银时">
-      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师。">
-      <meta itemprop="image" content="/images/avatar.jpg">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="子路宇晟">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="子路宇晟的博客">
     </span>
       <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/16/2019/Fish redux/" class="post-title-link" itemprop="url">Fish Redux 使用指南</a>
-              
+        <h1 class="post-title" itemprop="name headline">
             
-          </h1>
-        
+            <a href="/2019/03/16/2019/Fish%20Redux%20%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">Fish Redux 使用指南</a>
+          
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               
                 
               
 
-              <time title="Created: 2019-03-16 20:41:00 / Modified: 20:46:11" itemprop="dateCreated datePublished" datetime="2019-03-16T20:41:00+08:00">2019-03-16</time>
+              <time title="Created: 2019-03-16 20:41:00" itemprop="dateCreated datePublished" datetime="2019-03-16T20:41:00+08:00">2019-03-16</time>
             </span>
           
             
 
             
-          
-
-          
-            <span id="/2019/03/16/2019/Fish redux/" class="post-meta-item leancloud_visitors" data-flag-title="Fish Redux 使用指南">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-06 23:10:01" itemprop="dateModified" datetime="2020-04-06T23:10:01+08:00">2020-04-06</time>
               </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
             
-  
-  
-          <br>
+          
+
+          
 
         </div>
       </header>
@@ -648,22 +1005,21 @@ OKR从结果上来看并没啥用，是值得深思的事儿。敏捷小组流�
     <div class="post-body" itemprop="articleBody">
 
       
-          
-            <p>
-              为啥要使用Fish redux1，年前就被咸鱼大佬安利，种草已久2，想要对比Flutter Redux，学习体会它带来的优越性3，参与并支持一下国产，现在Flutter生态还在早期
-准备工作1，Redux.js 文档
-2，Fish Redux 文档
-3，Pub使用文档
-萌新（没接触过Redux）：建议按顺序看一遍，磨刀不费砍柴功，扎实的理论基础是很有用处的
-熟练玩家（Demo用过Redux）：建议把Fish Redux文档的简介和Component看下，尤其是Component，这是它独特的地方
-老司机（项目中用过Redux.js或Flutter Redux）：可以重点看下Component中的Effect，Dependencies，Page，还有Adapter
-在看文档时，可以把Fish 
-              ...
-            </p>
+          <h1 id="FishRedux-使用"><a href="#FishRedux-使用" class="headerlink" title="FishRedux 使用"></a>FishRedux 使用</h1><h3 id="为啥要使用Fish-redux"><a href="#为啥要使用Fish-redux" class="headerlink" title="为啥要使用Fish redux"></a>为啥要使用Fish redux</h3><ul>
+<li>年前就被咸鱼大佬安利，种草已久</li>
+<li>想要对比Flutter Redux，学习体会它带来的优越性</li>
+<li>支持一下国产，现在Flutter生态还在早期</li>
+</ul>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>1，Redux.js 文档</p>
+<p>2，Fish Redux 文档</p>
+<p>3，Pub使用文档</p>
+<p>萌新（没接触过Redux）：建议按顺序看一遍，扎实的理论基础是很有用处的</p>
+<p>熟练玩家（Demo用过Redux）：建议把Fish Redux文档的简介和Component看下，尤其是Component，这是它独特的地方</p>
+<p>老司机（项目中用过Redux.js或Flutter Redux）：可以重点看下Component中的Effect，Dependencies，Page，还有Adapter</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/03/16/2019/Fish redux/#more" rel="contents">
+              <a class="btn" href="/2019/03/16/2019/Fish%20Redux%20%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -676,10 +1032,10 @@ OKR从结果上来看并没啥用，是值得深思的事儿。敏捷小组流�
     
     
     
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
@@ -687,44 +1043,171 @@ OKR从结果上来看并没啥用，是值得深思的事儿。敏捷小组流�
   </article>
 
     
-      
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/28/2018/%E5%90%88%E4%BC%99%E4%BA%BAFlutter%E9%87%8D%E6%9E%84%E6%80%BB%E7%BB%93/">
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://heyongjian.com/2018/12/09/2018/Flutter redux 进阶/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="银时">
-      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师。">
-      <meta itemprop="image" content="/images/avatar.jpg">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="子路宇晟">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="子路宇晟的博客">
     </span>
       <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/09/2018/Flutter redux 进阶/" class="post-title-link" itemprop="url">Flutter Redux 进阶</a>
-              
+        <h1 class="post-title" itemprop="name headline">
             
-          </h1>
-        
+            <a href="/2018/12/28/2018/%E5%90%88%E4%BC%99%E4%BA%BAFlutter%E9%87%8D%E6%9E%84%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">Flutter 重写app总结</a>
+          
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
+              <span class="post-meta-item-text">Posted on</span>
+
               
-                <span class="post-meta-item-text">Posted on</span>
+                
               
+
+              <time title="Created: 2018-12-28 00:16:00" itemprop="dateCreated datePublished" datetime="2018-12-28T00:16:00+08:00">2018-12-28</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-06 23:26:28" itemprop="dateModified" datetime="2020-04-06T23:26:28+08:00">2020-04-06</time>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="重构原因"><a href="#重构原因" class="headerlink" title="重构原因"></a>重构原因</h2><h3 id="技术栈原因"><a href="#技术栈原因" class="headerlink" title="技术栈原因"></a>技术栈原因</h3><ul>
+<li>RN不足之处<ul>
+<li>开发体验差，android模拟器卡，真机会因为各种原因无法调试运行</li>
+<li>开源组件质量良莠不齐，经常break change，我们几次尝试升大版本都失败</li>
+<li>理论性能上限低，组件最终调用的是native的，安卓系统分布非常碎片化，大量的platform判断逻辑，兼容适配的成本高，表现很难统一。和Native通信只能是异步模型，导致如RecycleView这种高性能列表组件无法使用。动画实现也不理想。</li>
+</ul>
+</li>
+<li>Flutter理论优势<ul>
+<li>Flutter继承了RN衣钵，但更进一步。它自己实现了UI引擎，从而真的可以是write once，run anywhere，是的，除了iOS，android，它还能写前端页面，Google未来融合Chromebook和Android的<a href="https://en.wikipedia.org/wiki/Google_Fuchsia" target="_blank" rel="noopener">Fuchsia</a>系统是运行Flutter app的。</li>
+<li>Dev友好，开发是Jit模式，毫秒级hot reload，release是Aot，针对ABI优化编译成机器码，性能好</li>
+<li>Flutter引擎没有历史包袱，直接面向最新的Vulkan和Metal封装，渲染效率更高。升级没有依赖，引擎维护者也可以做更彻底的优化。</li>
+</ul>
+</li>
+</ul>
+<h3 id="业务原因"><a href="#业务原因" class="headerlink" title="业务原因"></a>业务原因</h3><ul>
+<li>公司业务战略调整，ME暂时没有高优先级的业务需求。正所谓天晴时修房顶，这时候重构项目是科学的。</li>
+<li>可以还技术债，也可以提高小伙伴的专业技能，为后面可能到来的业务挑战做好准备。</li>
+</ul>
+<h2 id="重构目标"><a href="#重构目标" class="headerlink" title="重构目标"></a>重构目标</h2><ul>
+<li>软件指标（帧数，内存，CPU）<ul>
+<li>帧数平均有<strong>10%</strong>提升</li>
+<li>运行内存有<strong>10%</strong>下降</li>
+<li>运行CPU有1<strong>0%</strong>下降</li>
+</ul>
+</li>
+<li>业务指标（人天效能，稳定度）<ul>
+<li>人天效能（对比RN）有<strong>50%</strong>以上提升</li>
+<li>核心模块高于<strong>50%</strong>的单元测试覆盖率</li>
+<li>上线前人均Bug数不大于<strong>5</strong>，上线后Crash率小于0.05%</li>
+</ul>
+</li>
+</ul>
+<h2 id="重构结果"><a href="#重构结果" class="headerlink" title="重构结果"></a>重构结果</h2><h3 id="业务表现"><a href="#业务表现" class="headerlink" title="业务表现"></a>业务表现</h3><ul>
+<li>计划履行率<ul>
+<li>开发前有比较详细的任务分工，功能细化到人天，<strong>95%</strong>的story都能按期完成，开发过程可计划，可调控。</li>
+<li>开发计划表：<a href="https://shimo.im/sheet/gsWNVfO3BpMN9bGS/yWUJN" target="_blank" rel="noopener">https://shimo.im/sheet/gsWNVfO3BpMN9bGS/yWUJN</a></li>
+</ul>
+</li>
+<li>人均效能<ul>
+<li>RN的人天总数是3*（2018/8/23-2017/11/15）=843人天，</li>
+<li>Flutter是6<em>（2018/11/30-2018/9/8）=498人天，提升大概是843/498 -1 = *</em>69.2%**</li>
+</ul>
+</li>
+<li>单元测试<ul>
+<li>我们还实现了<strong>50%</strong>以上的单元测试覆盖率，此处会有截图（11/27前完成）</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/12/28/2018/%E5%90%88%E4%BC%99%E4%BA%BAFlutter%E9%87%8D%E6%9E%84%E6%80%BB%E7%BB%93/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/09/2018/Flutter%20Theme/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="子路宇晟">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="子路宇晟的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/12/09/2018/Flutter%20Theme/" class="post-title-link" itemprop="url">Fish Redux 进阶</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
 
               
                 
@@ -740,29 +1223,13 @@ OKR从结果上来看并没啥用，是值得深思的事儿。敏捷小组流�
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-12-22 21:34:39" itemprop="dateModified" datetime="2018-12-22T21:34:39+08:00">2018-12-22</time>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-06 23:15:30" itemprop="dateModified" datetime="2020-04-06T23:15:30+08:00">2020-04-06</time>
               </span>
             
           
 
           
-            <span id="/2018/12/09/2018/Flutter redux 进阶/" class="post-meta-item leancloud_visitors" data-flag-title="Flutter Redux 进阶">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-            
-  
-  
-          <br>
 
         </div>
       </header>
@@ -773,24 +1240,20 @@ OKR从结果上来看并没啥用，是值得深思的事儿。敏捷小组流�
     <div class="post-body" itemprop="articleBody">
 
       
-          
-            <p>
-              目的
-认识Flutter Redux局限性
-引入Middleware必要性
-全方位集成UT
-
-Flutter Redux初代实现局限性UT不好覆盖
-页面
-
-初代实现一个页面的结构是这样的：
-class XXXScreen extends StatefulWidget &#123;  @override  _XXXScreenState createState() =&gt; _XXXScreenState();&#125;class _XXXScreenState extends State&lt;XXXScreen&gt; &#123;  @override  Widget build(BuildContext context) &#123;    return StoreConnecto
-              ...
-            </p>
+          <h1 id="Flutter-Theme"><a href="#Flutter-Theme" class="headerlink" title="Flutter Theme"></a>Flutter Theme</h1><blockquote>
+<p>主题（Theme）在软件开发里属于高级追求，Mac OS经过多年演化后终于在macOS Mojave中加入深色主题，可以让你做起事来更专注。</p>
+</blockquote>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><ul>
+<li>取悦用户，白菜萝卜给用户更多个性化选择</li>
+<li>提升效率，比如深色主题让人更专注，演示模式让内容更突出</li>
+</ul>
+<h2 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h2><p>主题（Theme）一般是由color，BG image，fontSize，font等资源组成</p>
+<h3 id="Android-iOS"><a href="#Android-iOS" class="headerlink" title="Android/iOS"></a>Android/iOS</h3><p>android应用资源都在资源路径src/res下，style相关改动可以通过activity的setTheme来切换，图片换肤一般会将资源打成一个不带launcher icon的Apk，用Resource实例去加载特定资源；而iOS相应的配置信息都预先写在plist文件里，通过一个ThemeManager实例来控制应用使用哪套资源配置。</p>
+<h3 id="Flutter"><a href="#Flutter" class="headerlink" title="Flutter"></a>Flutter</h3><p>MaterialApp组件接受一个theme参数，通过改变theme的数据，组件会实时重新渲染</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2018/12/09/2018/Flutter redux 进阶/#more" rel="contents">
+              <a class="btn" href="/2018/12/09/2018/Flutter%20Theme/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -803,10 +1266,10 @@ class XXXScreen extends StatefulWidget &#123;  @override  _XXXScreenState create
     
     
     
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
@@ -814,647 +1277,11 @@ class XXXScreen extends StatefulWidget &#123;  @override  _XXXScreenState create
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://heyongjian.com/2018/11/24/2018/Flutter redux/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="银时">
-      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师。">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="子路宇晟的博客">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/11/24/2018/Flutter redux/" class="post-title-link" itemprop="url">Flutter Redux</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-11-24 22:45:00" itemprop="dateCreated datePublished" datetime="2018-11-24T22:45:00+08:00">2018-11-24</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-12-22 21:32:39" itemprop="dateModified" datetime="2018-12-22T21:32:39+08:00">2018-12-22</time>
-              </span>
-            
-          
-
-          
-            <span id="/2018/11/24/2018/Flutter redux/" class="post-meta-item leancloud_visitors" data-flag-title="Flutter Redux">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-            
-  
-  
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <p>
-              目的
-Redux是什么
-Redux在Flutter里的作用
-Flutter里如何使用Redux
-
-效果Flutter App本质上是一个单页面应用，需要我们自己维护State，Model，Route。随着业务的增加，这些工作会变得很复杂，也不可预测，复现一个bug会很困难，跨组件传递数据也很难。Redux思想继承于Flux，通过合理的约定让业务分层解耦，数据的变动可以预测，可以重现。Redux有三个原则：
-1.单一的数据来源（App统一的Store）
-2.状态State是只读的（数据不能直接修改，只能用过约定的Action触发，Reduce修改）
-3.数据改动须是纯函数（这些纯函数叫Reducer，定义了如何修改Store，由Action触发）
-原理Redux（3.0.0）是作者用Dart把
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/11/24/2018/Flutter redux/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://heyongjian.com/2018/11/08/2018/Flutter Bottom Navigation Bar/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="银时">
-      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师。">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="子路宇晟的博客">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/11/08/2018/Flutter Bottom Navigation Bar/" class="post-title-link" itemprop="url">Flutter BottomNavigationBar</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-11-08 22:28:00" itemprop="dateCreated datePublished" datetime="2018-11-08T22:28:00+08:00">2018-11-08</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-12-22 21:39:36" itemprop="dateModified" datetime="2018-12-22T21:39:36+08:00">2018-12-22</time>
-              </span>
-            
-          
-
-          
-            <span id="/2018/11/08/2018/Flutter Bottom Navigation Bar/" class="post-meta-item leancloud_visitors" data-flag-title="Flutter BottomNavigationBar">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-            
-  
-  
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <p>
-              
-底部导航是常见的APP布局方式，实际上我自己常用的app都是底部导航的。Android和iOS都有官方组件可供使用。Flutter也有，使用时有踩坑，这里记录一下。
-
-一般用法普通实现:
-BottomNavigationBar botttomNavBar = BottomNavigationBar(  items: [    BottomNavigationBarItem(icon: Icon(Icons.code), title: Text(&apos;code&apos;)),    BottomNavigationBarItem(icon: Icon(Icons.add), title: Text(&apos;add&apos;)),    BottomNavigationBarIt
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/11/08/2018/Flutter Bottom Navigation Bar/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://heyongjian.com/2018/10/15/2018/Flutter Theme/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="银时">
-      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师。">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="子路宇晟的博客">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/10/15/2018/Flutter Theme/" class="post-title-link" itemprop="url">Flutter Theme</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-10-15 14:51:00" itemprop="dateCreated datePublished" datetime="2018-10-15T14:51:00+08:00">2018-10-15</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-12-22 21:32:45" itemprop="dateModified" datetime="2018-12-22T21:32:45+08:00">2018-12-22</time>
-              </span>
-            
-          
-
-          
-            <span id="/2018/10/15/2018/Flutter Theme/" class="post-meta-item leancloud_visitors" data-flag-title="Flutter Theme">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-            
-  
-  
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <p>
-              
-主题（Theme）在软件开发里 属于高级追求，Mac OS经过多年演化后终于在macOS Mojave中加入深色主题，可以让你做起事来更专注。
-
-作用
-取悦用户，白菜萝卜给用户更多个性化选择
-提升效率，比如深色主题让人更专注，演示模式让内容更突出
-
-组成主题（Theme）一般是由color，BG image，fontSize，font等资源组成
-Android/iOSandroid应用资源都在资源路径src/res下，style相关改动可以通过activity的setTheme来切换，图片换肤一般会将资源打成一个不带launcher icon的Apk，用Resource实例去加载特定资源；而iOS相应的配置信息都预先写在plist文件里，通过一个ThemeManager实例来控制应用使用哪
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/10/15/2018/Flutter Theme/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://heyongjian.com/2018/10/08/2018/Flutter setup/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="银时">
-      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师。">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="子路宇晟的博客">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/10/08/2018/Flutter setup/" class="post-title-link" itemprop="url">Flutter setup</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-10-08 21:20:00" itemprop="dateCreated datePublished" datetime="2018-10-08T21:20:00+08:00">2018-10-08</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-12-22 21:26:43" itemprop="dateModified" datetime="2018-12-22T21:26:43+08:00">2018-12-22</time>
-              </span>
-            
-          
-
-          
-            <span id="/2018/10/08/2018/Flutter setup/" class="post-meta-item leancloud_visitors" data-flag-title="Flutter setup">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-            
-  
-  
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <p>
-              
-万事开头难，先把环境搞起来
-
-配置镜像flutter还在墙外，为了我们墙内人们能顺畅使用，官方提供了一个临时镜像：
-
-在命令行只能更新当前会话的PATH变量，写在.bash_profile(bash) .zshrc(zsh) 可以永久修改此变量
-
-export PUB_HOSTED_URL=https://pub.flutter-io.cnexport FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
-获取Flutter SDK
-去flutter官网下载其最新的安装包，推荐下载Beta的，不过下好了也可以切分支，下载地址
-
-解压文件到开发目录
-
-
-cd ~/developmentunzip ~/Downloads/flutter_
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/10/08/2018/Flutter setup/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://heyongjian.com/2018/03/25/2018/2017/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="银时">
-      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师。">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="子路宇晟的博客">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/03/25/2018/2017/" class="post-title-link" itemprop="url">2017</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-03-25 21:08:00" itemprop="dateCreated datePublished" datetime="2018-03-25T21:08:00+08:00">2018-03-25</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-12-22 21:16:48" itemprop="dateModified" datetime="2018-12-22T21:16:48+08:00">2018-12-22</time>
-              </span>
-            
-          
-
-          
-            <span id="/2018/03/25/2018/2017/" class="post-meta-item leancloud_visitors" data-flag-title="2017">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-            
-  
-  
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <p>
-              工作17年奋战在一线，参与并推进了这些事儿的进程：
-
-商家APP惠管家上线运行
-小管家，管理惠管家版本，基于vue.js
-对接了拉卡拉的惠管家上线
-惠收银开发上线，基于mvp，kotlin
-小伙伴扩充到6人，技术栈包括android，iOS，RN
-
-生活两人形影不离生活在一起，有欢笑，也会有摩擦，需要的是多一份理解，和让步
-4月清明回我老家，去摘了树莓，漫田野酸甜可口的树莓，大家开心的采摘，仿佛回到了童年。
-5月最开心的事儿是借自己生日之由勒索女票一个三星s8+手机，手感，屏幕和拍照都堪称完美。
-8月开始看车，试了320，女票坐后排说头晕，旁边的梅赛德斯，没敢进去；揣着a3的预算看a4l觉得好大，好气派，里面的多媒体好高级，口水流一地，一见倾心。打算加点预算咬牙上a4l乞丐版。但Led大灯，
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/03/25/2018/2017/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-  </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot; aria-label&#x3D;&quot;Previous page&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot; aria-label&#x3D;&quot;Next page&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -1472,23 +1299,34 @@ cd ~/developmentunzip ~/Downloads/flutter_
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
+  <aside class="sidebar">
     <div class="sidebar-inner">
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
 
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="银时">
-  <p class="site-author-name" itemprop="name">银时</p>
-  <div class="site-description motion-element" itemprop="description">二次元爱好者，非专业视觉体验师。</div>
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">子路宇晟</p>
+  <div class="site-description" itemprop="description">二次元爱好者，非专业视觉体验师</div>
 </div>
   <nav class="site-state motion-element">
       <div class="site-state-item site-state-posts">
         
-          <a href="/archives/">
+          <a href="/archives/%20%7C%7C%20archive">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1497,10 +1335,6 @@ cd ~/developmentunzip ~/Downloads/flutter_
       
       <div class="site-state-item site-state-tags">
         
-          
-            <a href="/tags/">
-          
-        
         
         
           
@@ -1521,44 +1355,15 @@ cd ~/developmentunzip ~/Downloads/flutter_
         
           
         
-          
-        
-          
-        
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">tags</span>
-        </a>
+        
       </div>
     
   </nav>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-      
-      
-        
-      
-      
-        
-      
-        <a href="https://github.com/hyjfine" title="GitHub &rarr; https://github.com/hyjfine" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-    
-      <span class="links-of-author-item">
-      
-      
-        
-      
-      
-        
-      
-        <a href="mailto:hyjfine@gmail.com" title="E-Mail &rarr; mailto:hyjfine@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-    
-  </div>
 
 
 
-        </div>
       </div>
 
     </div>
@@ -1571,15 +1376,21 @@ cd ~/developmentunzip ~/Downloads/flutter_
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">hyjfine</span>
+  <span class="author" itemprop="copyrightHolder">子路宇晟</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a></div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.0</div>
 
         
+
+
+
+
 
 
 
@@ -1591,115 +1402,29 @@ cd ~/developmentunzip ~/Downloads/flutter_
         
       </div>
     </footer>
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-      </div>
-
-    
-
   </div>
 
   
-  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-  <script src="/js/utils.js?v=7.2.0"></script>
-  <script src="/js/motion.js?v=7.2.0"></script>
+<script src="/js/utils.js?v=7.4.0.js"></script>
 
-  
-  <script src="/js/affix.js?v=7.2.0"></script>
-  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+<script src="/js/motion.js?v=7.4.0.js"></script>
 
 
-
-  
-
-  <script src="/js/next-boot.js?v=7.2.0"></script>
-
-  
-
-  
-
-  
+<script src="/js/schemes/muse.js?v=7.4.0.js"></script>
 
 
-  
-
-
-
-
-
-
-
+<script src="/js/next-boot.js?v=7.4.0.js"></script>
 
 
 
 
   
-  <script>
-    function showTime(Counter) {
-      var entries = [];
-      var $visitors = $('.leancloud_visitors');
-
-      $visitors.each(function() {
-        entries.push( $(this).attr('id').trim() );
-      });
-
-      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { '$in': entries } }) })
-        .done(function({ results }) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.url;
-            var time = item.time;
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for (var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if (countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function ({ responseJSON }) {
-          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
-        });
-    }
-    
-
-    $(function() {
-      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'yAbH7nCHLnmod1p5gWu1rvXE-gzGzoHsz')
-        .done(function({ api_server }) {
-          var Counter = function(method, url, data) {
-            return $.ajax({
-              method: method,
-              url: `https://${api_server}/1.1${url}`,
-              headers: {
-                'X-LC-Id': 'yAbH7nCHLnmod1p5gWu1rvXE-gzGzoHsz',
-                'X-LC-Key': '1oKnVeJr6SSaIQHt1uXbdUca',
-                'Content-Type': 'application/json',
-              },
-              data: data
-            });
-          };
-            if ($('.post-title-link').length >= 1) {
-              showTime(Counter);
-            }
-          
-        });
-    });
-  </script>
 
 
 
@@ -1721,33 +1446,11 @@ cd ~/developmentunzip ~/Downloads/flutter_
 
 
 
+  
 
+  
 
-
-    
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-
-<script>
-  var GUEST = ['nick', 'mail', 'link'];
-  var guest = 'nick,mail,link';
-  guest = guest.split(',').filter(function(item) {
-    return GUEST.indexOf(item) > -1;
-  });
-  new Valine({
-    el: '#comments',
-    verify: false,
-    notify: false,
-    appId: 'CXylYR7pNX93azPeMMWgqMK1-gzGzoHsz',
-    appKey: 'DbB4mssjG6l3EpItcmPnnNxs',
-    placeholder: 'Just go go',
-    avatar: 'mm',
-    meta: guest,
-    pageSize: '10' || 10,
-    visitor: false,
-    lang: 'en' || 'zh-cn'
-  });
-</script>
-
+  
 
 </body>
 </html>

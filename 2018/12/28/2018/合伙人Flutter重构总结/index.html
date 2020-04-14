@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="重构原因技术栈原因 RN不足之处 开发体验差，android模拟器卡，真机会因为各种原因无法调试运行 开源组件质量良莠不齐，经常break change，我们几次尝试升大版本都失败 理论性能上限低，组件最终调用的是native的，安卓系统分布非常碎片化，大量的platform判断逻辑，兼容适配的成本高，表现很难统一。和Native通信只能是异步模型，导致如RecycleView这种高性能列表组件无">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flutter 重写app总结">
+<meta property="og:url" content="http://yoursite.com/2018/12/28/2018/%E5%90%88%E4%BC%99%E4%BA%BAFlutter%E9%87%8D%E6%9E%84%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="子路宇晟的博客">
+<meta property="og:description" content="重构原因技术栈原因 RN不足之处 开发体验差，android模拟器卡，真机会因为各种原因无法调试运行 开源组件质量良莠不齐，经常break change，我们几次尝试升大版本都失败 理论性能上限低，组件最终调用的是native的，安卓系统分布非常碎片化，大量的platform判断逻辑，兼容适配的成本高，表现很难统一。和Native通信只能是异步模型，导致如RecycleView这种高性能列表组件无">
+<meta property="og:image" content="https://uploader.shimo.im/f/By32Wznj5rsxNTGZ!thumbnail">
+<meta property="og:image" content="https://uploader.shimo.im/f/uU3elnyQ1lYEZuVX!thumbnail">
+<meta property="article:published_time" content="2018-12-27T16:16:00.000Z">
+<meta property="article:modified_time" content="2020-04-06T15:26:28.981Z">
+<meta property="article:author" content="子路宇晟">
+<meta property="article:tag" content="DEV">
+<meta property="article:tag" content="Flutter">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://uploader.shimo.im/f/By32Wznj5rsxNTGZ!thumbnail">
+  <link rel="canonical" href="http://yoursite.com/2018/12/28/2018/%E5%90%88%E4%BC%99%E4%BA%BAFlutter%E9%87%8D%E6%9E%84%E6%80%BB%E7%BB%93/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Flutter 重写app总结 | 子路宇晟的博客</title>
+  <meta name="generator" content="Hexo 4.2.0">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">子路宇晟的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">love and peace</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section">&lt;i class&#x3D;&quot;menu-item-icon fa fa-fw fa-home&quot;&gt;&lt;&#x2F;i&gt; &lt;br&gt;Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section">&lt;i class&#x3D;&quot;menu-item-icon fa fa-fw fa-archive&quot;&gt;&lt;&#x2F;i&gt; &lt;br&gt;Archives</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/28/2018/%E5%90%88%E4%BC%99%E4%BA%BAFlutter%E9%87%8D%E6%9E%84%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="子路宇晟">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="子路宇晟的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Flutter 重写app总结
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2018-12-28 00:16:00" itemprop="dateCreated datePublished" datetime="2018-12-28T00:16:00+08:00">2018-12-28</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-06 23:26:28" itemprop="dateModified" datetime="2020-04-06T23:26:28+08:00">2020-04-06</time>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="重构原因"><a href="#重构原因" class="headerlink" title="重构原因"></a>重构原因</h2><h3 id="技术栈原因"><a href="#技术栈原因" class="headerlink" title="技术栈原因"></a>技术栈原因</h3><ul>
+<li>RN不足之处<ul>
+<li>开发体验差，android模拟器卡，真机会因为各种原因无法调试运行</li>
+<li>开源组件质量良莠不齐，经常break change，我们几次尝试升大版本都失败</li>
+<li>理论性能上限低，组件最终调用的是native的，安卓系统分布非常碎片化，大量的platform判断逻辑，兼容适配的成本高，表现很难统一。和Native通信只能是异步模型，导致如RecycleView这种高性能列表组件无法使用。动画实现也不理想。</li>
+</ul>
+</li>
+<li>Flutter理论优势<ul>
+<li>Flutter继承了RN衣钵，但更进一步。它自己实现了UI引擎，从而真的可以是write once，run anywhere，是的，除了iOS，android，它还能写前端页面，Google未来融合Chromebook和Android的<a href="https://en.wikipedia.org/wiki/Google_Fuchsia" target="_blank" rel="noopener">Fuchsia</a>系统是运行Flutter app的。</li>
+<li>Dev友好，开发是Jit模式，毫秒级hot reload，release是Aot，针对ABI优化编译成机器码，性能好</li>
+<li>Flutter引擎没有历史包袱，直接面向最新的Vulkan和Metal封装，渲染效率更高。升级没有依赖，引擎维护者也可以做更彻底的优化。</li>
+</ul>
+</li>
+</ul>
+<h3 id="业务原因"><a href="#业务原因" class="headerlink" title="业务原因"></a>业务原因</h3><ul>
+<li>公司业务战略调整，ME暂时没有高优先级的业务需求。正所谓天晴时修房顶，这时候重构项目是科学的。</li>
+<li>可以还技术债，也可以提高小伙伴的专业技能，为后面可能到来的业务挑战做好准备。</li>
+</ul>
+<h2 id="重构目标"><a href="#重构目标" class="headerlink" title="重构目标"></a>重构目标</h2><ul>
+<li>软件指标（帧数，内存，CPU）<ul>
+<li>帧数平均有<strong>10%</strong>提升</li>
+<li>运行内存有<strong>10%</strong>下降</li>
+<li>运行CPU有1<strong>0%</strong>下降</li>
+</ul>
+</li>
+<li>业务指标（人天效能，稳定度）<ul>
+<li>人天效能（对比RN）有<strong>50%</strong>以上提升</li>
+<li>核心模块高于<strong>50%</strong>的单元测试覆盖率</li>
+<li>上线前人均Bug数不大于<strong>5</strong>，上线后Crash率小于0.05%</li>
+</ul>
+</li>
+</ul>
+<h2 id="重构结果"><a href="#重构结果" class="headerlink" title="重构结果"></a>重构结果</h2><h3 id="业务表现"><a href="#业务表现" class="headerlink" title="业务表现"></a>业务表现</h3><ul>
+<li>计划履行率<ul>
+<li>开发前有比较详细的任务分工，功能细化到人天，<strong>95%</strong>的story都能按期完成，开发过程可计划，可调控。</li>
+<li>开发计划表：<a href="https://shimo.im/sheet/gsWNVfO3BpMN9bGS/yWUJN" target="_blank" rel="noopener">https://shimo.im/sheet/gsWNVfO3BpMN9bGS/yWUJN</a></li>
+</ul>
+</li>
+<li>人均效能<ul>
+<li>RN的人天总数是3*（2018/8/23-2017/11/15）=843人天，</li>
+<li>Flutter是6<em>（2018/11/30-2018/9/8）=498人天，提升大概是843/498 -1 = *</em>69.2%**</li>
+</ul>
+</li>
+<li>单元测试<ul>
+<li>我们还实现了<strong>50%</strong>以上的单元测试覆盖率，此处会有截图（11/27前完成）</li>
+</ul>
+</li>
+</ul>
+<h3 id="软件表现"><a href="#软件表现" class="headerlink" title="软件表现"></a>软件表现</h3><ul>
+<li>Android（FPS/CPU/Memory）</li>
+</ul>
+<p><img src="https://uploader.shimo.im/f/By32Wznj5rsxNTGZ!thumbnail" alt="图片"></p>
+<ul>
+<li>iOS（FPS/CPU/Memory）</li>
+</ul>
+<p><img src="https://uploader.shimo.im/f/uU3elnyQ1lYEZuVX!thumbnail" alt="图片"><br>数据表明：同样的业务场景在同样的硬件环境用脚本多次测试得出FPS Flutter有8%左右提升，CPU占用有120%左右下降，内存有80%左右下降，性能差机子提升更明显。<br>[详细对比文档]   <a href="https://www.jianguoyun.com/p/DcHi6I8Qr7vTBhjPhocB" target="_blank" rel="noopener">https://www.jianguoyun.com/p/DcHi6I8Qr7vTBhjPhocB</a><br>[参考文档]   <a href="https://segmentfault.com/a/1190000016467400" target="_blank" rel="noopener">https://segmentfault.com/a/1190000016467400</a> </p>
+<h3 id="维护性"><a href="#维护性" class="headerlink" title="维护性"></a>维护性</h3><ul>
+<li>RN和Flutter代码比较<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left"><strong>files</strong></th>
+<th align="left"><strong>comment</strong></th>
+<th align="left"><strong>code</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">RN</td>
+<td align="left">1053</td>
+<td align="left">15259</td>
+<td align="left">138800</td>
+</tr>
+<tr>
+<td align="left">Flutter</td>
+<td align="left">358</td>
+<td align="left">1430</td>
+<td align="left">32965</td>
+</tr>
+<tr>
+<td align="left">Native waimai（Android）</td>
+<td align="left">355</td>
+<td align="left">1270</td>
+<td align="left">20739</td>
+</tr>
+<tr>
+<td align="left">Native waimai（iOS）</td>
+<td align="left">285</td>
+<td align="left">2491</td>
+<td align="left">23864</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<p>数据表明：同样业务量的跨平台应用（iOS&amp;Android），Flutter文件数和代码行数都可以比RN少一个数量级。<br>[详细统计文档]   <a href="https://www.jianguoyun.com/p/DTFd5F0Qr7vTBhjag4cB" target="_blank" rel="noopener">https://www.jianguoyun.com/p/DTFd5F0Qr7vTBhjag4cB</a> </p>
+<ul>
+<li>技术栈接受度<ul>
+<li>真香</li>
+<li>上手容易，开发效率高</li>
+<li>强大的性能检测工具Observatory</li>
+<li>和Netive比细节实现还有差距</li>
+<li>社区生态还不够完善健全</li>
+<li>没有<a href="https://github.com/flutter/flutter/issues/14330" target="_blank" rel="noopener">热更新</a></li>
+<li>小伙伴们的<a href="https://shimo.im/docs/TKBzdbZvL9gj5nYI" target="_blank" rel="noopener">感受</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>符合重写预期。</p>
+<h2 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h2><p><a href="https://aria2.kezaihui.com/ME/doc/wikis/home" target="_blank" rel="noopener">https://aria2.kezaihui.com/ME/doc/wikis/home</a><br><a href="https://shimo.im/folder/J7RibpiHj4YLjSRE" target="_blank" rel="noopener">https://shimo.im/folder/J7RibpiHj4YLjSRE</a></p>
+
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/DEV/" rel="tag"># DEV</a>
+            
+              <a href="/tags/Flutter/" rel="tag"># Flutter</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2018/12/09/2018/Flutter%20Theme/" rel="next" title="Fish Redux 进阶">
+                  <i class="fa fa-chevron-left"></i> Fish Redux 进阶
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/03/16/2019/Fish%20Redux%20%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" rel="prev" title="Fish Redux 使用指南">
+                  Fish Redux 使用指南 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#重构原因"><span class="nav-number">1.</span> <span class="nav-text">重构原因</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#技术栈原因"><span class="nav-number">1.1.</span> <span class="nav-text">技术栈原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#业务原因"><span class="nav-number">1.2.</span> <span class="nav-text">业务原因</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重构目标"><span class="nav-number">2.</span> <span class="nav-text">重构目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重构结果"><span class="nav-number">3.</span> <span class="nav-text">重构结果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#业务表现"><span class="nav-number">3.1.</span> <span class="nav-text">业务表现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件表现"><span class="nav-number">3.2.</span> <span class="nav-text">软件表现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#维护性"><span class="nav-number">3.3.</span> <span class="nav-text">维护性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文档"><span class="nav-number">5.</span> <span class="nav-text">文档</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">子路宇晟</p>
+  <div class="site-description" itemprop="description">二次元爱好者，非专业视觉体验师</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/%20%7C%7C%20archive">
+        
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span>
+        
+      </div>
+    
+  </nav>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">子路宇晟</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.0</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.4.0.js"></script>
+
+<script src="/js/motion.js?v=7.4.0.js"></script>
+
+
+<script src="/js/schemes/muse.js?v=7.4.0.js"></script>
+
+
+<script src="/js/next-boot.js?v=7.4.0.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
