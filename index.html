@@ -1,47 +1,79 @@
 <!DOCTYPE html>
-<html lang="">
+
+
+
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.8.0">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
 
-<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
 
-  <meta name="description" content="二次元爱好者，非专业视觉体验师">
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    search: {
+      root: '/',
+      path: ''
+    },
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="二次元爱好者，非专业视觉体验师。">
+<meta name="keywords" content="移动端,android,react,react netive,js,javascript,开发者,用户体验,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek">
 <meta property="og:type" content="website">
 <meta property="og:title" content="子路宇晟的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://heyongjian.com/index.html">
 <meta property="og:site_name" content="子路宇晟的博客">
-<meta property="og:description" content="二次元爱好者，非专业视觉体验师">
-<meta property="article:author" content="子路宇晟">
-<meta property="article:tag" content="android">
-<meta property="article:tag" content=" kotlin">
-<meta property="article:tag" content=" flutter">
+<meta property="og:description" content="二次元爱好者，非专业视觉体验师。">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="子路宇晟的博客">
+<meta name="twitter:description" content="二次元爱好者，非专业视觉体验师。">
+  <link rel="canonical" href="http://heyongjian.com/">
 
-<link rel="canonical" href="http://yoursite.com/">
 
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
+<script id="page.configurations">
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
-    lang   : 'default'
   };
 </script>
 
@@ -53,8 +85,11 @@
 
 
 
+
+
   <noscript>
   <style>
+  .use-motion .motion-element,
   .use-motion .brand,
   .use-motion .menu-item,
   .sidebar-inner,
@@ -63,8 +98,9 @@
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-title { opacity: initial; }
 
+  .use-motion .logo,
   .use-motion .site-title,
   .use-motion .site-subtitle {
     opacity: initial;
@@ -78,498 +114,158 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <div class="container sidebar-position-left page-home">
     <div class="headband"></div>
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
 
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">子路宇晟的博客</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">love and peace</p>
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">子路宇晟的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">love and peace</p>
+      
   </div>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
   </div>
 </div>
 
 
 
-
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
+    <ul id="menu" class="menu">
+        
+        
+        
+          
+          <li class="menu-item menu-item-home menu-item-active">
+      
+    
+      
+    
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
 
   </li>
-        <li class="menu-item menu-item-archives">
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+      
+    
+      
+    
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives<span class="badge">26</span></a>
 
   </li>
-  </ul>
+    </ul>
 </nav>
-
-
-
 
 </div>
     </header>
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
 
 
-    <main class="main">
+    <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          
-
-          <div class="content index posts-expand">
             
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/12/2020/Jetpack%20compose/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://heyongjian.com/2019/11/01/2019/λ/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="银时">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师。">
       <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="子路宇晟">
-      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="子路宇晟的博客">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/12/2020/Jetpack%20compose/" class="post-title-link" itemprop="url">Jetpack compose</a>
-        </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-04-12 22:06:00" itemprop="dateCreated datePublished" datetime="2020-04-12T22:06:00+08:00">2020-04-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-14 21:31:16" itemprop="dateModified" datetime="2020-04-14T21:31:16+08:00">2020-04-14</time>
-              </span>
-
-          
-            <span id="/2020/04/12/2020/Jetpack%20compose/" class="post-meta-item leancloud_visitors" data-flag-title="Jetpack compose" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>这是Google出品的现代化工具包用来构建Android UI。用它可以更快更简便的进行UI界面开发。这个工具包版本最新只有0.1.0-dev08，离稳定可用应该至少还有半年，所以心情放轻松，来认识一下它吧。 </p>
-</blockquote>
-<h2 id="Android编写UI有哪些痛点？"><a href="#Android编写UI有哪些痛点？" class="headerlink" title="Android编写UI有哪些痛点？"></a>Android编写UI有哪些痛点？</h2><ul>
-<li>不方便，需要在xml里写布局文件，要精通各种Layout，比如ConstraintLayout会用了吗？</li>
-<li>历史包袱，10来个大版本的迭代，现在UI的祖先View类已经3w多行，而绝大部分的UI控件都继承于View。意味你写一个按钮或者一个TextView都会受这个祖先影响。继承了很多没有用到的特性和功能。</li>
-<li>性能开销，基类对象内存开销，解析xml的额外开销</li>
-<li>预览和Reload不方便，Android的Instant Run起作用的各种Android版本限制和Flutter毫秒级的hot reload完全不能比。</li>
-<li>不好测试，xml只能通过集成测试，如果是代码构建通过单元测试就可以覆盖了。</li>
-</ul>
-<h2 id="Jetpack-Compose-的目标"><a href="#Jetpack-Compose-的目标" class="headerlink" title="Jetpack Compose 的目标"></a>Jetpack Compose 的目标</h2><h3 id="Less-code"><a href="#Less-code" class="headerlink" title="Less code"></a>Less code</h3><p>用更少的代码做更多的事情，避免继承类的错误，因此代码简单易维护。众所周知，从维护的角度看，组合优于继承。</p>
-<h3 id="Intuitive"><a href="#Intuitive" class="headerlink" title="Intuitive"></a>Intuitive</h3><p>只需定义你的UI，Jetpack Compose就会处理其余的工作。 随着应用状态的变化，你的用户界面会自动更新</p>
-<h3 id="Accelerate-Development"><a href="#Accelerate-Development" class="headerlink" title="Accelerate Development"></a>Accelerate Development</h3><p>与所有现有代码兼容，因此你可以随时随地采用。 通过实时预览和完整的Android Studio工具链支持快速迭代</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/12/2020/Jetpack%20compose/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/05/2020/2019/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="子路宇晟">
-      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="子路宇晟的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/05/2020/2019/" class="post-title-link" itemprop="url">2019</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-04-05 20:18:00" itemprop="dateCreated datePublished" datetime="2020-04-05T20:18:00+08:00">2020-04-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-14 00:38:04" itemprop="dateModified" datetime="2020-04-14T00:38:04+08:00">2020-04-14</time>
-              </span>
-
-          
-            <span id="/2020/04/05/2020/2019/" class="post-meta-item leancloud_visitors" data-flag-title="2019" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>今年是大开大合的一年，责任与担当让我成长</p>
-</blockquote>
-<h2 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h2><h3 id="离职"><a href="#离职" class="headerlink" title="离职"></a>离职</h3><p>五月决定从老东家离职，这是一个艰难而笃定的抉择。随着公司业务转型，移动端已渐渐不再是核心诉求，而公司现状也看不出来能把新业务做到行业头部地位。作为一个技术Leader会有忐忑，Coding的时间少了手容易生，业务不起色，小伙伴们的绩效也很难上去。加上宝宝的到来，意识到自己还是应该再去搏一搏！</p>
-<h3 id="新工作"><a href="#新工作" class="headerlink" title="新工作"></a>新工作</h3><p>从0开始写了一个类似米家的智能家居App，有以下收获：</p>
-<ul>
-<li>拓宽视野，后端Go是CTO现学现上的，良好的设计和测试覆盖使后端非常健壮，也让我意识到技术人员应该活到老学到老</li>
-<li>NDK开发，需求上有许多和硬件交互的功能，所以上手了NDK开发，C语言真是不会过时的语言</li>
-<li>音视频编解码，FFmpeg，H264也算入了门</li>
-<li>更新了一些技能点：ConstraintLayout，ViewModel，LiveData，MQTT</li>
-<li>App在google play 上架</li>
-</ul>
-<p>这半年可能写了前两年的代码量，感觉即紧张又刺激！连续几天写1000+代码那是很充实的时光，缺点就是比较容易掉头发。</p>
-<h2 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h2><p>生活就是经历一些事和人。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/05/2020/2019/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/11/01/2019/λ/" class="post-title-link" itemprop="url">λ</a>
+              
+            
+          </h1>
         
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/28/2020/Sentry%20android/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="子路宇晟">
-      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="子路宇晟的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/28/2020/Sentry%20android/" class="post-title-link" itemprop="url">Sentry android</a>
-        </h2>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
+                <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2020-02-28 23:08:00" itemprop="dateCreated datePublished" datetime="2020-02-28T23:08:00+08:00">2020-02-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-14 00:36:35" itemprop="dateModified" datetime="2020-04-14T00:36:35+08:00">2020-04-14</time>
-              </span>
-
-          
-            <span id="/2020/02/28/2020/Sentry%20android/" class="post-meta-item leancloud_visitors" data-flag-title="Sentry android" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>软件出Bug是不可避免的，但要有办法追踪这些Bug。这样才能不断迭代完善软件。Android app bug追踪我用过友盟，Bugly，Sentry。综合对比，Sentry具有接入更方便，UI简洁专业，可以私有化部署的优点。</p>
-</blockquote>
-<h2 id="集成"><a href="#集成" class="headerlink" title="集成"></a>集成</h2><h3 id="集成SDK依赖"><a href="#集成SDK依赖" class="headerlink" title="集成SDK依赖"></a>集成SDK依赖</h3><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Top-level build file </span></span><br><span class="line"><span class="comment">// ADD JCENTER REPOSITORY</span></span><br><span class="line">dependencies &#123;</span><br><span class="line">        classpath <span class="string">'io.sentry:sentry-android-gradle-plugin:1.7.33'</span></span><br><span class="line">&#125;</span><br><span class="line">repositories &#123;</span><br><span class="line">    jcenter()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// modules build files</span></span><br><span class="line"><span class="comment">// ADD COMPATIBILITY OPTIONS TO BE COMPATIBLE WITH JAVA 1.8</span></span><br><span class="line">apply <span class="string">plugin:</span> <span class="string">'io.sentry.android.gradle'</span></span><br><span class="line">android &#123;</span><br><span class="line">    compileOptions &#123;</span><br><span class="line">        sourceCompatibility = JavaVersion.VERSION_1_8</span><br><span class="line">        targetCompatibility = JavaVersion.VERSION_1_8</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// ADD SENTRY ANDROID AS A DEPENDENCY</span></span><br><span class="line">dependencies &#123;</span><br><span class="line">    implementation <span class="string">"io.sentry:sentry-android:2.0.2"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="链接SDK到Sentry（自动）"><a href="#链接SDK到Sentry（自动）" class="headerlink" title="链接SDK到Sentry（自动）"></a>链接SDK到Sentry（自动）</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">application</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta-data</span> <span class="attr">android:name</span>=<span class="string">"io.sentry.dsn"</span> <span class="attr">android:value</span>=<span class="string">"https://8f584062a0ba418a9ed71da5b405f8cb@o258609.ingest.sentry.io/1704083"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">application</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="链接SDK到Sentry（手动）"><a href="#链接SDK到Sentry（手动）" class="headerlink" title="链接SDK到Sentry（手动）"></a>链接SDK到Sentry（手动）</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一般在application里init</span></span><br><span class="line">SentryAndroid.<span class="keyword">init</span>(context) &#123;</span><br><span class="line">            it.dsn = sentryUrl</span><br><span class="line">            it.environment = environment</span><br><span class="line">            it.release = releaseVersion</span><br><span class="line">            it.addInAppExclude(<span class="string">"java."</span>)</span><br><span class="line">            it.addInAppInclude(<span class="string">"io.sentry"</span>)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-
-<p>小项目直接用自动配置就可以，手动配置可以控制dsn，并且在初始化时传一些自定义字段。</p>
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/02/28/2020/Sentry%20android/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/16/2020/Testing%20in%20android/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="子路宇晟">
-      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="子路宇晟的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/16/2020/Testing%20in%20android/" class="post-title-link" itemprop="url">Testing in android</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-02-16 22:08:00" itemprop="dateCreated datePublished" datetime="2020-02-16T22:08:00+08:00">2020-02-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-14 21:37:18" itemprop="dateModified" datetime="2020-04-14T21:37:18+08:00">2020-04-14</time>
-              </span>
-
-          
-            <span id="/2020/02/16/2020/Testing%20in%20android/" class="post-meta-item leancloud_visitors" data-flag-title="Testing in android" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>给app编写测试用例，很多时候我们只是听说过，没写的原因有很多：</p>
-<ul>
-<li>没时间，业务功能都写不完</li>
-<li>没心思，Bug都还没修完</li>
-<li>不知测试用例有啥用</li>
-<li>不会写App测试用例</li>
-<li>领导没这个要求</li>
-</ul>
-<p>这篇文章我会从测试用例是什么，为什么要写，怎么写来描述一下这些概念</p>
-<h2 id="什么是测试用例"><a href="#什么是测试用例" class="headerlink" title="什么是测试用例"></a>什么是测试用例</h2><p>测试用例也是代码，业务代码用来实现功能需求；而测试用例用来验证业务代码逻辑是否正确，边缘情况是否考虑周全，新的代码有没有引入Bug，已修复的Bug会不会因为新加的逻辑又复现了。</p>
-<p>一般写测试会遵循Given, When, Then三步</p>
-<ul>
-<li>Given: 创建测试需要的环境和状态，以及要测的任务列表.</li>
-<li>When: 运行测试用例，这会运行需要被覆盖的代码.</li>
-<li>Then: 和预期结果比对测试的返回，输出是通过还是失败.</li>
-</ul>
-<h2 id="测试用例的好处"><a href="#测试用例的好处" class="headerlink" title="测试用例的好处"></a>测试用例的好处</h2><p>Google提倡写测试用例，认为这应该是应用开发过程中必要的一部分。通过持续对应用运行测试，可以在发布应用之前验证其正确性、功能行为和易用性。</p>
-<p>测试还会为带来以下好处：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/02/16/2020/Testing%20in%20android/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/01/2019/%CE%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="子路宇晟">
-      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="子路宇晟的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/01/2019/%CE%BB/" class="post-title-link" itemprop="url">λ</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+              
+                
+              
 
               <time title="Created: 2019-11-01 23:28:00" itemprop="dateCreated datePublished" datetime="2019-11-01T23:28:00+08:00">2019-11-01</time>
             </span>
+          
+            
+
+            
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
+                  <i class="fa fa-calendar-check-o"></i>
                 </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-05 23:48:57" itemprop="dateModified" datetime="2020-04-05T23:48:57+08:00">2020-04-05</time>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-11-28 23:26:20" itemprop="dateModified" datetime="2019-11-28T23:26:20+08:00">2019-11-28</time>
               </span>
+            
+          
 
           
-            <span id="/2019/11/01/2019/%CE%BB/" class="post-meta-item leancloud_visitors" data-flag-title="λ" title="Views">
+            <span id="/2019/11/01/2019/λ/" class="post-meta-item leancloud_visitors" data-flag-title="λ">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
             </span>
+          
+            
   
   
+          <br>
 
         </div>
       </header>
@@ -580,23 +276,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <blockquote>
-<p>关于λ经常会听到λ演算和λ表达式这两名词，其实分别对应的是理论和应用两个维度。它们的关系可以类比于质能方程和原子弹。</p>
-</blockquote>
-<h3 id="λ演算"><a href="#λ演算" class="headerlink" title="λ演算"></a>λ演算</h3><p>数学家阿隆佐-邱奇在20世纪30年代提出λ演算，作为数学基础研究的一部分。那个年代，数学界有个领袖，叫希尔伯特（一人之力将葛根廷大学建设为当时数的世界中心）。他提出将数学定理机械化，这样机器就可以通过形式语言推理出大量新定理（AI的味道？）。比他小几岁的图灵和邱奇都受到他这一思潮影响，并从不同的角度解决了这同一个问题。理论上，图灵机和λ演算，都可以模拟出我们今天所有的程序。</p>
-<p>λ演算是一种形式系统(formal system)，什么是形式系统呢？大家知道，数学语言是是可以脱离现实而存在的——大家把数学想成了一种符号游戏，脱离生活常识，从公理开始，进行大量的推导和证明——最终产生一个系统，里面有公理、定理、推论、猜想…上述这种自成体系，有公理又有推理证明方法的体系，称为形式系统。而形式系统需要语言去描绘，这种语言就是形式语言(formal language)。邱奇希望用λ演算来表达有关数学的一切，比如用一系列函数来表达自然数，符号，定理等。</p>
-<p>本质上图灵机和λ演算是做同一件事情，也是可以互相转换的。</p>
-<h3 id="Lambda表达式"><a href="#Lambda表达式" class="headerlink" title="Lambda表达式"></a>Lambda表达式</h3><p>区别于λ演算中的λ表达式，编程中提到的Lambda表达式，一般就指一个匿名函数。为什么要用匿名函数，对于一个只用一次的函数，匿名使用当然更简洁方便。eg，给view一个点击事件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; java 8以前</span><br><span class="line">view.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View v) &#123;</span><br><span class="line">                Log.d(&quot;click&quot;,&quot;-----&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; java 8用上Lambda的匿名函数</span><br><span class="line">view.setOnClickListener(v -&gt; Log.d(&quot;click&quot;,&quot;-----&quot;));</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; kotlin 版本</span><br><span class="line">view.setOnClickListener &#123; Log.d(&quot;click&quot;, &quot;-----&quot;) &#125;</span><br></pre></td></tr></table></figure>
+          
+            <p>
+              
+关于λ经常会听到λ演算和λ表达式这两名词，其实分别对应的是理论和应用两个维度。它们的关系可以类比于质能方程和原子弹。
 
-<p>那种写法更好一目了然，对吧。</p>
-<p>所以在编程中使用Lambda表达式，可以让代码更符合直觉，写法清晰简练自然也带来更好的维护性。</p>
+λ演算数学家阿隆佐-邱奇在20世纪30年代提出λ演算，作为数学基础研究的一部分。那个年代，数学界有个领袖，叫希尔伯特（一人之力将葛根廷大学建设为当时数的世界中心）。他提出将数学定理机械化，这样机器就可以通过形式语言推理出大量新定理（AI的味道？）。比他小几岁的图灵和邱奇都受到他这一思潮影响，并从不同的角度解决了这同一个问题。理论上，图灵机和λ演算，都可以模拟出我们今天所有的程序。
+λ演算是一种形式系统(formal system)，什么是形式系统呢？大家知道，数学语言是是可以脱离现实而存在的——大家把数学想成了一种符号游戏，脱离生活常识，从公理开始，进行大量的推导和证明—
+              ...
+            </p>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/01/2019/%CE%BB/#more" rel="contents">
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/11/01/2019/λ/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
+          
           <!--/noindex-->
         
       
@@ -605,62 +301,93 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+    </footer>
+  </div>
+  
+  
+  
   </article>
-  
-  
-  
 
+    
       
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/19/2019/ClipToPadding%20&%20ClipChildren/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://heyongjian.com/2019/10/19/2019/ClipToPadding & ClipChildren/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="银时">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师。">
       <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="子路宇晟">
-      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="子路宇晟的博客">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/19/2019/ClipToPadding%20&%20ClipChildren/" class="post-title-link" itemprop="url">ClipToPadding & ClipChildren</a>
-        </h2>
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/10/19/2019/ClipToPadding & ClipChildren/" class="post-title-link" itemprop="url">ClipToPadding & ClipChildren</a>
+              
+            
+          </h1>
+        
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
+                <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
 
               <time title="Created: 2019-10-19 20:18:00" itemprop="dateCreated datePublished" datetime="2019-10-19T20:18:00+08:00">2019-10-19</time>
             </span>
+          
+            
+
+            
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
+                  <i class="fa fa-calendar-check-o"></i>
                 </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-05 23:50:13" itemprop="dateModified" datetime="2020-04-05T23:50:13+08:00">2020-04-05</time>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-11-20 23:14:20" itemprop="dateModified" datetime="2019-11-20T23:14:20+08:00">2019-11-20</time>
               </span>
+            
+          
 
           
-            <span id="/2019/10/19/2019/ClipToPadding%20&%20ClipChildren/" class="post-meta-item leancloud_visitors" data-flag-title="ClipToPadding & ClipChildren" title="Views">
+            <span id="/2019/10/19/2019/ClipToPadding & ClipChildren/" class="post-meta-item leancloud_visitors" data-flag-title="ClipToPadding & ClipChildren">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
             </span>
+          
+            
   
   
+          <br>
 
         </div>
       </header>
@@ -671,25 +398,24 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <blockquote>
-<p>clipToPadding和clipChidren可以用来改变子视图的样式和行为</p>
-</blockquote>
-<h3 id="clipToPadding"><a href="#clipToPadding" class="headerlink" title="clipToPadding"></a>clipToPadding</h3><p>字面意思是根据padding来裁剪视图，如padding_top = 20dp，那么子视图从上边距20dp开始绘制。既然是padding相关，所以一般用在viewGroup里，尤其是可以滚动的recyclerView，scrollView等控制上下边距。</p>
-<p>1，clipToPadding=”true”</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;ScrollView xmlns:android&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res&#x2F;android&quot;</span><br><span class="line">            android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">            android:layout_height&#x3D;&quot;400dp&quot;</span><br><span class="line">            android:paddingTop&#x3D;&quot;16dp&quot;</span><br><span class="line">            android:clipToPadding&#x3D;&quot;true&quot;</span><br><span class="line">            android:background&#x3D;&quot;@android:color&#x2F;holo_blue_bright&quot;</span><br><span class="line">            android:orientation&#x3D;&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;LinearLayout</span><br><span class="line">            android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">            android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:orientation&#x3D;&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;Button</span><br><span class="line">                android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">                android:layout_height&#x3D;&quot;300dp&quot;</span><br><span class="line">                android:text&#x3D;&quot;button1&quot;&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;Button</span><br><span class="line">                android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">                android:layout_height&#x3D;&quot;300dp&quot;</span><br><span class="line">                android:layout_marginTop&#x3D;&quot;16dp&quot;</span><br><span class="line">                android:text&#x3D;&quot;button2&quot;&#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;LinearLayout&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;ScrollView&gt;</span><br></pre></td></tr></table></figure>
+          
+            <p>
+              
+clipToPadding和clipChidren可以用来改变子视图的样式和行为
 
-<p><img src="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-cliptochild-1.gif" alt="s"></p>
-<p>2，clipToPadding=”false”</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;ScrollView xmlns:android&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res&#x2F;android&quot;</span><br><span class="line">            android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">            android:layout_height&#x3D;&quot;400dp&quot;</span><br><span class="line">            android:paddingTop&#x3D;&quot;16dp&quot;</span><br><span class="line">            android:clipToPadding&#x3D;&quot;false&quot;</span><br><span class="line">            android:background&#x3D;&quot;@android:color&#x2F;holo_blue_bright&quot;</span><br><span class="line">            android:orientation&#x3D;&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;LinearLayout</span><br><span class="line">            android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">            android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:orientation&#x3D;&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;Button</span><br><span class="line">                android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">                android:layout_height&#x3D;&quot;300dp&quot;</span><br><span class="line">                android:text&#x3D;&quot;button1&quot;&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;Button</span><br><span class="line">                android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">                android:layout_height&#x3D;&quot;300dp&quot;</span><br><span class="line">                android:layout_marginTop&#x3D;&quot;16dp&quot;</span><br><span class="line">                android:text&#x3D;&quot;button2&quot;&#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;LinearLayout&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;ScrollView&gt;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-android-cliptochild-2.gif" alt="s"></p>
-<h3 id="clipChildren"><a href="#clipChildren" class="headerlink" title="clipChildren"></a>clipChildren</h3>
+clipToPadding字面意思是根据padding来裁剪视图，如padding_top = 20dp，那么子视图从上边距20dp开始绘制。既然是padding相关，所以一般用在viewGroup里，尤其是可以滚动的recyclerView，scrollView等控制上下边距。
+1，clipToPadding=”true”
+&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;ScrollView xmlns:android="http://schemas.android.com/apk/res/android"            android:layout
+              ...
+            </p>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/10/19/2019/ClipToPadding%20&%20ClipChildren/#more" rel="contents">
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/10/19/2019/ClipToPadding & ClipChildren/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
+          
           <!--/noindex-->
         
       
@@ -698,62 +424,93 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+    </footer>
+  </div>
+  
+  
+  
   </article>
-  
-  
-  
 
+    
       
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/16/2019/HashMap/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://heyongjian.com/2019/09/16/2019/HashMap/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="银时">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师。">
       <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="子路宇晟">
-      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="子路宇晟的博客">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/09/16/2019/HashMap/" class="post-title-link" itemprop="url">HashMap</a>
-        </h2>
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/09/16/2019/HashMap/" class="post-title-link" itemprop="url">HashMap</a>
+              
+            
+          </h1>
+        
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
+                <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
 
               <time title="Created: 2019-09-16 12:41:00" itemprop="dateCreated datePublished" datetime="2019-09-16T12:41:00+08:00">2019-09-16</time>
             </span>
+          
+            
+
+            
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
+                  <i class="fa fa-calendar-check-o"></i>
                 </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-06 22:48:52" itemprop="dateModified" datetime="2020-04-06T22:48:52+08:00">2020-04-06</time>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-10-21 00:43:10" itemprop="dateModified" datetime="2019-10-21T00:43:10+08:00">2019-10-21</time>
               </span>
+            
+          
 
           
-            <span id="/2019/09/16/2019/HashMap/" class="post-meta-item leancloud_visitors" data-flag-title="HashMap" title="Views">
+            <span id="/2019/09/16/2019/HashMap/" class="post-meta-item leancloud_visitors" data-flag-title="HashMap">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
             </span>
+          
+            
   
   
+          <br>
 
         </div>
       </header>
@@ -764,21 +521,24 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <blockquote>
-<p>HashMap在Java里是很常用的一种数据结构，今天来白话一下</p>
-</blockquote>
-<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>HashMap 在Java中用来存放Key-Value，作用类比Python的dictionary和Javascript的object。它的特点就是块，查询和插入的复杂度都是O（1），内存开销也是稳定的。</p>
-<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Map map &#x3D; new HashMap&lt;String, Activity&gt;(4);</span><br><span class="line">map.put(&quot;a&quot;, AnimationActivity());</span><br><span class="line">map.get(&quot;a&quot;);</span><br></pre></td></tr></table></figure>
+          
+            <p>
+              
+HashMap在Java里是很常用的一种数据结构，今天来白话一下
 
-<h3 id="哈希和散列"><a href="#哈希和散列" class="headerlink" title="哈希和散列"></a>哈希和散列</h3><p>这俩个词是啥关系？emmmr，好比西红柿和番茄吧。一个是hash的音译一个是意译。所以听到什么哈希表和散列表不要奇怪，它们都在说同一个东西，哈希表叫法的最早来源可能是hashmap里的 Node&lt;K,V&gt;[] table.没错哈希表是一个数组，这是它curd操作复杂度O（1）的基石。</p>
-<h3 id="取模-amp-取余"><a href="#取模-amp-取余" class="headerlink" title="取模&amp;取余"></a>取模&amp;取余</h3><p>正数没有差别，区别在于负数向0取余，远离0取模</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">7 mod 4 &#x3D; 3（商 &#x3D; 1 或 2，1&lt;2，取商&#x3D;1）</span><br><span class="line">-7 mod 4 &#x3D; 1（商 &#x3D; -1 或 -2，-2&lt;-1，取商&#x3D;-2）</span><br><span class="line">7 mod -4 &#x3D; -1（商 &#x3D; -1或-2，-2&lt;-1，取商&#x3D;-2）</span><br><span class="line">-7 mod -4 &#x3D; -3（商 &#x3D; 1或2，1&lt;2，取商&#x3D;1）</span><br></pre></td></tr></table></figure>
+定义HashMap 在Java中用来存放Key-Value，作用类比Python的dictionary和Javascript的object。它的特点就是块，查询和插入的复杂度都是O（1），内存开销也是稳定的。
+用法Map map = new HashMap&lt;String, Activity&gt;(4);map.put("a", AnimationActivity());map.get("a");
+哈希和散列这俩个词是啥关系？emmmr，好比西红柿和番茄吧。一个是hash的音译一个是意译。所以听到什么哈希表和散列表不要奇怪，它们都在说同一个东西，哈希表叫法的最早来源可能是hashmap里的 Node&lt;K,V&g
+              ...
+            </p>
           <!--noindex-->
-            <div class="post-button">
+          
+            <div class="post-button text-center">
               <a class="btn" href="/2019/09/16/2019/HashMap/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
+          
           <!--/noindex-->
         
       
@@ -787,62 +547,215 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+    </footer>
+  </div>
+  
+  
+  
   </article>
-  
-  
-  
 
+    
       
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/02/2019/ConstraintLayout%20IN%20Jetpack/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://heyongjian.com/2019/09/08/2019/ImageView/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="银时">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师。">
       <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="子路宇晟">
-      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="子路宇晟的博客">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/09/02/2019/ConstraintLayout%20IN%20Jetpack/" class="post-title-link" itemprop="url">ConstraintLayout IN Jetpack</a>
-        </h2>
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/09/08/2019/ImageView/" class="post-title-link" itemprop="url">ImageView ScaleType and Transition</a>
+              
+            
+          </h1>
+        
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
+                <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-09-08 23:31:00" itemprop="dateCreated datePublished" datetime="2019-09-08T23:31:00+08:00">2019-09-08</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-11-20 23:14:20" itemprop="dateModified" datetime="2019-11-20T23:14:20+08:00">2019-11-20</time>
+              </span>
+            
+          
+
+          
+            <span id="/2019/09/08/2019/ImageView/" class="post-meta-item leancloud_visitors" data-flag-title="ImageView ScaleType and Transition">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <p>
+              
+ImageView 是很常用的控件，记录下ScaleType和Transition animation
+
+ImageView ScaleType
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;androidx.constraintlayout.widget.ConstraintLayout        xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;        xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;        androi
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/09/08/2019/ImageView/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://heyongjian.com/2019/09/02/2019/ConstraintLayout IN Jetpack/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="银时">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师。">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="子路宇晟的博客">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/09/02/2019/ConstraintLayout IN Jetpack/" class="post-title-link" itemprop="url">ConstraintLayout IN Jetpack</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
 
               <time title="Created: 2019-09-02 00:30:00" itemprop="dateCreated datePublished" datetime="2019-09-02T00:30:00+08:00">2019-09-02</time>
             </span>
+          
+            
+
+            
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
+                  <i class="fa fa-calendar-check-o"></i>
                 </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-06 22:52:41" itemprop="dateModified" datetime="2020-04-06T22:52:41+08:00">2020-04-06</time>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-11-20 23:14:20" itemprop="dateModified" datetime="2019-11-20T23:14:20+08:00">2019-11-20</time>
               </span>
+            
+          
 
           
-            <span id="/2019/09/02/2019/ConstraintLayout%20IN%20Jetpack/" class="post-meta-item leancloud_visitors" data-flag-title="ConstraintLayout IN Jetpack" title="Views">
+            <span id="/2019/09/02/2019/ConstraintLayout IN Jetpack/" class="post-meta-item leancloud_visitors" data-flag-title="ConstraintLayout IN Jetpack">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
             </span>
+          
+            
   
   
+          <br>
 
         </div>
       </header>
@@ -853,49 +766,29 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <blockquote>
-<p>曾经Android布局就一把梭，RelativeLayout+LinearLayout，直到用ConstraintLayout写了几个页面后发现是真的香，现在任何布局第一选择都是它。</p>
-</blockquote>
-<h3 id="ConstraintLayout是什么？"><a href="#ConstraintLayout是什么？" class="headerlink" title="ConstraintLayout是什么？"></a>ConstraintLayout是什么？</h3><ul>
-<li>它属于Android JetPack，当前版本<code>implementation &#39;com.android.support.constraint:constraint-layout:1.1.3&#39;</code></li>
-<li>作用是可以减少视图布局层级，很复杂的页面一般也就是两个层级能搞定</li>
-<li>响应式布局代码更健壮，轻松适配不同分辨率</li>
-<li>更好的可视化操作，通过Android Studio的Layout Editor就可以实时拖动编辑并预览布局效果</li>
-</ul>
-<h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><p>问：布局基本三要素是什么？</p>
-<p>答：位置，对齐，大小。</p>
-<h4 id="1，位置，View放在哪里"><a href="#1，位置，View放在哪里" class="headerlink" title="1，位置，View放在哪里"></a>1，位置，View放在哪里</h4><p>ConstraintLayout的做法和RelativeLayout是差不多的，实际使用起来Constraint Layout的字段语义更符合直觉。</p>
-<table>
-<thead>
-<tr>
-<th align="left"></th>
-<th align="left">Relative Layout</th>
-<th align="left">Constraint Layout</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">垂直居中</td>
-<td align="left">android:layout_centerVertical=”true”</td>
-<td align="left">app:layout_constraintBottom_toBottomOf=”parent” app:layout_constraintTop_toTopOf=”parent”</td>
-</tr>
-<tr>
-<td align="left">居下</td>
-<td align="left">android:layout_below=”@id/view”</td>
-<td align="left">app:layout_constraintTop_toBottomOf=”@id/view”</td>
-</tr>
-<tr>
-<td align="left">居右</td>
-<td align="left">android:layout_toEndOf=”@id/view”</td>
-<td align="left">app:layout_constraintStart_toEndOf=”@id/view”</td>
-</tr>
-</tbody></table>
-<h4 id="2，对齐，整整齐齐还是错落有致，当然是都要"><a href="#2，对齐，整整齐齐还是错落有致，当然是都要" class="headerlink" title="2，对齐，整整齐齐还是错落有致，当然是都要"></a>2，对齐，整整齐齐还是错落有致，当然是都要</h4>
+          
+            <p>
+              
+曾经Android布局就一把梭，RelativeLayout+LinearLayout，直到用ConstraintLayout写了几个页面后发现是真的香，现在任何布局第一选择都是它。
+
+ConstraintLayout是什么？
+它属于Android JetPack，当前版本implementation &#39;com.android.support.constraint:constraint-layout:1.1.3&#39;
+作用是可以减少视图布局层级，很复杂的页面一般也就是两个层级能搞定
+响应式布局代码更健壮，轻松适配不同分辨率
+更好的可视化操作，通过Android Studio的Layout Editor就可以实时拖动编辑并预览布局效果
+
+基本用法问：布局基本三要素是什么？
+答：位
+              ...
+            </p>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/09/02/2019/ConstraintLayout%20IN%20Jetpack/#more" rel="contents">
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/09/02/2019/ConstraintLayout IN Jetpack/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
+          
           <!--/noindex-->
         
       
@@ -904,154 +797,93 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+    </footer>
+  </div>
+  
+  
+  
   </article>
-  
-  
-  
 
+    
       
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/01/2019/ImageView%20ScaleType%20and%20Transition/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://heyongjian.com/2019/08/18/2019/Hexo+Github Pages CDN & HTTPS /">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="银时">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师。">
       <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="子路宇晟">
-      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="子路宇晟的博客">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/09/01/2019/ImageView%20ScaleType%20and%20Transition/" class="post-title-link" itemprop="url">ImageView ScaleType and Transition</a>
-        </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-09-01 23:31:00" itemprop="dateCreated datePublished" datetime="2019-09-01T23:31:00+08:00">2019-09-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-06 22:50:53" itemprop="dateModified" datetime="2020-04-06T22:50:53+08:00">2020-04-06</time>
-              </span>
-
-          
-            <span id="/2019/09/01/2019/ImageView%20ScaleType%20and%20Transition/" class="post-meta-item leancloud_visitors" data-flag-title="ImageView ScaleType and Transition" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>ImageView 是很常用的控件，记录下ScaleType和Transition animation</p>
-</blockquote>
-<h3 id="ImageView-ScaleType"><a href="#ImageView-ScaleType" class="headerlink" title="ImageView ScaleType"></a>ImageView ScaleType</h3><p><img src="https://hyjdoc.oss-cn-beijing.aliyuncs.com/image-20190827232228863.png" alt="image-20190827232228863"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;androidx.constraintlayout.widget.ConstraintLayout</span><br><span class="line">        xmlns:android&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res&#x2F;android&quot;</span><br><span class="line">        xmlns:app&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res-auto&quot;</span><br><span class="line">        android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">        android:id&#x3D;&quot;@+id&#x2F;faceLayout&quot;</span><br><span class="line">        android:layout_height&#x3D;&quot;match_parent&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">            android:id&#x3D;&quot;@+id&#x2F;button2&quot;</span><br><span class="line">            android:layout_width&#x3D;&quot;0dp&quot;</span><br><span class="line">            android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:text&#x3D;&quot;Button&quot;</span><br><span class="line">            app:layout_constraintEnd_toEndOf&#x3D;&quot;parent&quot;</span><br><span class="line">            app:layout_constraintStart_toStartOf&#x3D;&quot;parent&quot;</span><br><span class="line">            app:layout_constraintTop_toTopOf&#x3D;&quot;parent&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;androidx.constraintlayout.widget.ConstraintLayout&gt;</span><br><span class="line">&#x2F;&#x2F; 这三个属性尽量搭配一起使用，除了center和matrix，其他效果都一致，显示正常不拉伸的图片。</span><br><span class="line">android:layout_width&#x3D;&quot;0dp&quot;</span><br><span class="line">android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">android:adjustViewBounds&#x3D;&quot;true&quot;</span><br></pre></td></tr></table></figure>
-
-<h3 id="ImageView-Transition"><a href="#ImageView-Transition" class="headerlink" title="ImageView Transition"></a>ImageView Transition</h3><p><a href="https://medium.com/@andkulikov/animate-all-the-things-transitions-in-android-914af5477d50" target="_blank" rel="noopener">https://medium.com/@andkulikov/animate-all-the-things-transitions-in-android-914af5477d50</a></p>
-<p>1，改变图片属性</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">val animator &#x3D; ValueAnimator.ofFloat(0f, 1f)</span><br><span class="line">        animator.duration &#x3D; Constants.ThrottleDuration.NORMAL</span><br><span class="line">        animator.addUpdateListener &#123; animation -&gt;</span><br><span class="line">            val animatorValue &#x3D; animation.animatedValue as Float</span><br><span class="line">            videoView.translationX &#x3D; 50 * animatorValue</span><br><span class="line">            videoView.translationY &#x3D; 100 * animatorValue</span><br><span class="line">            videoView.scaleX &#x3D; 1f - 0.8f * animatorValue</span><br><span class="line">            videoView.scaleY &#x3D; 1f - 0.5f * animatorValue</span><br><span class="line">        &#125;</span><br><span class="line">        animator.start()</span><br></pre></td></tr></table></figure>
-
-<p>2，利用transition改变layoutParams</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">val marginHorizontal &#x3D; UtilResource.getDimensionPixelSize(R.dimen.margin_horizontal)</span><br><span class="line">        val container &#x3D; mRoot.transitionLayout</span><br><span class="line">        val transitionSet &#x3D; TransitionSet()</span><br><span class="line">            .addTransition(ChangeBounds())</span><br><span class="line">            .addTransition(ChangeImageTransform()).addListener(object : TransitionListenerAdapter()&#123;</span><br><span class="line">                override fun onTransitionStart(transition: Transition) &#123;</span><br><span class="line">                    super.onTransitionStart(transition)</span><br><span class="line"></span><br><span class="line">                    UtilLog.d(sTAG, &quot;------full start &quot;)</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                override fun onTransitionEnd(transition: Transition) &#123;</span><br><span class="line">                    super.onTransitionEnd(transition)</span><br><span class="line">                    UtilLog.d(sTAG, &quot;------full end&quot;)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line"></span><br><span class="line">        TransitionManager.beginDelayedTransition(container, transitionSet)</span><br><span class="line">        val params &#x3D; videoView.layoutParams as ViewGroup.MarginLayoutParams</span><br><span class="line">        UtilLog.d(sTAG, &quot;------full $isScale $params&quot;)</span><br><span class="line">        params.height &#x3D; if (isScale) ViewGroup.LayoutParams.MATCH_PARENT else ViewGroup.LayoutParams.WRAP_CONTENT</span><br><span class="line">        if (isScale) &#123;</span><br><span class="line">            params.setMargins(0, 0, 0, 0)</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            params.setMargins(marginHorizontal, marginHorizontal, marginHorizontal, 0)</span><br><span class="line">        &#125;</span><br><span class="line">        videoView.layoutParams &#x3D; params</span><br><span class="line">        (videoView as ImageView).scaleType &#x3D;</span><br><span class="line">            if (isScale) ImageView.ScaleType.CENTER_CROP else ImageView.ScaleType.FIT_START</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/09/01/2019/ImageView%20ScaleType%20and%20Transition/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/18/2019/Hexo+Github%20Pages%20CDN%20&%20HTTPS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="子路宇晟">
-      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="子路宇晟的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/08/18/2019/Hexo+Github%20Pages%20CDN%20&%20HTTPS/" class="post-title-link" itemprop="url">Hexo+Github Pages CDN & HTTPS</a>
-        </h2>
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/18/2019/Hexo+Github Pages CDN & HTTPS /" class="post-title-link" itemprop="url">Hexo+Github Pages CDN & HTTPS</a>
+              
+            
+          </h1>
+        
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
+                <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
 
               <time title="Created: 2019-08-18 21:03:00" itemprop="dateCreated datePublished" datetime="2019-08-18T21:03:00+08:00">2019-08-18</time>
             </span>
+          
+            
+
+            
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
+                  <i class="fa fa-calendar-check-o"></i>
                 </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-06 22:54:44" itemprop="dateModified" datetime="2020-04-06T22:54:44+08:00">2020-04-06</time>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-11-20 23:14:20" itemprop="dateModified" datetime="2019-11-20T23:14:20+08:00">2019-11-20</time>
               </span>
+            
+          
 
           
-            <span id="/2019/08/18/2019/Hexo+Github%20Pages%20CDN%20&%20HTTPS/" class="post-meta-item leancloud_visitors" data-flag-title="Hexo+Github Pages CDN & HTTPS" title="Views">
+            <span id="/2019/08/18/2019/Hexo+Github Pages CDN & HTTPS /" class="post-meta-item leancloud_visitors" data-flag-title="Hexo+Github Pages CDN & HTTPS">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
             </span>
+          
+            
   
   
+          <br>
 
         </div>
       </header>
@@ -1062,25 +894,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <blockquote>
-<p>在Hexo和Github Pages的加持下，现在我们可以只专注在写Blog上，而不用额外的精力管网站发布和运营。一起看起来很美好，然而，一段时间过去了，会发现文章没写几篇，网站倒是卡成姥爷，浏览器还一直显示不安全。需要一些手段来解决下。</p>
-</blockquote>
-<h3 id="名词概念"><a href="#名词概念" class="headerlink" title="名词概念"></a>名词概念</h3><h4 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h4><p>全称是Content Delivery Network，最小CDN网络可以由一个DNS服务器和几台缓存服务器组成，不同地区的访问请求，CDN会智能安排最近的服务器响应，而且还有Cache来加速。所以CDN的效果取决于DNS服务器调度算法和缓存服务器的数量以及质量，CDN的作用域是域名而不是服务器。</p>
-<h4 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h4><p>Domain Name System是互联网的一项服务，它作为域名和IP地址互相映射的一个分布式系统，让用户更方便访问互联网。互联网通信是只认IP地址的，但一串数字人是记不住的，人容易记住的是apple.com这样的单词，这个叫域名，让电脑知道apple.com就是要访问122.224.45.229，就通过DNS域名解析系统。DNS系统中，常见的资源记录类型有：</p>
-<ul>
-<li>主机记录（A记录）：RFC 1035定义，A记录是用于名称解析的重要记录，它将特定的主机名映射到对应主机的IP地址上。</li>
-<li>别名记录（CNAME记录）: RFC 1035定义，CNAME记录用于将某个别名指向到某个A记录上，这样就不需要再为某个新名字另外创建一条新的A记录。</li>
-<li>IPv6主机记录（AAAA记录）: RFC 3596定义，与A记录对应，用于将特定的主机名映射到一个主机的IPv6地址。</li>
-<li>服务位置记录（SRV记录）: RFC 2782定义，用于定义提供特定服务的服务器的位置，如主机（hostname），端口（port number）等</li>
-</ul>
-<h4 id="CNAME"><a href="#CNAME" class="headerlink" title="CNAME"></a>CNAME</h4><p>想想为啥要用CNAME。用户输入的是xxx.com，打开的是xxx.github.io网页，这中间的魔法就是通过CNAME实现的，我们在DNS域名解析服务里设定了解析规则，*和www开头的记录都重定向到hxx.github.io域名。这里用CNAME的好处是github换IP操作对我们透明，从而不需要手动改配置。</p>
-<h3 id="实施"><a href="#实施" class="headerlink" title="实施"></a>实施</h3>
+          
+            <p>
+              
+在Hexo和Github Pages的加持下，现在我们可以只专注在写Blog上，而不用额外的精力管网站发布和运营。一起看起来很美好，然而，一段时间过去了，会发现文章没写几篇，网站倒是卡成姥爷，浏览器还一直显示不安全。需要一些手段来解决下。
+
+名词概念CDN全称是Content Delivery Network，最小CDN网络可以由一个DNS服务器和几台缓存服务器组成，不同地区的访问请求，CDN会智能安排最近的服务器响应，而且还有Cache来加速。所以CDN的效果取决于DNS服务器调度算法和缓存服务器的数量以及质量，CDN的作用域是域名而不是服务器。
+DNSDomain Name System是互联网的一项服务，它作为域名和IP地址互相映射的一个分布式系统，让用户更方便访问互联网。互联网通信
+              ...
+            </p>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/08/18/2019/Hexo+Github%20Pages%20CDN%20&%20HTTPS/#more" rel="contents">
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/08/18/2019/Hexo+Github Pages CDN & HTTPS /#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
+          
           <!--/noindex-->
         
       
@@ -1089,14 +919,553 @@
     
     
     
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://heyongjian.com/2019/08/11/2019/google play 上车指南/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="银时">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师。">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="子路宇晟的博客">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/11/2019/google play 上车指南/" class="post-title-link" itemprop="url">Android Google Play 上车指南</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-08-11 23:07:00" itemprop="dateCreated datePublished" datetime="2019-08-11T23:07:00+08:00">2019-08-11</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-11-20 23:14:20" itemprop="dateModified" datetime="2019-11-20T23:14:20+08:00">2019-11-20</time>
+              </span>
+            
+          
+
+          
+            <span id="/2019/08/11/2019/google play 上车指南/" class="post-meta-item leancloud_visitors" data-flag-title="Android Google Play 上车指南">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <p>
+              
+如果你的Android 应用不只在中国运营，还想国际化，比如服务一下美帝人民，那上Google Play是必须的。这里记录下 
+
+必要的准备
+ 一个Gmail帐号，Google Play Console 登录只接受Google帐号
+ 一张支持境外支付的信用卡（visa/mastercard），注册需要支付$25
+ 文档理解-Android APP bundle
+ 文档理解-APP Signing 
+ 软件著作权（不需要）
+
+帐号注册这个流程需要自带梯子，注册地址，按提示走一般没啥幺蛾子
+
+App BundleAndroid生态过了10年，系统碎片化严重，应用越来越大。Google终于决定要有所改变了，在2018年中推出了Android App Bundle这个新的文件格式。期望来达到三个目
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/08/11/2019/google play 上车指南/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://heyongjian.com/2019/08/03/2019/WorkManager IN /">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="银时">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师。">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="子路宇晟的博客">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/03/2019/WorkManager IN /" class="post-title-link" itemprop="url">WorkManager IN Jetpack</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-08-03 23:07:00" itemprop="dateCreated datePublished" datetime="2019-08-03T23:07:00+08:00">2019-08-03</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-11-20 23:14:20" itemprop="dateModified" datetime="2019-11-20T23:14:20+08:00">2019-11-20</time>
+              </span>
+            
+          
+
+          
+            <span id="/2019/08/03/2019/WorkManager IN /" class="post-meta-item leancloud_visitors" data-flag-title="WorkManager IN Jetpack">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <p>
+              
+WorkManager是Android Jetpack的架构组件（Architecture component）之一，官方对它的定义是用来管理Android后台作业。
+
+简单上手1，添加依赖
+// 在app的build.gradle里添加//A： Kotlin + coroutinesimplementation 'androidx.work:work-runtime-ktx:2.1.0'//B： Java onlyimplementation 'androidx.work:work-runtime:2.1.0'//C： optional - RxJava2 supportimplementation 'androidx.work:work-rxjava2:2.1.0'
+2，实现一个Wor
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/08/03/2019/WorkManager IN /#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://heyongjian.com/2019/07/29/2019/自定义验证码输入View/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="银时">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师。">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="子路宇晟的博客">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/29/2019/自定义验证码输入View/" class="post-title-link" itemprop="url">自定义验证码输入View</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-07-29 20:28:00" itemprop="dateCreated datePublished" datetime="2019-07-29T20:28:00+08:00">2019-07-29</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-11-20 23:14:20" itemprop="dateModified" datetime="2019-11-20T23:14:20+08:00">2019-11-20</time>
+              </span>
+            
+          
+
+          
+            <span id="/2019/07/29/2019/自定义验证码输入View/" class="post-meta-item leancloud_visitors" data-flag-title="自定义验证码输入View">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <p>
+              
+我们现在要实现一个自定义输入框，显示用户接受到的验证码，大概是长这样
+
+
+思路分析Q：需要有哪些功能？
+A：框代表的是验证码长度，这个需要可配置；只接收数字并可以编辑删除；输入和未输入有状态区别
+Q：可以怎么实现？
+A：直觉上是直接继承EditView，重写onDraw方法
+Q：为什么要继承EditView而不是TextView甚至是View？
+A：如果继承View，那控件的逻辑能力也需要自己实现，比如输入法的弹出和隐藏，输入法内容的接收需要重写onCreateInputConnection等方法。EditView比TextView多的能力是设置Selection光标位置，文字默认可编辑可定义输入法类型。
+综上：该自定义需求，系统控件的EditView功能上可以满足，只是需要自定义魔改下U
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/07/29/2019/自定义验证码输入View/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://heyongjian.com/2019/07/20/2019/Android cool animation  /">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="银时">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师。">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="子路宇晟的博客">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/20/2019/Android cool animation  /" class="post-title-link" itemprop="url">Android cool animation</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-07-20 22:37:00" itemprop="dateCreated datePublished" datetime="2019-07-20T22:37:00+08:00">2019-07-20</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-11-20 23:14:20" itemprop="dateModified" datetime="2019-11-20T23:14:20+08:00">2019-11-20</time>
+              </span>
+            
+          
+
+          
+            <span id="/2019/07/20/2019/Android cool animation  /" class="post-meta-item leancloud_visitors" data-flag-title="Android cool animation">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <p>
+              
+动画用来描述一个非静态的场景。在android软件中有两种形式，1，算出初态和终态之间的插值，并在一段时间渲染播放这些状态，如animation，animator，layout transition。2，在一段时间内算法不断的绘制状态，这些状态的差异和连贯性在视觉里形成动画。一般有自定义view animation，这就是本文要记录的点。
+
+常见方案自定义视图动画，往往是因为常规的属性动画已经无法满足设计师要求了。常见的也有三种：
+
+
+
+
+效果上限
+实现复杂度
+工程依赖
+
+
+
+
+Canvas
+中等
+中等
+无
+
+
+SVG
+中等
+需要专业软件制作SVG
+无
+
+
+Lottie
+高（anything）
+需要AE软件输出动画Json
+需要依赖Airbnb lib
+
+
+SVGA
+中高
+需要AE软件
+需
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/07/20/2019/Android cool animation  /#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+  </section>
 
   
   <nav class="pagination">
@@ -1104,91 +1473,107 @@
   </nav>
 
 
-
           </div>
           
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
 
         </div>
           
   
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
   </div>
 
-  <aside class="sidebar">
+  <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
 
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="子路宇晟"
-      src="/images/avatar.jpg">
-  <p class="site-author-name" itemprop="name">子路宇晟</p>
-  <div class="site-description" itemprop="description">二次元爱好者，非专业视觉体验师</div>
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="银时">
+  <p class="site-author-name" itemprop="name">银时</p>
+  <div class="site-description motion-element" itemprop="description">二次元爱好者，非专业视觉体验师。</div>
 </div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
+  <nav class="site-state motion-element">
       <div class="site-state-item site-state-posts">
+        
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
+    
+      
+      
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">9</span>
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">tags</span>
+        </a>
       </div>
+    
   </nav>
-</div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/hyjfine" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hyjfine" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/hyjfine" title="GitHub &rarr; https://github.com/hyjfine" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
+    
       <span class="links-of-author-item">
-        <a href="mailto:hyjfine@gmail.com" title="E-Mail → mailto:hyjfine@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:hyjfine@gmail.com" title="E-Mail &rarr; mailto:hyjfine@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
       </span>
+    
   </div>
 
 
 
+        </div>
       </div>
 
     </div>
@@ -1199,21 +1584,15 @@
       </div>
     </main>
 
-    <footer class="footer">
+    <footer id="footer" class="footer">
       <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">子路宇晟</span>
+  <span class="author" itemprop="copyrightHolder">hyjfine</span>
 </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a></div>
 
         
 
@@ -1224,26 +1603,40 @@
 
 
 
+        
       </div>
     </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
   </div>
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-<script src="/js/utils.js"></script>
+  <script src="/js/utils.js?v=7.2.0"></script>
+  <script src="/js/motion.js?v=7.2.0"></script>
 
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
+  
+  <script src="/js/affix.js?v=7.2.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
 
 
+
+  
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+  
+
+  
+
+  
 
 
   
@@ -1258,42 +1651,118 @@
 
 
 
-
-
-
-
   
+  <script>
+    function showTime(Counter) {
+      var entries = [];
+      var $visitors = $('.leancloud_visitors');
 
-  
+      $visitors.each(function() {
+        entries.push( $(this).attr('id').trim() );
+      });
 
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { '$in': entries } }) })
+        .done(function({ results }) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if (countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'yAbH7nCHLnmod1p5gWu1rvXE-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': 'yAbH7nCHLnmod1p5gWu1rvXE-gzGzoHsz',
+                'X-LC-Key': '1oKnVeJr6SSaIQHt1uXbdUca',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+            if ($('.post-title-link').length >= 1) {
+              showTime(Counter);
+            }
+          
+        });
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
 
 <script>
-NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
-    var GUEST = ['nick', 'mail', 'link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item => {
-      return GUEST.includes(item);
-    });
-    new Valine({
-      el         : '#valine-comments',
-      verify     : false,
-      notify     : false,
-      appId      : 'CXylYR7pNX93azPeMMWgqMK1-gzGzoHsz',
-      appKey     : 'DbB4mssjG6l3EpItcmPnnNxs',
-      placeholder: "Just go go",
-      avatar     : '/images/avatar.jpg mm',
-      meta       : guest,
-      pageSize   : '10' || 10,
-      visitor    : true,
-      lang       : 'zh-cn' || 'zh-cn',
-      path       : location.pathname,
-      recordIP   : false,
-      serverURLs : ''
-    });
-  }, window.Valine);
-});
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'CXylYR7pNX93azPeMMWgqMK1-gzGzoHsz',
+    appKey: 'DbB4mssjG6l3EpItcmPnnNxs',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'en' || 'zh-cn'
+  });
 </script>
+
 
 </body>
 </html>
