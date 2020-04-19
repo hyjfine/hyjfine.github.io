@@ -287,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/09/2018/Flutter%20redux%20%E8%BF%9B%E9%98%B6/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/09/2018/Flutter%20Theme/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="子路宇晟">
@@ -306,7 +306,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/09/2018/Flutter%20redux%20%E8%BF%9B%E9%98%B6/" itemprop="url">
+                <a class="post-title-link" href="/2018/12/09/2018/Flutter%20Theme/" itemprop="url">
                   Fish Redux 进阶
                 </a>
               
@@ -350,7 +350,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2020-04-06 23:12:59" itemprop="dateModified" datetime="2020-04-06T23:12:59+08:00">2020-04-06</time>
+                <time title="Modified: 2020-04-06 23:15:30" itemprop="dateModified" datetime="2020-04-06T23:15:30+08:00">2020-04-06</time>
               
             
           </span>
@@ -364,8 +364,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/12/09/2018/Flutter%20redux%20%E8%BF%9B%E9%98%B6/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/09/2018/Flutter%20redux%20%E8%BF%9B%E9%98%B6/" itemprop="commentCount"></span>
+                <a href="/2018/12/09/2018/Flutter%20Theme/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/09/2018/Flutter%20Theme/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -373,7 +373,7 @@
 
           
           
-             <span id="/2018/12/09/2018/Flutter%20redux%20%E8%BF%9B%E9%98%B6/" class="leancloud_visitors" data-flag-title="Fish Redux 进阶">
+             <span id="/2018/12/09/2018/Flutter%20Theme/" class="leancloud_visitors" data-flag-title="Fish Redux 进阶">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -405,26 +405,20 @@
 
       
         
-          <h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><ol>
-<li>认识Flutter Redux局限性</li>
-<li>引入Middleware必要性</li>
-<li>全方位集成UT</li>
-</ol>
-<h2 id="Flutter-Redux初代实现局限性"><a href="#Flutter-Redux初代实现局限性" class="headerlink" title="Flutter Redux初代实现局限性"></a>Flutter Redux初代实现局限性</h2><h3 id="UT不好覆盖"><a href="#UT不好覆盖" class="headerlink" title="UT不好覆盖"></a>UT不好覆盖</h3><ol>
-<li>页面</li>
-</ol>
-<p>初代实现一个页面的结构是这样的：</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">XXXScreen</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  _XXXScreenState createState() =&gt; _XXXScreenState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_XXXScreenState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">XXXScreen</span>&gt; </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> StoreConnector&lt;AppState, _XXXViewModel&gt;(</span><br><span class="line">        converter: (store) =&gt; _XXXViewModel.fromStore(store),</span><br><span class="line">        builder: (BuildContext context, _XXXViewModel vm) =&gt;</span><br><span class="line">            Container());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>会有两个问题：UI视图和Redux数据通用逻辑耦和在一起，无发通过mock数据来对UI进行UT；大家习惯套路代码，上来就是一个stful，不会想是不是stless更科学点（事实上初代实现80%的Screen是Statefull的，重构后90%都能写成Stateless，提升了页面刷新效率）。</p>
-<ol start="2">
-<li>API call</li>
-</ol>
-<p>我们的API就是一个静态方法：</p>
+          <h1 id="Flutter-Theme"><a href="#Flutter-Theme" class="headerlink" title="Flutter Theme"></a>Flutter Theme</h1><blockquote>
+<p>主题（Theme）在软件开发里属于高级追求，Mac OS经过多年演化后终于在macOS Mojave中加入深色主题，可以让你做起事来更专注。</p>
+</blockquote>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><ul>
+<li>取悦用户，白菜萝卜给用户更多个性化选择</li>
+<li>提升效率，比如深色主题让人更专注，演示模式让内容更突出</li>
+</ul>
+<h2 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h2><p>主题（Theme）一般是由color，BG image，fontSize，font等资源组成</p>
+<h3 id="Android-iOS"><a href="#Android-iOS" class="headerlink" title="Android/iOS"></a>Android/iOS</h3><p>android应用资源都在资源路径src/res下，style相关改动可以通过activity的setTheme来切换，图片换肤一般会将资源打成一个不带launcher icon的Apk，用Resource实例去加载特定资源；而iOS相应的配置信息都预先写在plist文件里，通过一个ThemeManager实例来控制应用使用哪套资源配置。</p>
+<h3 id="Flutter"><a href="#Flutter" class="headerlink" title="Flutter"></a>Flutter</h3><p>MaterialApp组件接受一个theme参数，通过改变theme的数据，组件会实时重新渲染</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2018/12/09/2018/Flutter%20redux%20%E8%BF%9B%E9%98%B6/#more" rel="contents">
+              <a class="btn" href="/2018/12/09/2018/Flutter%20Theme/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>

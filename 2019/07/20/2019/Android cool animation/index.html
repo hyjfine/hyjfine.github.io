@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="动画用来描述一个非静态的场景。在android软件中有两种形式，1，算出初态和终态之间的插值，并在一段时间渲染播放这些状态，如animation，animator，layout transition。2，在一段时间内算法不断的绘制状态，这些状态的差异和连贯性在视觉里形成动画。一般有自定义view animation，这就是本文要记录的点。  常见方案自定义视图动画，往往是因为常规的属性动画已经无">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android cool animation">
+<meta property="og:url" content="http://yoursite.com/2019/07/20/2019/Android%20cool%20animation/index.html">
+<meta property="og:site_name" content="子路宇晟的博客">
+<meta property="og:description" content="动画用来描述一个非静态的场景。在android软件中有两种形式，1，算出初态和终态之间的插值，并在一段时间渲染播放这些状态，如animation，animator，layout transition。2，在一段时间内算法不断的绘制状态，这些状态的差异和连贯性在视觉里形成动画。一般有自定义view animation，这就是本文要记录的点。  常见方案自定义视图动画，往往是因为常规的属性动画已经无">
+<meta property="article:published_time" content="2019-07-20T14:37:00.000Z">
+<meta property="article:modified_time" content="2020-04-19T09:10:31.464Z">
+<meta property="article:author" content="子路宇晟">
+<meta property="article:tag" content="DEV">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/20/2019/Android cool animation/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Android cool animation | 子路宇晟的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">子路宇晟的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">love and peace</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/20/2019/Android%20cool%20animation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="子路宇晟">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="子路宇晟的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android cool animation
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-07-20 22:37:00" itemprop="dateCreated datePublished" datetime="2019-07-20T22:37:00+08:00">2019-07-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-04-19 17:10:31" itemprop="dateModified" datetime="2020-04-19T17:10:31+08:00">2020-04-19</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/07/20/2019/Android%20cool%20animation/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/07/20/2019/Android%20cool%20animation/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/07/20/2019/Android%20cool%20animation/" class="leancloud_visitors" data-flag-title="Android cool animation">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>动画用来描述一个非静态的场景。在android软件中有两种形式，1，算出初态和终态之间的插值，并在一段时间渲染播放这些状态，如animation，animator，layout transition。2，在一段时间内算法不断的绘制状态，这些状态的差异和连贯性在视觉里形成动画。一般有自定义view animation，这就是本文要记录的点。</p>
+</blockquote>
+<h3 id="常见方案"><a href="#常见方案" class="headerlink" title="常见方案"></a>常见方案</h3><p>自定义视图动画，往往是因为常规的属性动画已经无法满足设计师要求了。常见的也有三种：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>效果上限</th>
+<th>实现复杂度</th>
+<th>工程依赖</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Canvas</td>
+<td>中等</td>
+<td>中等</td>
+<td>无</td>
+</tr>
+<tr>
+<td>SVG</td>
+<td>中等</td>
+<td>需要专业软件制作SVG</td>
+<td>无</td>
+</tr>
+<tr>
+<td>Lottie</td>
+<td>高（anything）</td>
+<td>需要AE软件输出动画Json</td>
+<td>需要依赖Airbnb lib</td>
+</tr>
+<tr>
+<td>SVGA</td>
+<td>中高</td>
+<td>需要AE软件</td>
+<td>需要集成播放lib</td>
+</tr>
+</tbody></table>
+<p>可以看出想要更好的效果，投入必然需要更多：0。脑补了下要实现的操作完成动画用Canvas应该就够了。当然没有AE设计师和自己也不会sketch也是事实。</p>
+<h3 id="怎么搞"><a href="#怎么搞" class="headerlink" title="怎么搞"></a>怎么搞</h3><p>1，得有个自定义view，复写onDraw 就有Canvas了</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AnimationView</span> : <span class="type">View &#123;</span></span></span><br><span class="line">    <span class="keyword">constructor</span>(context: Context?) : <span class="keyword">super</span>(context)</span><br><span class="line">    <span class="keyword">constructor</span>(context: Context?, attrs: AttributeSet?) : <span class="keyword">super</span>(context, attrs)</span><br><span class="line">    <span class="keyword">constructor</span>(context: Context?, attrs: AttributeSet?, defStyleAttr: <span class="built_in">Int</span>) : <span class="keyword">super</span>(context, attrs, defStyleAttr)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDraw</span><span class="params">(canvas: <span class="type">Canvas</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onDraw(canvas)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2，有画布，还得需要笔</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">lateinit</span> <span class="keyword">var</span> mCirclePaint: Paint</span><br><span class="line">mCirclePaint = Paint(Paint.ANTI_ALIAS_FLAG) <span class="comment">// 抗锯齿，线条流畅</span></span><br><span class="line">mCirclePaint.apply &#123;</span><br><span class="line">            isDither = <span class="literal">true</span>                      <span class="comment">// 动态采样</span></span><br><span class="line">            style = Paint.Style.STROKE           <span class="comment">// 线条样式</span></span><br><span class="line">            color = Color.parseColor(<span class="string">"#6C9CFF"</span>)  <span class="comment">// 画笔颜色</span></span><br><span class="line">            strokeCap = Paint.Cap.ROUND          <span class="comment">// 线头形状</span></span><br><span class="line">            strokeWidth = <span class="number">30f</span>                    <span class="comment">// 线条宽度</span></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p>3，需要的动画是需要外面转圈的圆和里面的勾组成，那就先画一段弧形，弧形的长短和位置不断变化就能在视觉里形成一个转圈动画</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">oval.<span class="keyword">set</span>(<span class="number">0f</span>, <span class="number">0f</span>, width - <span class="number">0f</span>, height - <span class="number">0f</span>)            <span class="comment">// 画圆弧需要设定一下oval</span></span><br><span class="line">canvas.drawArc(oval, <span class="number">0f</span>, -<span class="number">270f</span>, <span class="literal">false</span>, mCirclePaint) <span class="comment">// 画一段逆时针四分之三的圆弧</span></span><br></pre></td></tr></table></figure>
+
+<p>4，迈出了第一步，需要让弧形动起来</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原理就是利用ValueAnimator不断的更新属性，然后调用invalidate（）使视图重绘</span></span><br><span class="line">valueObject = ValueAnimator.ofFloat(<span class="number">0f</span>, <span class="number">1f</span>)</span><br><span class="line">        valueObject.duration = <span class="number">1500L</span></span><br><span class="line">        valueObject.addUpdateListener &#123; animation -&gt;</span><br><span class="line">            animatorValue = animation.animatedValue <span class="keyword">as</span> <span class="built_in">Float</span></span><br><span class="line">            invalidate()</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p>5，把勾也画上去，简单来讲，勾就是两条直线组成</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// line 1</span></span><br><span class="line">canvas.drawLine(line1StartX, line1StartY, line1EndX, line1EndY, mCirclePaint)</span><br><span class="line"><span class="comment">// line 2</span></span><br><span class="line">canvas.drawLine(line2StartX, line2StartY, line2EndX, line2EndY, mCirclePaint)</span><br></pre></td></tr></table></figure>
+
+<p>6，直接画两条线，效果是无比僵硬的，借鉴拍电影，我们定义几个场景点，用来描述两条线的初态和终态</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> ps1 = Offset(<span class="number">0f</span>, <span class="number">0.5f</span>)</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> ps2 = Offset(<span class="number">0.3f</span>, <span class="number">0.8f</span>)</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> ps3 = Offset(<span class="number">0.75f</span>, <span class="number">0.35f</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这个offset的数据类重写了运算符，方便场景点计算</span></span><br><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Offset</span></span>(<span class="keyword">val</span> x: <span class="built_in">Float</span>, <span class="keyword">val</span> y: <span class="built_in">Float</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">minus</span><span class="params">(other: <span class="type">Offset</span>)</span></span>: Offset &#123;</span><br><span class="line">        <span class="keyword">return</span> Offset(x - other.x, y - other.y)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">plus</span><span class="params">(other: <span class="type">Offset</span>)</span></span>: Offset &#123;</span><br><span class="line">        <span class="keyword">return</span> Offset(x + other.x, y + other.y)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">times</span><span class="params">(time: <span class="type">Float</span>)</span></span>: Offset &#123;</span><br><span class="line">        <span class="keyword">return</span> Offset(x * time, y * time)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 场景一：线条1，起始点不动，结束点从ps1往ps2运动，视觉上线条一变长，线条2不动</span></span><br><span class="line"><span class="comment">// 场景二：线条1，起始点从ps1往ps2运动，结束点不动，视觉上线条一此时在变短，线条二结束点从ps2往ps3运动，视觉上在变长。</span></span><br><span class="line"><span class="comment">// 场景合起来的效果就是动态的打一个勾。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> line1Start = ps1 - (ps1 - ps2) * animatorValueLine1Start</span><br><span class="line"><span class="keyword">val</span> line1End = ps1 - (ps1 - ps2) * animatorValueLine1End</span><br><span class="line"><span class="keyword">val</span> line2End = ps2 - (ps2 - ps3) * animatorValueLine</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用来控制场景一还是二的当然是animatorValue，用一个animatorSet来控制一下startDelay</span></span><br><span class="line">valueObject = ValueAnimator.ofFloat(<span class="number">0f</span>, <span class="number">1f</span>)</span><br><span class="line">        valueObject.duration = <span class="number">1500L</span></span><br><span class="line">        valueObject.addUpdateListener &#123; animation -&gt;</span><br><span class="line">            animatorValue = animation.animatedValue <span class="keyword">as</span> <span class="built_in">Float</span></span><br><span class="line">            invalidate()</span><br><span class="line">        &#125;</span><br><span class="line"><span class="keyword">val</span> valueSet = AnimatorSet()</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> valueObject2 = ValueAnimator.ofFloat(<span class="number">0f</span>, <span class="number">1f</span>).apply &#123;</span><br><span class="line">            duration = <span class="number">500L</span></span><br><span class="line">            startDelay = <span class="number">1000L</span></span><br><span class="line">            addUpdateListener &#123;</span><br><span class="line">                animatorValueLine = it.animatedValue <span class="keyword">as</span> <span class="built_in">Float</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> valueObjectLine1Start = ValueAnimator.ofFloat(<span class="number">0f</span>, <span class="number">0.5f</span>).apply &#123;</span><br><span class="line">            duration = <span class="number">500L</span></span><br><span class="line">            startDelay = <span class="number">1000L</span></span><br><span class="line">            addUpdateListener &#123;</span><br><span class="line">                animatorValueLine1Start = it.animatedValue <span class="keyword">as</span> <span class="built_in">Float</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> valueObjectLine1End = ValueAnimator.ofFloat(<span class="number">0f</span>, <span class="number">1f</span>).apply &#123;</span><br><span class="line">            duration = <span class="number">500L</span></span><br><span class="line">            startDelay = <span class="number">500L</span></span><br><span class="line">            addUpdateListener &#123;</span><br><span class="line">                animatorValueLine1End = it.animatedValue <span class="keyword">as</span> <span class="built_in">Float</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">valueSet.playTogether(valueObject, valueObjectLine1Start, valueObjectLine1End, valueObject2)</span><br><span class="line">valueSet.addListener(onStart = &#123;</span><br><span class="line">            animatorValueLine1Start = <span class="number">0f</span></span><br><span class="line">            animatorValueLine1End = <span class="number">0f</span></span><br><span class="line">            animatorValueLine = <span class="number">0f</span></span><br><span class="line">            animatorValue = <span class="number">0f</span></span><br><span class="line">        &#125;)</span><br><span class="line">valueSet.start()</span><br></pre></td></tr></table></figure>
+
+<h3 id="细节问题"><a href="#细节问题" class="headerlink" title="细节问题"></a>细节问题</h3><p>1，给自定义动画加padding</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">设定Padding逻辑，一般在onlayout里做，不好做的话可以考虑不做，直接套一层viewGroup使用</span><br><span class="line">oval.<span class="keyword">set</span>(</span><br><span class="line">            <span class="number">0f</span> + paddingLeft, <span class="number">0f</span> + paddingTop,</span><br><span class="line">            (width - paddingRight).toFloat(),</span><br><span class="line">            (height - paddingBottom).toFloat()</span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
+
+<p>2，给自定义动画加属性</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">在attr中添加属性</span><br><span class="line">&lt;declare-styleable name=<span class="string">"AnimationView"</span>&gt;</span><br><span class="line">        &lt;attr name=<span class="string">"paint_color"</span> format=<span class="string">"color"</span>/&gt;</span><br><span class="line">&lt;/declare-styleable&gt;</span><br><span class="line"></span><br><span class="line">在initView中初始化数值</span><br><span class="line"><span class="keyword">val</span> array = context.obtainStyledAttributes(attrs, R.styleable.AnimationView)</span><br><span class="line">paintColor = array.getColor(R.styleable.AnimationView_paint_color, paintColor)</span><br><span class="line">array.recycle()</span><br></pre></td></tr></table></figure>
+
+<h3 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h3><img  src ="http://doc.heyongjian.cn/hyj-doc-android-animation.gif" alt="animation">
+
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><p><a href="https://developer.android.com/training/custom-views/custom-drawing" target="_blank" rel="noopener">https://developer.android.com/training/custom-views/custom-drawing</a></p>
+<p><a href="https://juejin.im/post/5bced690e51d457a7e4f8b48" target="_blank" rel="noopener">https://juejin.im/post/5bced690e51d457a7e4f8b48</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/26304609" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/26304609</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/DEV/" rel="tag"># DEV</a>
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/12/2019/Android%20NDK%20%E4%B8%8A%E6%89%8B%E6%8C%87%E5%8D%97/" rel="next" title="Android NDK 上手指南">
+                <i class="fa fa-chevron-left"></i> Android NDK 上手指南
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/29/2019/%E8%87%AA%E5%AE%9A%E4%B9%89%E9%AA%8C%E8%AF%81%E7%A0%81%E8%BE%93%E5%85%A5View/" rel="prev" title="自定义验证码输入View">
+                自定义验证码输入View <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="子路宇晟" />
+            
+              <p class="site-author-name" itemprop="name">子路宇晟</p>
+              <p class="site-description motion-element" itemprop="description">二次元爱好者，非专业视觉体验师</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/hyjfine" target="_blank" title="GitHub"><i class="fa fa-fw fa-fab fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:hyjfine@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-fa fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见方案"><span class="nav-number">1.</span> <span class="nav-text">常见方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#怎么搞"><span class="nav-number">2.</span> <span class="nav-text">怎么搞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#细节问题"><span class="nav-number">3.</span> <span class="nav-text">细节问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现效果"><span class="nav-number">4.</span> <span class="nav-text">实现效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文章"><span class="nav-number">5.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright"> &copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">子路宇晟</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v4.2.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'CXylYR7pNX93azPeMMWgqMK1-gzGzoHsz',
+        appKey: 'DbB4mssjG6l3EpItcmPnnNxs',
+        placeholder: 'Just go go',
+        avatar:'/images/avatar.jpg mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: true
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="WorkManager是Android Jetpack的架构组件（Architecture component）之一，官方对它的定义是用来管理Android后台作业。  简单上手1，添加依赖 123456789&#x2F;&#x2F; 在app的build.gradle里添加&#x2F;&#x2F;A： Kotlin + coroutinesimplementation &#39;androidx.work:work-runtime-ktx:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WorkManager IN Jetpack">
+<meta property="og:url" content="http://yoursite.com/2019/08/03/2019/WorkManager%20IN/index.html">
+<meta property="og:site_name" content="子路宇晟的博客">
+<meta property="og:description" content="WorkManager是Android Jetpack的架构组件（Architecture component）之一，官方对它的定义是用来管理Android后台作业。  简单上手1，添加依赖 123456789&#x2F;&#x2F; 在app的build.gradle里添加&#x2F;&#x2F;A： Kotlin + coroutinesimplementation &#39;androidx.work:work-runtime-ktx:">
+<meta property="og:image" content="http://doc.heyongjian.cn/hyj-doc-android-workManager.png">
+<meta property="article:published_time" content="2019-08-03T15:07:00.000Z">
+<meta property="article:modified_time" content="2020-04-19T09:10:51.553Z">
+<meta property="article:author" content="子路宇晟">
+<meta property="article:tag" content="DEV">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://doc.heyongjian.cn/hyj-doc-android-workManager.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/03/2019/WorkManager IN/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>WorkManager IN Jetpack | 子路宇晟的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">子路宇晟的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">love and peace</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/03/2019/WorkManager%20IN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="子路宇晟">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="子路宇晟的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">WorkManager IN Jetpack
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-08-03 23:07:00" itemprop="dateCreated datePublished" datetime="2019-08-03T23:07:00+08:00">2019-08-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-04-19 17:10:51" itemprop="dateModified" datetime="2020-04-19T17:10:51+08:00">2020-04-19</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/08/03/2019/WorkManager%20IN/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/08/03/2019/WorkManager%20IN/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/08/03/2019/WorkManager%20IN/" class="leancloud_visitors" data-flag-title="WorkManager IN Jetpack">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>WorkManager是Android Jetpack的架构组件（Architecture component）之一，官方对它的定义是用来管理Android后台作业。</p>
+</blockquote>
+<h3 id="简单上手"><a href="#简单上手" class="headerlink" title="简单上手"></a>简单上手</h3><p>1，添加<a href="https://developer.android.com/jetpack/androidx/releases/work#declaring_dependencies" target="_blank" rel="noopener">依赖</a></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在app的build.gradle里添加</span></span><br><span class="line"><span class="comment">//A： Kotlin + coroutines</span></span><br><span class="line">implementation <span class="string">'androidx.work:work-runtime-ktx:2.1.0'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//B： Java only</span></span><br><span class="line">implementation <span class="string">'androidx.work:work-runtime:2.1.0'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//C： optional - RxJava2 support</span></span><br><span class="line">implementation <span class="string">'androidx.work:work-rxjava2:2.1.0'</span></span><br></pre></td></tr></table></figure>
+
+<p>2，实现一个Worker</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 相当于一个Task</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CountNumWorker</span></span>(appContext: Context, workerParams: WorkerParameters) :   Worker(appContext, workerParams) &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> count = inputData.getInt(COUNT, <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> name = inputData.getString(NAME) ?: <span class="string">"bob"</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">doWork</span><span class="params">()</span></span>: Result &#123;</span><br><span class="line">        <span class="keyword">var</span> sum = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">0</span>..count) &#123;</span><br><span class="line">            sum += i</span><br><span class="line">            sleep()</span><br><span class="line">            Log.d(TAG, <span class="string">"-----<span class="variable">$name</span> count <span class="variable">$count</span> || sum <span class="variable">$sum</span>"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> Result.success()</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">sleep</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">val</span> time = Math.random() * <span class="number">400</span> + <span class="number">100</span></span><br><span class="line">        Log.d(CountNumWorker.TAG, <span class="string">"----<span class="variable">$time</span>"</span>)</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">           Thread.sleep(time.toLong(), <span class="number">0</span>)</span><br><span class="line">        &#125; <span class="keyword">catch</span> (e: InterruptedException) &#123;</span><br><span class="line">           Log.e(CountNumWorker.TAG, <span class="string">"----<span class="variable">$e</span>"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">val</span> TAG = <span class="string">"CountNumWorker"</span></span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">val</span> COUNT = <span class="string">"count"</span></span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">val</span> NAME = <span class="string">"name"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3，创建一个WorkRequest</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 定义怎么运行Worker，下面这个worker将只运行一次，对应的还有周期运行的PeriodicWorkRequestBuilder</span><br><span class="line">val workRequest &#x3D; OneTimeWorkRequestBuilder&lt;CountNumWorker2&gt;().build()</span><br></pre></td></tr></table></figure>
+
+<p>4，执行Worker</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 调用WorkManager单例开始worker</span></span><br><span class="line">WorkManager.getInstance().enqueue(workRequest)</span><br></pre></td></tr></table></figure>
+
+<p>WorkerManager作为JetPack一员，官方强烈安利搭配<a href="https://developer.android.com/topic/libraries/architecture/livedata" target="_blank" rel="noopener"><code>LiveData</code></a> and <a href="https://developer.android.com/topic/libraries/architecture/viewmodel" target="_blank" rel="noopener"><code>ViewModel</code></a>一起食用。不过单独用也完全OK，而且上手是很简单的。执行后台任务我们已经有AsyncTask，ThreadPools，RxJava…那WorkManager需要足够理由来说服大家上车。</p>
+<h3 id="WorkManager是啥？"><a href="#WorkManager是啥？" class="headerlink" title="WorkManager是啥？"></a>WorkManager是啥？</h3><p><strong>WorkManager可以用来轻松安排非立即执行的异步任务，即使程序退出或者手机重启</strong>。</p>
+<h4 id="关键功能"><a href="#关键功能" class="headerlink" title="关键功能"></a>关键功能</h4><ul>
+<li>支持API 14以上机型，在API 14-22使用BroadcastReceiver + AlarmManager，23+则是JobScheduler</li>
+<li>给work添加触发条件，比如特定网络状态和或电池多少以上才执行</li>
+<li>可以单次或周期的执行异步任务</li>
+<li>监视和管理任务</li>
+<li>按组按序执行任务</li>
+<li>可以确保任务执行，即使app退出或手机重启，叼</li>
+<li>电池友好，即使休眠模式也能工作</li>
+</ul>
+<h4 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h4><ul>
+<li>发送logs或analytics给后端</li>
+<li>周期性和后端同步app数据</li>
+</ul>
+<h4 id="什么时候用"><a href="#什么时候用" class="headerlink" title="什么时候用"></a>什么时候用</h4><p><img src="http://doc.heyongjian.cn/hyj-doc-android-workManager.png" alt="img"></p>
+<p><strong>敲黑板</strong>：是否需要立即执行的前提很重要，比如用户希望立即运行不被打断，那WorkManager就表示做不到了，这时需要用foreground service。其他情况下首选WorkManager，它具有更高的兼容性和更优雅的封装性。</p>
+<h3 id="进阶使用"><a href="#进阶使用" class="headerlink" title="进阶使用"></a>进阶使用</h3><p>1，传递数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;IN： requestBuilder 往worker塞数据</span><br><span class="line">workRequestBuilder.setInputData(getCountData(&quot;bob&quot;,10))</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;IN： Data里面有个Map接收数据</span><br><span class="line">private fun getCountData(name: String, count: Int): Data &#123;</span><br><span class="line">        val builder &#x3D; Data.Builder()</span><br><span class="line">        CountNumWorker.TAG</span><br><span class="line">        builder.putInt(CountNumWorker.COUNT, count)</span><br><span class="line">        builder.putString(CountNumWorker.NAME, name)</span><br><span class="line">        return builder.build()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;OUT：worker里面取数据</span><br><span class="line">private val count &#x3D; inputData.getInt(COUNT, 0)</span><br><span class="line">private val name &#x3D; inputData.getString(NAME) ?: &quot;bob&quot;</span><br></pre></td></tr></table></figure>
+
+<p>2，监听worker执行状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 实例化一个workRequestBuilder</span><br><span class="line">val workRequestBuilder &#x3D; OneTimeWorkRequestBuilder&lt;CountNumWorker2&gt;()</span><br><span class="line">&#x2F;&#x2F; 设置一下TAG</span><br><span class="line">workRequestBuilder.addTag(&quot;bob&quot;)</span><br><span class="line">&#x2F;&#x2F; 监听特定TAG的worker的执行状态</span><br><span class="line">workerManager.getWorkInfosByTagLiveData(&quot;bob&quot;).observe(this, Observer &#123; workInfo -&gt;</span><br><span class="line">        if (workInfo !&#x3D; null &amp;&amp; workInfo.first().state &#x3D;&#x3D; WorkInfo.State.SUCCEEDED) &#123;</span><br><span class="line">            UtilToast.show(&quot;----success!&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    </span><br><span class="line">&#x2F;&#x2F; PS：worker可以有三种方式标示：name，id，tag。tag可以在workRequestBuilder上设置，表示一个组的worker，name和id都是在workRequestBuilder.build()后可以获取，表示单个worker，通过WorkContinuation可以设置。</span><br></pre></td></tr></table></figure>
+
+<p>3，串并联worker，S队形B队形随意排</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"> *            A</span><br><span class="line"> *            |</span><br><span class="line"> *      +----------+</span><br><span class="line"> *      |          |</span><br><span class="line"> *     Bob        lucy</span><br><span class="line"> *      |          |</span><br><span class="line"> *      +----------+</span><br><span class="line"> *            |</span><br><span class="line"> *            B</span><br><span class="line"><span class="comment">// A任务先执行，然后bob和lucy一起跑，跑完了再跑B worker</span></span><br><span class="line"><span class="keyword">val</span> workRequestBuilder = OneTimeWorkRequestBuilder&lt;CountNumWorker2&gt;()</span><br><span class="line"><span class="keyword">val</span> workRequestBuilder2 = OneTimeWorkRequestBuilder&lt;CountNumWorker2&gt;()</span><br><span class="line"><span class="keyword">val</span> workRequestBuilderA = OneTimeWorkRequestBuilder&lt;CountNumWorker&gt;()</span><br><span class="line"><span class="keyword">val</span> workRequestBuilderB = OneTimeWorkRequestBuilder&lt;CountNumWorker&gt;()</span><br><span class="line">workRequestBuilder.setInputData(getCountData(<span class="string">"bob"</span>,<span class="number">10</span>))</span><br><span class="line">workRequestBuilder2.setInputData(getCountData(<span class="string">"lucy"</span>,<span class="number">15</span>))</span><br><span class="line">workRequestBuilderA.setInputData(getCountData(<span class="string">"A"</span>, <span class="number">15</span>))</span><br><span class="line">workRequestBuilderB.setInputData(getCountData(<span class="string">"B"</span>, <span class="number">15</span>))</span><br><span class="line"><span class="keyword">val</span> list = listOf(workRequestBuilder.build(), workRequestBuilder2.build())</span><br><span class="line">workerManager.beginWith(workRequestBuilderA.build()).then(list).then(workRequestBuilderB.build()).enqueue()</span><br><span class="line"></span><br><span class="line"> *     A       C</span><br><span class="line"> *     |       |</span><br><span class="line"> *     B       D</span><br><span class="line"> *     |       |</span><br><span class="line"> *     +-------+</span><br><span class="line"> *         |</span><br><span class="line"> *         E </span><br><span class="line"><span class="comment">// 左右两边任务同时跑起来，文体两开花安排上</span></span><br><span class="line">WorkContinuation left = workManager.beginWith(A).then(B);</span><br><span class="line">WorkContinuation right = workManager.beginWith(C).then(D);</span><br><span class="line">WorkContinuation <span class="keyword">final</span> = WorkContinuation.combine(Arrays.asList(left, right)).then(E);</span><br><span class="line"><span class="keyword">final</span>.enqueue();</span><br></pre></td></tr></table></figure>
+
+<p>4，Cancelling and stopping work</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">WorkManager.cancelWorkById(workRequest.id)</span><br><span class="line">workerManager.cancelAllWorkByTag(<span class="string">"bob"</span>)</span><br><span class="line">workerManager.cancelUniqueWork(<span class="string">"lucy"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>5，周期任务</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 充电时worker才工作</span></span><br><span class="line"><span class="keyword">val</span> constraints = Constraints.Builder()</span><br><span class="line">        .setRequiresCharging(<span class="literal">true</span>)</span><br><span class="line">        .build()</span><br><span class="line"><span class="comment">// 设置request</span></span><br><span class="line"><span class="keyword">val</span> saveRequest =</span><br><span class="line">PeriodicWorkRequestBuilder&lt;SaveImageToFileWorker&gt;(<span class="number">1</span>, TimeUnit.HOURS)</span><br><span class="line">    .setConstraints(constraints)</span><br><span class="line">    .build()</span><br><span class="line"><span class="comment">// 安排上</span></span><br><span class="line">WorkManager.getInstance()</span><br><span class="line">    .enqueue(saveRequest)</span><br></pre></td></tr></table></figure>
+
+<p>6，WorkManager的线程模型</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 简单来说就是三种，本文最开头的添加依赖里标了A，B，C</span></span><br><span class="line"><span class="comment">// 如果依赖B，那只能使用基础的Worker</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DownloadWorker</span></span>(context: Context, params: WorkerParameters) : Worker(context, params) &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">doWork</span><span class="params">()</span></span>: ListenableWorker.Result &#123;</span><br><span class="line">        <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">0</span>..<span class="number">99</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                downloadSynchronously(<span class="string">"https://www.google.com"</span>)</span><br><span class="line">            &#125; <span class="keyword">catch</span> (e: IOException) &#123;</span><br><span class="line">                <span class="keyword">return</span> ListenableWorker.Result.failure()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ListenableWorker.Result.success()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Worker默认是会创建一个Executor，但也可以自定义</span></span><br><span class="line">WorkManager.initialize(</span><br><span class="line">    context,</span><br><span class="line">    Configuration.Builder()</span><br><span class="line">        .setExecutor(Executors.newFixedThreadPool(<span class="number">8</span>))</span><br><span class="line">        .build())</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果依赖A（推荐），那可以使用Worker和CoroutineWorker，协程美滋滋</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CoroutineDownloadWorker</span></span>(context: Context, params: WorkerParameters) : CoroutineWorker(context, params) &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">val</span> coroutineContext = Dispatchers.IO</span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">suspend</span> <span class="function"><span class="keyword">fun</span> <span class="title">doWork</span><span class="params">()</span></span>: Result = coroutineScope &#123;</span><br><span class="line">        <span class="keyword">val</span> jobs = (<span class="number">0</span> until <span class="number">100</span>).map &#123;</span><br><span class="line">            async &#123;</span><br><span class="line">                downloadSynchronously(<span class="string">"https://www.google.com"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// awaitAll will throw an exception if a download fails, which CoroutineWorker will treat as a failure</span></span><br><span class="line">        jobs.awaitAll()</span><br><span class="line">        Result.success()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// RxJava2重度患者，在A或B的基础上加个C，就可以多个RxWoker使用</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RxDownloadWorker</span> <span class="title">extends</span> <span class="title">RxWorker</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> RxDownloadWorker(Context context, WorkerParameters params) &#123;</span><br><span class="line">        <span class="keyword">super</span>(context, params);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Single&lt;Result&gt; createWork() &#123;</span><br><span class="line">        <span class="keyword">return</span> Observable.range(<span class="number">0</span>, <span class="number">100</span>)</span><br><span class="line">            .flatMap &#123; download(<span class="string">"https://www.google.com"</span>) &#125;</span><br><span class="line">            .toList()</span><br><span class="line">            .map &#123; Result.success() &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://developer.android.com/topic/libraries/architecture/workmanager" target="_blank" rel="noopener">https://developer.android.com/topic/libraries/architecture/workmanager</a></p>
+<p><a href="https://codelabs.developers.google.com/codelabs/android-workmanager-kt/#0" target="_blank" rel="noopener">https://codelabs.developers.google.com/codelabs/android-workmanager-kt/#0</a></p>
+<p><a href="https://medium.com/androiddevelopers/introducing-workmanager-2083bcfc4712" target="_blank" rel="noopener">https://medium.com/androiddevelopers/introducing-workmanager-2083bcfc4712</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/DEV/" rel="tag"># DEV</a>
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/29/2019/%E8%87%AA%E5%AE%9A%E4%B9%89%E9%AA%8C%E8%AF%81%E7%A0%81%E8%BE%93%E5%85%A5View/" rel="next" title="自定义验证码输入View">
+                <i class="fa fa-chevron-left"></i> 自定义验证码输入View
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/11/2019/google%20play%20%E4%B8%8A%E8%BD%A6%E6%8C%87%E5%8D%97/" rel="prev" title="Android Google Play 上车指南">
+                Android Google Play 上车指南 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="子路宇晟" />
+            
+              <p class="site-author-name" itemprop="name">子路宇晟</p>
+              <p class="site-description motion-element" itemprop="description">二次元爱好者，非专业视觉体验师</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/hyjfine" target="_blank" title="GitHub"><i class="fa fa-fw fa-fab fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:hyjfine@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-fa fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单上手"><span class="nav-number">1.</span> <span class="nav-text">简单上手</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WorkManager是啥？"><span class="nav-number">2.</span> <span class="nav-text">WorkManager是啥？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关键功能"><span class="nav-number">2.1.</span> <span class="nav-text">关键功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用场景"><span class="nav-number">2.2.</span> <span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么时候用"><span class="nav-number">2.3.</span> <span class="nav-text">什么时候用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进阶使用"><span class="nav-number">3.</span> <span class="nav-text">进阶使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright"> &copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">子路宇晟</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v4.2.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'CXylYR7pNX93azPeMMWgqMK1-gzGzoHsz',
+        appKey: 'DbB4mssjG6l3EpItcmPnnNxs',
+        placeholder: 'Just go go',
+        avatar:'/images/avatar.jpg mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: true
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
