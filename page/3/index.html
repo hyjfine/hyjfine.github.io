@@ -287,6 +287,426 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/28/2018/%E5%90%88%E4%BC%99%E4%BA%BAFlutter%E9%87%8D%E6%9E%84%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="子路宇晟">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="子路宇晟的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/28/2018/%E5%90%88%E4%BC%99%E4%BA%BAFlutter%E9%87%8D%E6%9E%84%E6%80%BB%E7%BB%93/" itemprop="url">
+                  Flutter 重写app总结
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-12-28 00:16:00" itemprop="dateCreated datePublished" datetime="2018-12-28T00:16:00+08:00">2018-12-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-04-06 23:26:28" itemprop="dateModified" datetime="2020-04-06T23:26:28+08:00">2020-04-06</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/28/2018/%E5%90%88%E4%BC%99%E4%BA%BAFlutter%E9%87%8D%E6%9E%84%E6%80%BB%E7%BB%93/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/28/2018/%E5%90%88%E4%BC%99%E4%BA%BAFlutter%E9%87%8D%E6%9E%84%E6%80%BB%E7%BB%93/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/12/28/2018/%E5%90%88%E4%BC%99%E4%BA%BAFlutter%E9%87%8D%E6%9E%84%E6%80%BB%E7%BB%93/" class="leancloud_visitors" data-flag-title="Flutter 重写app总结">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="重构原因"><a href="#重构原因" class="headerlink" title="重构原因"></a>重构原因</h2><h3 id="技术栈原因"><a href="#技术栈原因" class="headerlink" title="技术栈原因"></a>技术栈原因</h3><ul>
+<li>RN不足之处<ul>
+<li>开发体验差，android模拟器卡，真机会因为各种原因无法调试运行</li>
+<li>开源组件质量良莠不齐，经常break change，我们几次尝试升大版本都失败</li>
+<li>理论性能上限低，组件最终调用的是native的，安卓系统分布非常碎片化，大量的platform判断逻辑，兼容适配的成本高，表现很难统一。和Native通信只能是异步模型，导致如RecycleView这种高性能列表组件无法使用。动画实现也不理想。</li>
+</ul>
+</li>
+<li>Flutter理论优势<ul>
+<li>Flutter继承了RN衣钵，但更进一步。它自己实现了UI引擎，从而真的可以是write once，run anywhere，是的，除了iOS，android，它还能写前端页面，Google未来融合Chromebook和Android的<a href="https://en.wikipedia.org/wiki/Google_Fuchsia" target="_blank" rel="noopener">Fuchsia</a>系统是运行Flutter app的。</li>
+<li>Dev友好，开发是Jit模式，毫秒级hot reload，release是Aot，针对ABI优化编译成机器码，性能好</li>
+<li>Flutter引擎没有历史包袱，直接面向最新的Vulkan和Metal封装，渲染效率更高。升级没有依赖，引擎维护者也可以做更彻底的优化。</li>
+</ul>
+</li>
+</ul>
+<h3 id="业务原因"><a href="#业务原因" class="headerlink" title="业务原因"></a>业务原因</h3><ul>
+<li>公司业务战略调整，ME暂时没有高优先级的业务需求。正所谓天晴时修房顶，这时候重构项目是科学的。</li>
+<li>可以还技术债，也可以提高小伙伴的专业技能，为后面可能到来的业务挑战做好准备。</li>
+</ul>
+<h2 id="重构目标"><a href="#重构目标" class="headerlink" title="重构目标"></a>重构目标</h2><ul>
+<li>软件指标（帧数，内存，CPU）<ul>
+<li>帧数平均有<strong>10%</strong>提升</li>
+<li>运行内存有<strong>10%</strong>下降</li>
+<li>运行CPU有1<strong>0%</strong>下降</li>
+</ul>
+</li>
+<li>业务指标（人天效能，稳定度）<ul>
+<li>人天效能（对比RN）有<strong>50%</strong>以上提升</li>
+<li>核心模块高于<strong>50%</strong>的单元测试覆盖率</li>
+<li>上线前人均Bug数不大于<strong>5</strong>，上线后Crash率小于0.05%</li>
+</ul>
+</li>
+</ul>
+<h2 id="重构结果"><a href="#重构结果" class="headerlink" title="重构结果"></a>重构结果</h2><h3 id="业务表现"><a href="#业务表现" class="headerlink" title="业务表现"></a>业务表现</h3><ul>
+<li>计划履行率<ul>
+<li>开发前有比较详细的任务分工，功能细化到人天，<strong>95%</strong>的story都能按期完成，开发过程可计划，可调控。</li>
+<li>开发计划表：<a href="https://shimo.im/sheet/gsWNVfO3BpMN9bGS/yWUJN" target="_blank" rel="noopener">https://shimo.im/sheet/gsWNVfO3BpMN9bGS/yWUJN</a></li>
+</ul>
+</li>
+<li>人均效能<ul>
+<li>RN的人天总数是3*（2018/8/23-2017/11/15）=843人天，</li>
+<li>Flutter是6<em>（2018/11/30-2018/9/8）=498人天，提升大概是843/498 -1 = *</em>69.2%**</li>
+</ul>
+</li>
+<li>单元测试<ul>
+<li>我们还实现了<strong>50%</strong>以上的单元测试覆盖率，此处会有截图（11/27前完成）</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/12/28/2018/%E5%90%88%E4%BC%99%E4%BA%BAFlutter%E9%87%8D%E6%9E%84%E6%80%BB%E7%BB%93/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/09/2018/Flutter%20redux%20%E8%BF%9B%E9%98%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="子路宇晟">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="子路宇晟的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/09/2018/Flutter%20redux%20%E8%BF%9B%E9%98%B6/" itemprop="url">
+                  Fish Redux 进阶
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-12-09 23:08:00" itemprop="dateCreated datePublished" datetime="2018-12-09T23:08:00+08:00">2018-12-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-04-06 23:12:59" itemprop="dateModified" datetime="2020-04-06T23:12:59+08:00">2020-04-06</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/09/2018/Flutter%20redux%20%E8%BF%9B%E9%98%B6/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/09/2018/Flutter%20redux%20%E8%BF%9B%E9%98%B6/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/12/09/2018/Flutter%20redux%20%E8%BF%9B%E9%98%B6/" class="leancloud_visitors" data-flag-title="Fish Redux 进阶">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><ol>
+<li>认识Flutter Redux局限性</li>
+<li>引入Middleware必要性</li>
+<li>全方位集成UT</li>
+</ol>
+<h2 id="Flutter-Redux初代实现局限性"><a href="#Flutter-Redux初代实现局限性" class="headerlink" title="Flutter Redux初代实现局限性"></a>Flutter Redux初代实现局限性</h2><h3 id="UT不好覆盖"><a href="#UT不好覆盖" class="headerlink" title="UT不好覆盖"></a>UT不好覆盖</h3><ol>
+<li>页面</li>
+</ol>
+<p>初代实现一个页面的结构是这样的：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">XXXScreen</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  _XXXScreenState createState() =&gt; _XXXScreenState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_XXXScreenState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">XXXScreen</span>&gt; </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> StoreConnector&lt;AppState, _XXXViewModel&gt;(</span><br><span class="line">        converter: (store) =&gt; _XXXViewModel.fromStore(store),</span><br><span class="line">        builder: (BuildContext context, _XXXViewModel vm) =&gt;</span><br><span class="line">            Container());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>会有两个问题：UI视图和Redux数据通用逻辑耦和在一起，无发通过mock数据来对UI进行UT；大家习惯套路代码，上来就是一个stful，不会想是不是stless更科学点（事实上初代实现80%的Screen是Statefull的，重构后90%都能写成Stateless，提升了页面刷新效率）。</p>
+<ol start="2">
+<li>API call</li>
+</ol>
+<p>我们的API就是一个静态方法：</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/12/09/2018/Flutter%20redux%20%E8%BF%9B%E9%98%B6/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/09/2018/Flutter%20Theme/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1915,393 +2335,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/09/2017/lodash/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="子路宇晟">
-      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="子路宇晟的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/09/2017/lodash/" itemprop="url">
-                  Lodash
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-04-09 15:06:00" itemprop="dateCreated datePublished" datetime="2017-04-09T15:06:00+08:00">2017-04-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-12-22 16:50:44" itemprop="dateModified" datetime="2018-12-22T16:50:44+08:00">2018-12-22</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/04/09/2017/lodash/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2017/04/09/2017/lodash/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/04/09/2017/lodash/" class="leancloud_visitors" data-flag-title="Lodash">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Views: </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Lodash概述"><a href="#Lodash概述" class="headerlink" title="Lodash概述"></a>Lodash概述</h1><p>随着时间的过去，我们写码会积累一些习惯，思想，工具和套路代码，让我们下次在做类似工作时可以事半功倍。lodash就是一个js的工具库，它内部封装了常见的数据处理，如字符，数组，对象，日期。传承于underscore，但性能上却更优异。</p>
-<h2 id="模块组成"><a href="#模块组成" class="headerlink" title="模块组成"></a>模块组成</h2><ul>
-<li>Array，适用于数组类型，比如填充数据、查找元素、数组分片等操作</li>
-<li>Collection，适用于数组和对象类型，部分适用于字符串，比如分组、查找、过滤等操作</li>
-<li>Date，当前时间戳</li>
-<li>Function，适用于函数类型，比如字节流，延迟，缓存，设置钩子等操作</li>
-<li>Lang，类型转化和数值比较</li>
-<li>Math，数学运算</li>
-<li>Number，随机数和数值区间</li>
-<li>Object，对象的创建、扩展、类型转换、检索、集合等操作</li>
-<li>Seq，创建链式调用，提高执行性能（惰性计算）</li>
-<li>String，适用于字符串类型</li>
-</ul>
-<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>1.N次循环</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. Basic for loop. </span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123; </span><br><span class="line"><span class="comment">// ... </span></span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// 2. Using Array's join and split methods </span></span><br><span class="line"><span class="built_in">Array</span>.apply(<span class="literal">null</span>, <span class="built_in">Array</span>(<span class="number">5</span>)).forEach(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">  <span class="comment">// ... </span></span><br><span class="line">&#125;); </span><br><span class="line"><span class="comment">// Lodash _.times(5, function()&#123; </span></span><br><span class="line"><span class="comment">// ... </span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p><code>for</code> 语句是执行循环的不二选择，<code>Array.apply</code> 也可以模拟循环，但在上面代码的使用场景下，<code>_.times()</code> 的解决方式更加简洁和易于理解。</p>
-<p>2.深层查找属性值</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Fetch the name of the first pet from each owner </span></span><br><span class="line"><span class="keyword">var</span> ownerArr = [&#123; </span><br><span class="line">  <span class="string">"owner"</span>: <span class="string">"Colin"</span>, </span><br><span class="line">  <span class="string">"pets"</span>: [&#123;<span class="string">"name"</span>:<span class="string">"dog1"</span>&#125;, &#123;<span class="string">"name"</span>: <span class="string">"dog2"</span>&#125;]</span><br><span class="line">&#125;, &#123; </span><br><span class="line">  <span class="string">"owner"</span>: <span class="string">"John"</span>, </span><br><span class="line">  <span class="string">"pets"</span>: [&#123;<span class="string">"name"</span>:<span class="string">"dog3"</span>&#125;, &#123;<span class="string">"name"</span>: <span class="string">"dog4"</span>&#125;] &#125;]; </span><br><span class="line"><span class="comment">// Array's map method. </span></span><br><span class="line">ownerArr.map(<span class="function"><span class="keyword">function</span>(<span class="params">owner</span>)</span>&#123; </span><br><span class="line">   <span class="keyword">return</span> owner.pets[<span class="number">0</span>].name; </span><br><span class="line">&#125;); </span><br><span class="line"><span class="comment">// Lodash </span></span><br><span class="line">_.map(ownerArr, <span class="string">'pets[0].name'</span>);</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2017/04/09/2017/lodash/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/02/2017/2016/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="子路宇晟">
-      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="子路宇晟的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/02/02/2017/2016/" itemprop="url">
-                  我的2016
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-02-02 06:02:00" itemprop="dateCreated datePublished" datetime="2017-02-02T06:02:00+08:00">2017-02-02</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2020-04-05 23:07:24" itemprop="dateModified" datetime="2020-04-05T23:07:24+08:00">2020-04-05</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/02/02/2017/2016/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2017/02/02/2017/2016/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/02/02/2017/2016/" class="leancloud_visitors" data-flag-title="我的2016">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Views: </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="2016"><a href="#2016" class="headerlink" title="2016"></a>2016</h1><p>作为一个每年都要迁徙回家过年的俗人，现在写16年的总结应该也是说的过去的。</p>
-<h2 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h2><p>16年主要工作还是android方向，还写了点python接口，现学现用了react大礼包。在pad，pos和数据面板做了一点微小的工作。</p>
-<p>感谢组织的信任，日常维护着商户管家的相关FAQ。</p>
-<h2 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h2><p>和女朋友吃喝拉撒在一起，感觉被照顾着，很开心😄</p>
-<p>4月的某个周末去浙江一个竹林爬山，挺累，但是便宜啊，而且有锻炼到。</p>
-<p>5月的海南已然是炎夏了，蜈支洲岛的水特别蓝，玩了5天，特别放松。</p>
-<p>6月公司集体去越南旅游，好吃的鸡肉米粉，比海南更好的沙滩，消费也特别低，是个去海边度假的好去处，人民币在那里特别管用。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2017/02/02/2017/2016/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot; aria-label&#x3D;&quot;Previous page&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot; aria-label&#x3D;&quot;Previous page&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot; aria-label&#x3D;&quot;Next page&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -2348,7 +2386,7 @@
                 
                   <a href="/archives/%20%7C%7C%20archive">
                 
-                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-count">32</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

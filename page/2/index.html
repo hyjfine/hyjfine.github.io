@@ -287,6 +287,387 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/01/2019/ImageView%20ScaleType%20and%20Transition/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="子路宇晟">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="子路宇晟的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/01/2019/ImageView%20ScaleType%20and%20Transition/" itemprop="url">
+                  ImageView ScaleType and Transition
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-09-01 23:31:00" itemprop="dateCreated datePublished" datetime="2019-09-01T23:31:00+08:00">2019-09-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-04-06 22:50:53" itemprop="dateModified" datetime="2020-04-06T22:50:53+08:00">2020-04-06</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/09/01/2019/ImageView%20ScaleType%20and%20Transition/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/09/01/2019/ImageView%20ScaleType%20and%20Transition/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/09/01/2019/ImageView%20ScaleType%20and%20Transition/" class="leancloud_visitors" data-flag-title="ImageView ScaleType and Transition">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>ImageView 是很常用的控件，记录下ScaleType和Transition animation</p>
+</blockquote>
+<h3 id="ImageView-ScaleType"><a href="#ImageView-ScaleType" class="headerlink" title="ImageView ScaleType"></a>ImageView ScaleType</h3><p><img src="https://hyjdoc.oss-cn-beijing.aliyuncs.com/image-20190827232228863.png" alt="image-20190827232228863"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;androidx.constraintlayout.widget.ConstraintLayout</span><br><span class="line">        xmlns:android&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res&#x2F;android&quot;</span><br><span class="line">        xmlns:app&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res-auto&quot;</span><br><span class="line">        android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">        android:id&#x3D;&quot;@+id&#x2F;faceLayout&quot;</span><br><span class="line">        android:layout_height&#x3D;&quot;match_parent&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Button</span><br><span class="line">            android:id&#x3D;&quot;@+id&#x2F;button2&quot;</span><br><span class="line">            android:layout_width&#x3D;&quot;0dp&quot;</span><br><span class="line">            android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:text&#x3D;&quot;Button&quot;</span><br><span class="line">            app:layout_constraintEnd_toEndOf&#x3D;&quot;parent&quot;</span><br><span class="line">            app:layout_constraintStart_toStartOf&#x3D;&quot;parent&quot;</span><br><span class="line">            app:layout_constraintTop_toTopOf&#x3D;&quot;parent&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;androidx.constraintlayout.widget.ConstraintLayout&gt;</span><br><span class="line">&#x2F;&#x2F; 这三个属性尽量搭配一起使用，除了center和matrix，其他效果都一致，显示正常不拉伸的图片。</span><br><span class="line">android:layout_width&#x3D;&quot;0dp&quot;</span><br><span class="line">android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">android:adjustViewBounds&#x3D;&quot;true&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ImageView-Transition"><a href="#ImageView-Transition" class="headerlink" title="ImageView Transition"></a>ImageView Transition</h3><p><a href="https://medium.com/@andkulikov/animate-all-the-things-transitions-in-android-914af5477d50" target="_blank" rel="noopener">https://medium.com/@andkulikov/animate-all-the-things-transitions-in-android-914af5477d50</a></p>
+<p>1，改变图片属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">val animator &#x3D; ValueAnimator.ofFloat(0f, 1f)</span><br><span class="line">        animator.duration &#x3D; Constants.ThrottleDuration.NORMAL</span><br><span class="line">        animator.addUpdateListener &#123; animation -&gt;</span><br><span class="line">            val animatorValue &#x3D; animation.animatedValue as Float</span><br><span class="line">            videoView.translationX &#x3D; 50 * animatorValue</span><br><span class="line">            videoView.translationY &#x3D; 100 * animatorValue</span><br><span class="line">            videoView.scaleX &#x3D; 1f - 0.8f * animatorValue</span><br><span class="line">            videoView.scaleY &#x3D; 1f - 0.5f * animatorValue</span><br><span class="line">        &#125;</span><br><span class="line">        animator.start()</span><br></pre></td></tr></table></figure>
+
+<p>2，利用transition改变layoutParams</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">val marginHorizontal &#x3D; UtilResource.getDimensionPixelSize(R.dimen.margin_horizontal)</span><br><span class="line">        val container &#x3D; mRoot.transitionLayout</span><br><span class="line">        val transitionSet &#x3D; TransitionSet()</span><br><span class="line">            .addTransition(ChangeBounds())</span><br><span class="line">            .addTransition(ChangeImageTransform()).addListener(object : TransitionListenerAdapter()&#123;</span><br><span class="line">                override fun onTransitionStart(transition: Transition) &#123;</span><br><span class="line">                    super.onTransitionStart(transition)</span><br><span class="line"></span><br><span class="line">                    UtilLog.d(sTAG, &quot;------full start &quot;)</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                override fun onTransitionEnd(transition: Transition) &#123;</span><br><span class="line">                    super.onTransitionEnd(transition)</span><br><span class="line">                    UtilLog.d(sTAG, &quot;------full end&quot;)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line"></span><br><span class="line">        TransitionManager.beginDelayedTransition(container, transitionSet)</span><br><span class="line">        val params &#x3D; videoView.layoutParams as ViewGroup.MarginLayoutParams</span><br><span class="line">        UtilLog.d(sTAG, &quot;------full $isScale $params&quot;)</span><br><span class="line">        params.height &#x3D; if (isScale) ViewGroup.LayoutParams.MATCH_PARENT else ViewGroup.LayoutParams.WRAP_CONTENT</span><br><span class="line">        if (isScale) &#123;</span><br><span class="line">            params.setMargins(0, 0, 0, 0)</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            params.setMargins(marginHorizontal, marginHorizontal, marginHorizontal, 0)</span><br><span class="line">        &#125;</span><br><span class="line">        videoView.layoutParams &#x3D; params</span><br><span class="line">        (videoView as ImageView).scaleType &#x3D;</span><br><span class="line">            if (isScale) ImageView.ScaleType.CENTER_CROP else ImageView.ScaleType.FIT_START</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/09/01/2019/ImageView%20ScaleType%20and%20Transition/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/18/2019/Hexo+Github%20Pages%20CDN%20&%20HTTPS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="子路宇晟">
+      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="子路宇晟的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/18/2019/Hexo+Github%20Pages%20CDN%20&%20HTTPS/" itemprop="url">
+                  Hexo+Github Pages CDN & HTTPS
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-08-18 21:03:00" itemprop="dateCreated datePublished" datetime="2019-08-18T21:03:00+08:00">2019-08-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-04-06 22:54:44" itemprop="dateModified" datetime="2020-04-06T22:54:44+08:00">2020-04-06</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/08/18/2019/Hexo+Github%20Pages%20CDN%20&%20HTTPS/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/08/18/2019/Hexo+Github%20Pages%20CDN%20&%20HTTPS/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/08/18/2019/Hexo+Github%20Pages%20CDN%20&%20HTTPS/" class="leancloud_visitors" data-flag-title="Hexo+Github Pages CDN & HTTPS">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>在Hexo和Github Pages的加持下，现在我们可以只专注在写Blog上，而不用额外的精力管网站发布和运营。一起看起来很美好，然而，一段时间过去了，会发现文章没写几篇，网站倒是卡成姥爷，浏览器还一直显示不安全。需要一些手段来解决下。</p>
+</blockquote>
+<h3 id="名词概念"><a href="#名词概念" class="headerlink" title="名词概念"></a>名词概念</h3><h4 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h4><p>全称是Content Delivery Network，最小CDN网络可以由一个DNS服务器和几台缓存服务器组成，不同地区的访问请求，CDN会智能安排最近的服务器响应，而且还有Cache来加速。所以CDN的效果取决于DNS服务器调度算法和缓存服务器的数量以及质量，CDN的作用域是域名而不是服务器。</p>
+<h4 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h4><p>Domain Name System是互联网的一项服务，它作为域名和IP地址互相映射的一个分布式系统，让用户更方便访问互联网。互联网通信是只认IP地址的，但一串数字人是记不住的，人容易记住的是apple.com这样的单词，这个叫域名，让电脑知道apple.com就是要访问122.224.45.229，就通过DNS域名解析系统。DNS系统中，常见的资源记录类型有：</p>
+<ul>
+<li>主机记录（A记录）：RFC 1035定义，A记录是用于名称解析的重要记录，它将特定的主机名映射到对应主机的IP地址上。</li>
+<li>别名记录（CNAME记录）: RFC 1035定义，CNAME记录用于将某个别名指向到某个A记录上，这样就不需要再为某个新名字另外创建一条新的A记录。</li>
+<li>IPv6主机记录（AAAA记录）: RFC 3596定义，与A记录对应，用于将特定的主机名映射到一个主机的IPv6地址。</li>
+<li>服务位置记录（SRV记录）: RFC 2782定义，用于定义提供特定服务的服务器的位置，如主机（hostname），端口（port number）等</li>
+</ul>
+<h4 id="CNAME"><a href="#CNAME" class="headerlink" title="CNAME"></a>CNAME</h4><p>想想为啥要用CNAME。用户输入的是xxx.com，打开的是xxx.github.io网页，这中间的魔法就是通过CNAME实现的，我们在DNS域名解析服务里设定了解析规则，*和www开头的记录都重定向到hxx.github.io域名。这里用CNAME的好处是github换IP操作对我们透明，从而不需要手动改配置。</p>
+<h3 id="实施"><a href="#实施" class="headerlink" title="实施"></a>实施</h3>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/08/18/2019/Hexo+Github%20Pages%20CDN%20&%20HTTPS/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/11/2019/google%20play%20%E4%B8%8A%E8%BD%A6%E6%8C%87%E5%8D%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1843,431 +2224,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/28/2018/%E5%90%88%E4%BC%99%E4%BA%BAFlutter%E9%87%8D%E6%9E%84%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="子路宇晟">
-      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="子路宇晟的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/28/2018/%E5%90%88%E4%BC%99%E4%BA%BAFlutter%E9%87%8D%E6%9E%84%E6%80%BB%E7%BB%93/" itemprop="url">
-                  Flutter 重写app总结
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-12-28 00:16:00" itemprop="dateCreated datePublished" datetime="2018-12-28T00:16:00+08:00">2018-12-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2020-04-06 23:26:28" itemprop="dateModified" datetime="2020-04-06T23:26:28+08:00">2020-04-06</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/12/28/2018/%E5%90%88%E4%BC%99%E4%BA%BAFlutter%E9%87%8D%E6%9E%84%E6%80%BB%E7%BB%93/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/28/2018/%E5%90%88%E4%BC%99%E4%BA%BAFlutter%E9%87%8D%E6%9E%84%E6%80%BB%E7%BB%93/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/12/28/2018/%E5%90%88%E4%BC%99%E4%BA%BAFlutter%E9%87%8D%E6%9E%84%E6%80%BB%E7%BB%93/" class="leancloud_visitors" data-flag-title="Flutter 重写app总结">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Views: </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="重构原因"><a href="#重构原因" class="headerlink" title="重构原因"></a>重构原因</h2><h3 id="技术栈原因"><a href="#技术栈原因" class="headerlink" title="技术栈原因"></a>技术栈原因</h3><ul>
-<li>RN不足之处<ul>
-<li>开发体验差，android模拟器卡，真机会因为各种原因无法调试运行</li>
-<li>开源组件质量良莠不齐，经常break change，我们几次尝试升大版本都失败</li>
-<li>理论性能上限低，组件最终调用的是native的，安卓系统分布非常碎片化，大量的platform判断逻辑，兼容适配的成本高，表现很难统一。和Native通信只能是异步模型，导致如RecycleView这种高性能列表组件无法使用。动画实现也不理想。</li>
-</ul>
-</li>
-<li>Flutter理论优势<ul>
-<li>Flutter继承了RN衣钵，但更进一步。它自己实现了UI引擎，从而真的可以是write once，run anywhere，是的，除了iOS，android，它还能写前端页面，Google未来融合Chromebook和Android的<a href="https://en.wikipedia.org/wiki/Google_Fuchsia" target="_blank" rel="noopener">Fuchsia</a>系统是运行Flutter app的。</li>
-<li>Dev友好，开发是Jit模式，毫秒级hot reload，release是Aot，针对ABI优化编译成机器码，性能好</li>
-<li>Flutter引擎没有历史包袱，直接面向最新的Vulkan和Metal封装，渲染效率更高。升级没有依赖，引擎维护者也可以做更彻底的优化。</li>
-</ul>
-</li>
-</ul>
-<h3 id="业务原因"><a href="#业务原因" class="headerlink" title="业务原因"></a>业务原因</h3><ul>
-<li>公司业务战略调整，ME暂时没有高优先级的业务需求。正所谓天晴时修房顶，这时候重构项目是科学的。</li>
-<li>可以还技术债，也可以提高小伙伴的专业技能，为后面可能到来的业务挑战做好准备。</li>
-</ul>
-<h2 id="重构目标"><a href="#重构目标" class="headerlink" title="重构目标"></a>重构目标</h2><ul>
-<li>软件指标（帧数，内存，CPU）<ul>
-<li>帧数平均有<strong>10%</strong>提升</li>
-<li>运行内存有<strong>10%</strong>下降</li>
-<li>运行CPU有1<strong>0%</strong>下降</li>
-</ul>
-</li>
-<li>业务指标（人天效能，稳定度）<ul>
-<li>人天效能（对比RN）有<strong>50%</strong>以上提升</li>
-<li>核心模块高于<strong>50%</strong>的单元测试覆盖率</li>
-<li>上线前人均Bug数不大于<strong>5</strong>，上线后Crash率小于0.05%</li>
-</ul>
-</li>
-</ul>
-<h2 id="重构结果"><a href="#重构结果" class="headerlink" title="重构结果"></a>重构结果</h2><h3 id="业务表现"><a href="#业务表现" class="headerlink" title="业务表现"></a>业务表现</h3><ul>
-<li>计划履行率<ul>
-<li>开发前有比较详细的任务分工，功能细化到人天，<strong>95%</strong>的story都能按期完成，开发过程可计划，可调控。</li>
-<li>开发计划表：<a href="https://shimo.im/sheet/gsWNVfO3BpMN9bGS/yWUJN" target="_blank" rel="noopener">https://shimo.im/sheet/gsWNVfO3BpMN9bGS/yWUJN</a></li>
-</ul>
-</li>
-<li>人均效能<ul>
-<li>RN的人天总数是3*（2018/8/23-2017/11/15）=843人天，</li>
-<li>Flutter是6<em>（2018/11/30-2018/9/8）=498人天，提升大概是843/498 -1 = *</em>69.2%**</li>
-</ul>
-</li>
-<li>单元测试<ul>
-<li>我们还实现了<strong>50%</strong>以上的单元测试覆盖率，此处会有截图（11/27前完成）</li>
-</ul>
-</li>
-</ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/12/28/2018/%E5%90%88%E4%BC%99%E4%BA%BAFlutter%E9%87%8D%E6%9E%84%E6%80%BB%E7%BB%93/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/09/2018/Flutter%20redux%20%E8%BF%9B%E9%98%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="子路宇晟">
-      <meta itemprop="description" content="二次元爱好者，非专业视觉体验师">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="子路宇晟的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/09/2018/Flutter%20redux%20%E8%BF%9B%E9%98%B6/" itemprop="url">
-                  Fish Redux 进阶
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-12-09 23:08:00" itemprop="dateCreated datePublished" datetime="2018-12-09T23:08:00+08:00">2018-12-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2020-04-06 23:12:59" itemprop="dateModified" datetime="2020-04-06T23:12:59+08:00">2020-04-06</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/12/09/2018/Flutter%20redux%20%E8%BF%9B%E9%98%B6/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/09/2018/Flutter%20redux%20%E8%BF%9B%E9%98%B6/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/12/09/2018/Flutter%20redux%20%E8%BF%9B%E9%98%B6/" class="leancloud_visitors" data-flag-title="Fish Redux 进阶">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Views: </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><ol>
-<li>认识Flutter Redux局限性</li>
-<li>引入Middleware必要性</li>
-<li>全方位集成UT</li>
-</ol>
-<h2 id="Flutter-Redux初代实现局限性"><a href="#Flutter-Redux初代实现局限性" class="headerlink" title="Flutter Redux初代实现局限性"></a>Flutter Redux初代实现局限性</h2><h3 id="UT不好覆盖"><a href="#UT不好覆盖" class="headerlink" title="UT不好覆盖"></a>UT不好覆盖</h3><ol>
-<li>页面</li>
-</ol>
-<p>初代实现一个页面的结构是这样的：</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">XXXScreen</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  _XXXScreenState createState() =&gt; _XXXScreenState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_XXXScreenState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">XXXScreen</span>&gt; </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> StoreConnector&lt;AppState, _XXXViewModel&gt;(</span><br><span class="line">        converter: (store) =&gt; _XXXViewModel.fromStore(store),</span><br><span class="line">        builder: (BuildContext context, _XXXViewModel vm) =&gt;</span><br><span class="line">            Container());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>会有两个问题：UI视图和Redux数据通用逻辑耦和在一起，无发通过mock数据来对UI进行UT；大家习惯套路代码，上来就是一个stful，不会想是不是stless更科学点（事实上初代实现80%的Screen是Statefull的，重构后90%都能写成Stateless，提升了页面刷新效率）。</p>
-<ol start="2">
-<li>API call</li>
-</ol>
-<p>我们的API就是一个静态方法：</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/12/09/2018/Flutter%20redux%20%E8%BF%9B%E9%98%B6/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot; aria-label&#x3D;&quot;Previous page&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot; aria-label&#x3D;&quot;Next page&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot; aria-label&#x3D;&quot;Previous page&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot; aria-label&#x3D;&quot;Next page&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -2314,7 +2275,7 @@
                 
                   <a href="/archives/%20%7C%7C%20archive">
                 
-                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-count">32</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
